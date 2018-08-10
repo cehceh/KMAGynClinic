@@ -1091,7 +1091,7 @@ Public Class Form2
         Me.Hide()
 
         f1.txtNo.Text = txtVisPatNo.Text
-        f1.cbxPatName.Text = txtVisName.Text
+        f1.txtPatName.Text = txtVisName.Text
 
         Trace.WriteLine("GoToPatient FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
@@ -1103,8 +1103,8 @@ Public Class Form2
                   "Confirm Message") = vbNo Then
             Exit Sub
         End If
-        Form1.Show()
-        Form1.Close()
+        'Form1.Show()
+        'Form1.Close()
         End
         Trace.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
@@ -1416,6 +1416,29 @@ Public Class Form2
         'End Try
     End Sub
 
+    Sub SearchDiagnosis()
+        ListBox1.Items.Clear()
+        conn.Open()
+        Dim str As String = "SELECT Visit_no FROM Visits " &
+            "WHERE Diagnosis = @Diagnosis " &
+            "ORDER BY Visit_no"
+        Dim cmd As OleDbCommand = New OleDbCommand(str, conn)
+        cmd.Parameters.Add("@Diagnosis", OleDbType.VarChar).Value = txtSearch.Text
+
+        Dim reader As OleDbDataReader = cmd.ExecuteReader
+        While reader.Read
+            Dim VisitNo As String = CStr(reader("Visit_no"))
+            Dim item As String = String.Format("{0}", VisitNo)
+            ListBox1.Items.Add(item).ToString()
+        End While
+        reader.Close()
+        conn.Close()
+
+        InvAndAttEnabled()
+        ShowAttachVisTable()
+        ShowInvVisTable()
+    End Sub
+
     Private Sub txtSearch_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtSearch.Validating
 
         If rdoVisit.Checked Then
@@ -1424,6 +1447,8 @@ Public Class Form2
             SearchName()
         ElseIf rdoID.Checked Then
             SearchID()
+        ElseIf rdodia.Checked Then
+            SearchDiagnosis()
         End If
 
         ShowVisDPVisTable()

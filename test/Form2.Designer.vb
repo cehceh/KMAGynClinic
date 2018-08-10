@@ -56,7 +56,7 @@ Partial Class Form2
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnInv = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.rdoDia = New System.Windows.Forms.RadioButton()
         Me.rdoID = New System.Windows.Forms.RadioButton()
         Me.rdoName = New System.Windows.Forms.RadioButton()
         Me.rdoVisit = New System.Windows.Forms.RadioButton()
@@ -560,7 +560,7 @@ Partial Class Form2
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Snow
-        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Controls.Add(Me.rdoDia)
         Me.GroupBox1.Controls.Add(Me.rdoID)
         Me.GroupBox1.Controls.Add(Me.rdoName)
         Me.GroupBox1.Controls.Add(Me.rdoVisit)
@@ -577,17 +577,17 @@ Partial Class Form2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Find Patient By"
         '
-        'RadioButton1
+        'rdoDia
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.RadioButton1.ForeColor = System.Drawing.Color.Green
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 79)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(91, 21)
-        Me.RadioButton1.TabIndex = 86
-        Me.RadioButton1.Text = "Diagnosis"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.rdoDia.AutoSize = True
+        Me.rdoDia.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.rdoDia.ForeColor = System.Drawing.Color.Green
+        Me.rdoDia.Location = New System.Drawing.Point(6, 79)
+        Me.rdoDia.Name = "rdoDia"
+        Me.rdoDia.Size = New System.Drawing.Size(91, 21)
+        Me.rdoDia.TabIndex = 86
+        Me.rdoDia.Text = "Diagnosis"
+        Me.rdoDia.UseVisualStyleBackColor = True
         '
         'rdoID
         '
@@ -1974,5 +1974,5 @@ Partial Class Form2
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label16 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents rdoDia As RadioButton
 End Class
