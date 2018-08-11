@@ -173,9 +173,6 @@ Partial Class Form1
         Me.Button7 = New System.Windows.Forms.Button()
         Me.txtHusband = New System.Windows.Forms.TextBox()
         Me.txtPatName = New System.Windows.Forms.TextBox()
-        Me.Label53 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label50 = New System.Windows.Forms.Label()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
@@ -303,13 +300,28 @@ Partial Class Form1
         Me.txtComplain = New System.Windows.Forms.TextBox()
         Me.txtVisPatNo = New System.Windows.Forms.TextBox()
         Me.txtSign = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Label76 = New System.Windows.Forms.Label()
+        Me.Label75 = New System.Windows.Forms.Label()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Label77 = New System.Windows.Forms.Label()
+        Me.Label78 = New System.Windows.Forms.Label()
+        Me.DataGridView5 = New System.Windows.Forms.DataGridView()
+        Me.Label79 = New System.Windows.Forms.Label()
+        Me.Label80 = New System.Windows.Forms.Label()
+        Me.DataGridView6 = New System.Windows.Forms.DataGridView()
         lblPatNo = New System.Windows.Forms.Label()
         Visit_noLabel = New System.Windows.Forms.Label()
         ComplainLabel = New System.Windows.Forms.Label()
@@ -323,7 +335,6 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -332,7 +343,11 @@ Partial Class Form1
         Me.GroupBox2.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel6.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblPatNo
@@ -2091,6 +2106,7 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(3, 66)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -2103,9 +2119,6 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.Button7)
         Me.TabPage2.Controls.Add(Me.txtHusband)
         Me.TabPage2.Controls.Add(Me.txtPatName)
-        Me.TabPage2.Controls.Add(Me.Label53)
-        Me.TabPage2.Controls.Add(Me.Label7)
-        Me.TabPage2.Controls.Add(Me.DataGridView3)
         Me.TabPage2.Controls.Add(Me.PictureBox1)
         Me.TabPage2.Controls.Add(Me.Label49)
         Me.TabPage2.Controls.Add(Me.Label50)
@@ -2195,39 +2208,6 @@ Partial Class Form1
         Me.txtPatName.Size = New System.Drawing.Size(262, 24)
         Me.txtPatName.TabIndex = 238
         '
-        'Label53
-        '
-        Me.Label53.AutoSize = True
-        Me.Label53.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label53.ForeColor = System.Drawing.Color.Black
-        Me.Label53.Location = New System.Drawing.Point(697, 6)
-        Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(28, 24)
-        Me.Label53.TabIndex = 237
-        Me.Label53.Text = "--"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(903, 6)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(28, 24)
-        Me.Label7.TabIndex = 236
-        Me.Label7.Text = "--"
-        '
-        'DataGridView3
-        '
-        Me.DataGridView3.AllowUserToAddRows = False
-        Me.DataGridView3.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Location = New System.Drawing.Point(648, 37)
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.ReadOnly = True
-        Me.DataGridView3.Size = New System.Drawing.Size(555, 254)
-        Me.DataGridView3.TabIndex = 235
-        '
         'Label49
         '
         Me.Label49.AutoSize = True
@@ -2244,7 +2224,7 @@ Partial Class Form1
         Me.Label50.AutoSize = True
         Me.Label50.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label50.ForeColor = System.Drawing.Color.Black
-        Me.Label50.Location = New System.Drawing.Point(19, 554)
+        Me.Label50.Location = New System.Drawing.Point(302, 554)
         Me.Label50.Name = "Label50"
         Me.Label50.Size = New System.Drawing.Size(28, 24)
         Me.Label50.TabIndex = 233
@@ -3800,6 +3780,119 @@ Partial Class Form1
         Me.txtSign.Size = New System.Drawing.Size(273, 117)
         Me.txtSign.TabIndex = 184
         '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.Button10)
+        Me.TabPage4.Controls.Add(Me.Button11)
+        Me.TabPage4.Controls.Add(Me.Label77)
+        Me.TabPage4.Controls.Add(Me.Label78)
+        Me.TabPage4.Controls.Add(Me.DataGridView5)
+        Me.TabPage4.Controls.Add(Me.Label79)
+        Me.TabPage4.Controls.Add(Me.Label80)
+        Me.TabPage4.Controls.Add(Me.DataGridView6)
+        Me.TabPage4.Controls.Add(Me.Button9)
+        Me.TabPage4.Controls.Add(Me.Label76)
+        Me.TabPage4.Controls.Add(Me.Label75)
+        Me.TabPage4.Controls.Add(Me.Label53)
+        Me.TabPage4.Controls.Add(Me.Label7)
+        Me.TabPage4.Controls.Add(Me.DataGridView3)
+        Me.TabPage4.Controls.Add(Me.DateTimePicker3)
+        Me.TabPage4.Controls.Add(Me.DateTimePicker2)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Size = New System.Drawing.Size(1214, 761)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "TabPage4"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button9.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Button9.ForeColor = System.Drawing.Color.White
+        Me.Button9.Location = New System.Drawing.Point(1009, 152)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(128, 49)
+        Me.Button9.TabIndex = 235
+        Me.Button9.Text = "Display"
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label76.ForeColor = System.Drawing.Color.Black
+        Me.Label76.Location = New System.Drawing.Point(934, 54)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(39, 19)
+        Me.Label76.TabIndex = 242
+        Me.Label76.Text = "End"
+        '
+        'Label75
+        '
+        Me.Label75.AutoSize = True
+        Me.Label75.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label75.ForeColor = System.Drawing.Color.Black
+        Me.Label75.Location = New System.Drawing.Point(934, 98)
+        Me.Label75.Name = "Label75"
+        Me.Label75.Size = New System.Drawing.Size(50, 19)
+        Me.Label75.TabIndex = 241
+        Me.Label75.Text = "Start"
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label53.ForeColor = System.Drawing.Color.Black
+        Me.Label53.Location = New System.Drawing.Point(63, 8)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(28, 24)
+        Me.Label53.TabIndex = 240
+        Me.Label53.Text = "--"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(501, 8)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(28, 24)
+        Me.Label7.TabIndex = 239
+        Me.Label7.Text = "--"
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.AllowUserToAddRows = False
+        Me.DataGridView3.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Location = New System.Drawing.Point(5, 45)
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.ReadOnly = True
+        Me.DataGridView3.Size = New System.Drawing.Size(914, 247)
+        Me.DataGridView3.TabIndex = 238
+        '
+        'DateTimePicker3
+        '
+        Me.DateTimePicker3.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker3.Location = New System.Drawing.Point(1009, 48)
+        Me.DateTimePicker3.Name = "DateTimePicker3"
+        Me.DateTimePicker3.Size = New System.Drawing.Size(128, 27)
+        Me.DateTimePicker3.TabIndex = 231
+        Me.DateTimePicker3.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
+        '
+        'DateTimePicker2
+        '
+        Me.DateTimePicker2.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker2.Location = New System.Drawing.Point(1009, 92)
+        Me.DateTimePicker2.Name = "DateTimePicker2"
+        Me.DateTimePicker2.Size = New System.Drawing.Size(128, 27)
+        Me.DateTimePicker2.TabIndex = 230
+        Me.DateTimePicker2.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
+        '
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.SeaGreen
@@ -3812,26 +3905,6 @@ Partial Class Form1
         Me.Button2.TabIndex = 232
         Me.Button2.Text = "Expected Date Of Delivery"
         Me.Button2.UseVisualStyleBackColor = False
-        '
-        'DateTimePicker3
-        '
-        Me.DateTimePicker3.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker3.Location = New System.Drawing.Point(796, 6)
-        Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(116, 20)
-        Me.DateTimePicker3.TabIndex = 231
-        Me.DateTimePicker3.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
-        '
-        'DateTimePicker2
-        '
-        Me.DateTimePicker2.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker2.Location = New System.Drawing.Point(796, 34)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(116, 20)
-        Me.DateTimePicker2.TabIndex = 230
-        Me.DateTimePicker2.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
         '
         'Panel2
         '
@@ -3847,8 +3920,6 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.btnBackup)
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.Button2)
-        Me.Panel2.Controls.Add(Me.DateTimePicker2)
-        Me.Panel2.Controls.Add(Me.DateTimePicker3)
         Me.Panel2.Controls.Add(Me.TextBox3)
         Me.Panel2.Controls.Add(Me.ListBox1)
         Me.Panel2.Controls.Add(Me.ListBox3)
@@ -3860,7 +3931,7 @@ Partial Class Form1
         '
         'Button8
         '
-        Me.Button8.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button8.BackColor = System.Drawing.Color.Teal
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Button8.ForeColor = System.Drawing.Color.White
@@ -3887,6 +3958,97 @@ Partial Class Form1
         'PrintDocument1
         '
         '
+        'Button10
+        '
+        Me.Button10.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button10.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Button10.ForeColor = System.Drawing.Color.White
+        Me.Button10.Location = New System.Drawing.Point(892, 543)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(155, 36)
+        Me.Button10.TabIndex = 248
+        Me.Button10.Text = "US / Visits"
+        Me.Button10.UseVisualStyleBackColor = False
+        '
+        'Button11
+        '
+        Me.Button11.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button11.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Button11.ForeColor = System.Drawing.Color.White
+        Me.Button11.Location = New System.Drawing.Point(892, 298)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(155, 31)
+        Me.Button11.TabIndex = 250
+        Me.Button11.Text = "Previous Visits"
+        Me.Button11.UseVisualStyleBackColor = False
+        '
+        'Label77
+        '
+        Me.Label77.AutoSize = True
+        Me.Label77.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label77.ForeColor = System.Drawing.Color.Black
+        Me.Label77.Location = New System.Drawing.Point(501, 555)
+        Me.Label77.Name = "Label77"
+        Me.Label77.Size = New System.Drawing.Size(28, 24)
+        Me.Label77.TabIndex = 249
+        Me.Label77.Text = "--"
+        '
+        'Label78
+        '
+        Me.Label78.AutoSize = True
+        Me.Label78.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label78.ForeColor = System.Drawing.Color.Black
+        Me.Label78.Location = New System.Drawing.Point(63, 555)
+        Me.Label78.Name = "Label78"
+        Me.Label78.Size = New System.Drawing.Size(28, 24)
+        Me.Label78.TabIndex = 247
+        Me.Label78.Text = "--"
+        '
+        'DataGridView5
+        '
+        Me.DataGridView5.AllowUserToAddRows = False
+        Me.DataGridView5.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView5.Location = New System.Drawing.Point(5, 585)
+        Me.DataGridView5.Name = "DataGridView5"
+        Me.DataGridView5.Size = New System.Drawing.Size(1214, 171)
+        Me.DataGridView5.TabIndex = 246
+        '
+        'Label79
+        '
+        Me.Label79.AutoSize = True
+        Me.Label79.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label79.ForeColor = System.Drawing.Color.Black
+        Me.Label79.Location = New System.Drawing.Point(501, 305)
+        Me.Label79.Name = "Label79"
+        Me.Label79.Size = New System.Drawing.Size(28, 24)
+        Me.Label79.TabIndex = 245
+        Me.Label79.Text = "--"
+        '
+        'Label80
+        '
+        Me.Label80.AutoSize = True
+        Me.Label80.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label80.ForeColor = System.Drawing.Color.Black
+        Me.Label80.Location = New System.Drawing.Point(63, 305)
+        Me.Label80.Name = "Label80"
+        Me.Label80.Size = New System.Drawing.Size(28, 24)
+        Me.Label80.TabIndex = 244
+        Me.Label80.Text = "--"
+        '
+        'DataGridView6
+        '
+        Me.DataGridView6.AllowUserToAddRows = False
+        Me.DataGridView6.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView6.Location = New System.Drawing.Point(5, 338)
+        Me.DataGridView6.MultiSelect = False
+        Me.DataGridView6.Name = "DataGridView6"
+        Me.DataGridView6.Size = New System.Drawing.Size(1214, 199)
+        Me.DataGridView6.TabIndex = 243
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3907,7 +4069,6 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
@@ -3921,8 +4082,13 @@ Partial Class Form1
         Me.Panel5.PerformLayout()
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4075,9 +4241,6 @@ Partial Class Form1
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents Button6 As Button
-    Friend WithEvents DataGridView3 As DataGridView
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label53 As Label
     Friend WithEvents DateTimePicker4 As DateTimePicker
     Friend WithEvents txtHusband As TextBox
     Friend WithEvents txtPatName As TextBox
@@ -4207,4 +4370,19 @@ Partial Class Form1
     Friend WithEvents Button3 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents Label53 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents DataGridView3 As DataGridView
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Label76 As Label
+    Friend WithEvents Label75 As Label
+    Friend WithEvents Button10 As Button
+    Friend WithEvents Button11 As Button
+    Friend WithEvents Label77 As Label
+    Friend WithEvents Label78 As Label
+    Friend WithEvents DataGridView5 As DataGridView
+    Friend WithEvents Label79 As Label
+    Friend WithEvents Label80 As Label
+    Friend WithEvents DataGridView6 As DataGridView
 End Class

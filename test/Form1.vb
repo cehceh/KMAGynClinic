@@ -726,8 +726,8 @@ Public Class Form1
         GynDisabled()
         Gyn2Disabled()
 
-        FillDGV1()
-        FillDGV2()
+        'FillDGV1()
+        'FillDGV2()
 
         ''##https://social.msdn.microsoft.com/Forums/vstudio/en-US/b2a15b26-6d51-49d5-81cf-20fef70e8316/when-datetimepicker-value-changed-this-error-occured?forum=vbgeneral
         operations.ToAgeString(DTPicker.Value)
@@ -1399,6 +1399,8 @@ Public Class Form1
             SaveGyn()
             txtVis1.Select()
         End If
+        'TextBox7.Text = txtNo.Text
+        'TextBox8.Text = txtPatName.Text
         GynEnabled()
         btnL.Enabled = True
     End Sub
@@ -1463,6 +1465,7 @@ Public Class Form1
     End Sub
 
     Private Sub txtPhone_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPhone.Validating
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtPatName.Text <> String.Empty Then
             UpdatePatient()
             SaveInXmlMob()
@@ -3500,7 +3503,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        UpdateGyn()
+        'UpdateGyn()
         'txtGA.Text = dgv.Cells().Value.ToString
 
         'Dim connection As OleDbConnection = New OleDbConnection()
@@ -3528,8 +3531,8 @@ Public Class Form1
 
 
         'UpdateGAW()
-        TabControl1.SelectedTab = Me.TabPage2
-        Label7.Text = "E.D.D"
+        TabControl1.SelectedTab = Me.TabPage4
+        Label7.Text = "Expected Date Of Delivery"
         Dim con As New OleDbConnection(cs)
         con.Open()
         cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
@@ -3890,11 +3893,13 @@ Public Class Form1
     End Sub
 
     Private Sub txtPatName_Click(sender As Object, e As EventArgs) Handles txtPatName.Click
-        If CheckBox1.Checked = False Then
-            InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
-        ElseIf CheckBox1.Checked = True Then
-            InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
-        End If
+        'If CheckBox1.Checked = False Then
+        '    InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
+        'ElseIf CheckBox1.Checked = True Then
+        '    InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
+        'End If
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
+
         '' Read the XML file from disk only once
         'Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames.xml")
         '' Parse the XML document only once
@@ -7039,7 +7044,7 @@ Public Class Form1
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
     End Sub
 
-    Private Sub DataGridView3_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView3.RowHeaderMouseClick
+    Private Sub DataGridView3_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
 
         Dim dgv As DataGridViewRow = DataGridView3.SelectedRows(0)
 
@@ -7063,6 +7068,27 @@ Public Class Form1
         ShowGynTabletxtVis1()
         GynEnabled()
         TextBox5.Text = txtPatName.Text
+        ClearForDGV2()
+        FillDGV1()
+        FillDGV2()
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Label7.Text = "Expected Date Of Delivery"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
+                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND (GAW <= 4) AND (GAW > -1) AND (EDDDate <> LMPDate) AND (Gyn = 0)
+                               ORDER BY EDDDate DESC", con)
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn")
+        DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
+
+        con.Close()
+        Label53.Text = (DataGridView3.Rows.Count).ToString()
     End Sub
 End Class
 
