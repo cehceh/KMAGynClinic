@@ -301,6 +301,16 @@ Partial Class Form1
         Me.txtVisPatNo = New System.Windows.Forms.TextBox()
         Me.txtSign = New System.Windows.Forms.TextBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.DataGridView7 = New System.Windows.Forms.DataGridView()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Label77 = New System.Windows.Forms.Label()
+        Me.Label78 = New System.Windows.Forms.Label()
+        Me.DataGridView5 = New System.Windows.Forms.DataGridView()
+        Me.Label79 = New System.Windows.Forms.Label()
+        Me.Label80 = New System.Windows.Forms.Label()
+        Me.DataGridView6 = New System.Windows.Forms.DataGridView()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Label76 = New System.Windows.Forms.Label()
         Me.Label75 = New System.Windows.Forms.Label()
@@ -314,14 +324,6 @@ Partial Class Form1
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.Label77 = New System.Windows.Forms.Label()
-        Me.Label78 = New System.Windows.Forms.Label()
-        Me.DataGridView5 = New System.Windows.Forms.DataGridView()
-        Me.Label79 = New System.Windows.Forms.Label()
-        Me.Label80 = New System.Windows.Forms.Label()
-        Me.DataGridView6 = New System.Windows.Forms.DataGridView()
         lblPatNo = New System.Windows.Forms.Label()
         Visit_noLabel = New System.Windows.Forms.Label()
         ComplainLabel = New System.Windows.Forms.Label()
@@ -344,10 +346,11 @@ Partial Class Form1
         Me.Panel5.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.TabPage4.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
+        CType(Me.DataGridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblPatNo
@@ -443,7 +446,7 @@ Partial Class Form1
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
-        Me.btnRefresh.Location = New System.Drawing.Point(619, 6)
+        Me.btnRefresh.Location = New System.Drawing.Point(956, 5)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(83, 48)
         Me.btnRefresh.TabIndex = 149
@@ -469,9 +472,9 @@ Partial Class Form1
         Me.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnBackup.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnBackup.ForeColor = System.Drawing.Color.White
-        Me.btnBackup.Location = New System.Drawing.Point(3, 3)
+        Me.btnBackup.Location = New System.Drawing.Point(1045, 5)
         Me.btnBackup.Name = "btnBackup"
-        Me.btnBackup.Size = New System.Drawing.Size(79, 48)
+        Me.btnBackup.Size = New System.Drawing.Size(79, 49)
         Me.btnBackup.TabIndex = 150
         Me.btnBackup.Text = "Backup"
         Me.btnBackup.UseVisualStyleBackColor = False
@@ -482,7 +485,7 @@ Partial Class Form1
         Me.btnclear.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnclear.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnclear.ForeColor = System.Drawing.Color.White
-        Me.btnclear.Location = New System.Drawing.Point(708, 6)
+        Me.btnclear.Location = New System.Drawing.Point(880, 4)
         Me.btnclear.Name = "btnclear"
         Me.btnclear.Size = New System.Drawing.Size(70, 48)
         Me.btnclear.TabIndex = 148
@@ -603,7 +606,7 @@ Partial Class Form1
         Me.btnVisits.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnVisits.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnVisits.ForeColor = System.Drawing.Color.White
-        Me.btnVisits.Location = New System.Drawing.Point(423, 6)
+        Me.btnVisits.Location = New System.Drawing.Point(586, 6)
         Me.btnVisits.Name = "btnVisits"
         Me.btnVisits.Size = New System.Drawing.Size(68, 48)
         Me.btnVisits.TabIndex = 147
@@ -711,7 +714,7 @@ Partial Class Form1
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel1.BackColor = System.Drawing.Color.MintCream
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.Label74)
         Me.Panel1.Controls.Add(Me.Label73)
@@ -925,7 +928,7 @@ Partial Class Form1
         '
         'btnL
         '
-        Me.btnL.BackColor = System.Drawing.Color.SeaGreen
+        Me.btnL.BackColor = System.Drawing.Color.Teal
         Me.btnL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnL.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnL.ForeColor = System.Drawing.Color.White
@@ -949,7 +952,7 @@ Partial Class Form1
         '
         'btnF
         '
-        Me.btnF.BackColor = System.Drawing.Color.SeaGreen
+        Me.btnF.BackColor = System.Drawing.Color.Teal
         Me.btnF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnF.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnF.ForeColor = System.Drawing.Color.White
@@ -972,7 +975,7 @@ Partial Class Form1
         'chbxCS
         '
         Me.chbxCS.AutoSize = True
-        Me.chbxCS.Location = New System.Drawing.Point(485, 83)
+        Me.chbxCS.Location = New System.Drawing.Point(502, 83)
         Me.chbxCS.Name = "chbxCS"
         Me.chbxCS.Size = New System.Drawing.Size(15, 14)
         Me.chbxCS.TabIndex = 220
@@ -981,7 +984,7 @@ Partial Class Form1
         'chbxNVD
         '
         Me.chbxNVD.AutoSize = True
-        Me.chbxNVD.Location = New System.Drawing.Point(321, 83)
+        Me.chbxNVD.Location = New System.Drawing.Point(338, 83)
         Me.chbxNVD.Name = "chbxNVD"
         Me.chbxNVD.Size = New System.Drawing.Size(15, 14)
         Me.chbxNVD.TabIndex = 219
@@ -1027,7 +1030,7 @@ Partial Class Form1
         '
         'btnNew
         '
-        Me.btnNew.BackColor = System.Drawing.Color.SeaGreen
+        Me.btnNew.BackColor = System.Drawing.Color.Teal
         Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnNew.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnNew.ForeColor = System.Drawing.Color.White
@@ -1208,7 +1211,7 @@ Partial Class Form1
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label39.ForeColor = System.Drawing.Color.Black
         Me.Label39.Location = New System.Drawing.Point(3, 655)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(310, 23)
@@ -1310,7 +1313,7 @@ Partial Class Form1
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label43.ForeColor = System.Drawing.Color.Black
         Me.Label43.Location = New System.Drawing.Point(5, 594)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(237, 23)
@@ -1332,7 +1335,7 @@ Partial Class Form1
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label17.ForeColor = System.Drawing.Color.Black
         Me.Label17.Location = New System.Drawing.Point(6, 360)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(158, 17)
@@ -1387,7 +1390,7 @@ Partial Class Form1
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label33.ForeColor = System.Drawing.Color.Black
         Me.Label33.Location = New System.Drawing.Point(4, 337)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(193, 23)
@@ -1407,7 +1410,7 @@ Partial Class Form1
         '
         'btnNewGyn
         '
-        Me.btnNewGyn.BackColor = System.Drawing.Color.SeaGreen
+        Me.btnNewGyn.BackColor = System.Drawing.Color.Teal
         Me.btnNewGyn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnNewGyn.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnNewGyn.ForeColor = System.Drawing.Color.White
@@ -1507,7 +1510,7 @@ Partial Class Form1
         '
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label29.ForeColor = System.Drawing.Color.Black
         Me.Label29.Location = New System.Drawing.Point(914, 205)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(96, 17)
@@ -1551,7 +1554,7 @@ Partial Class Form1
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label28.ForeColor = System.Drawing.Color.Black
         Me.Label28.Location = New System.Drawing.Point(613, 204)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(155, 17)
@@ -1563,7 +1566,7 @@ Partial Class Form1
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(342, 81)
+        Me.Label26.Location = New System.Drawing.Point(359, 81)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(137, 17)
         Me.Label26.TabIndex = 67
@@ -1573,7 +1576,7 @@ Partial Class Form1
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label25.ForeColor = System.Drawing.Color.Black
         Me.Label25.Location = New System.Drawing.Point(1, 158)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(363, 17)
@@ -1607,7 +1610,7 @@ Partial Class Form1
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.Black
-        Me.Label22.Location = New System.Drawing.Point(4, 81)
+        Me.Label22.Location = New System.Drawing.Point(17, 81)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(39, 17)
         Me.Label22.TabIndex = 68
@@ -1618,7 +1621,7 @@ Partial Class Form1
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(214, 81)
+        Me.Label21.Location = New System.Drawing.Point(231, 81)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(39, 17)
         Me.Label21.TabIndex = 70
@@ -1629,7 +1632,7 @@ Partial Class Form1
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(112, 81)
+        Me.Label20.Location = New System.Drawing.Point(129, 81)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(38, 17)
         Me.Label20.TabIndex = 69
@@ -1639,7 +1642,7 @@ Partial Class Form1
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label19.ForeColor = System.Drawing.Color.Black
         Me.Label19.Location = New System.Drawing.Point(5, 220)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(194, 23)
@@ -1738,7 +1741,7 @@ Partial Class Form1
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label18.ForeColor = System.Drawing.Color.Black
         Me.Label18.Location = New System.Drawing.Point(0, 3)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(187, 23)
@@ -1771,7 +1774,7 @@ Partial Class Form1
         Me.txtP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.txtP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.txtP.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.txtP.Location = New System.Drawing.Point(154, 78)
+        Me.txtP.Location = New System.Drawing.Point(171, 78)
         Me.txtP.Name = "txtP"
         Me.txtP.Size = New System.Drawing.Size(54, 24)
         Me.txtP.TabIndex = 11
@@ -1792,7 +1795,7 @@ Partial Class Form1
         Me.txtA.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.txtA.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.txtA.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.txtA.Location = New System.Drawing.Point(256, 78)
+        Me.txtA.Location = New System.Drawing.Point(273, 78)
         Me.txtA.Name = "txtA"
         Me.txtA.Size = New System.Drawing.Size(54, 24)
         Me.txtA.TabIndex = 10
@@ -1803,7 +1806,7 @@ Partial Class Form1
         Me.txtG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.txtG.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.txtG.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.txtG.Location = New System.Drawing.Point(44, 78)
+        Me.txtG.Location = New System.Drawing.Point(57, 78)
         Me.txtG.Name = "txtG"
         Me.txtG.ReadOnly = True
         Me.txtG.Size = New System.Drawing.Size(54, 24)
@@ -1858,7 +1861,7 @@ Partial Class Form1
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label13.ForeColor = System.Drawing.Color.Black
         Me.Label13.Location = New System.Drawing.Point(914, 45)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(116, 17)
@@ -1869,7 +1872,7 @@ Partial Class Form1
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label14.ForeColor = System.Drawing.Color.Black
         Me.Label14.Location = New System.Drawing.Point(613, 45)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(112, 17)
@@ -1880,11 +1883,12 @@ Partial Class Form1
         '
         Me.DateTimePicker4.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker4.Location = New System.Drawing.Point(497, 3)
+        Me.DateTimePicker4.Location = New System.Drawing.Point(660, 7)
         Me.DateTimePicker4.Name = "DateTimePicker4"
         Me.DateTimePicker4.Size = New System.Drawing.Size(116, 20)
         Me.DateTimePicker4.TabIndex = 233
         Me.DateTimePicker4.Value = New Date(2018, 7, 15, 23, 10, 3, 0)
+        Me.DateTimePicker4.Visible = False
         '
         'btnN
         '
@@ -1892,7 +1896,7 @@ Partial Class Form1
         Me.btnN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnN.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnN.ForeColor = System.Drawing.Color.White
-        Me.btnN.Location = New System.Drawing.Point(1060, 36)
+        Me.btnN.Location = New System.Drawing.Point(782, 10)
         Me.btnN.Name = "btnN"
         Me.btnN.Size = New System.Drawing.Size(10, 26)
         Me.btnN.TabIndex = 220
@@ -1999,7 +2003,7 @@ Partial Class Form1
         Me.ListBox1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 16
-        Me.ListBox1.Location = New System.Drawing.Point(1060, 10)
+        Me.ListBox1.Location = New System.Drawing.Point(1170, 298)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(10, 20)
         Me.ListBox1.TabIndex = 172
@@ -2023,7 +2027,7 @@ Partial Class Form1
         Me.ListBox2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.ItemHeight = 16
-        Me.ListBox2.Location = New System.Drawing.Point(1085, 10)
+        Me.ListBox2.Location = New System.Drawing.Point(1186, 298)
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(10, 20)
         Me.ListBox2.TabIndex = 225
@@ -2035,17 +2039,18 @@ Partial Class Form1
         Me.TextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.TextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.TextBox3.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.TextBox3.Location = New System.Drawing.Point(497, 28)
+        Me.TextBox3.Location = New System.Drawing.Point(660, 32)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(116, 20)
         Me.TextBox3.TabIndex = 221
+        Me.TextBox3.Visible = False
         '
         'ListBox3
         '
         Me.ListBox3.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.ListBox3.FormattingEnabled = True
         Me.ListBox3.ItemHeight = 16
-        Me.ListBox3.Location = New System.Drawing.Point(1113, 10)
+        Me.ListBox3.Location = New System.Drawing.Point(1202, 298)
         Me.ListBox3.Name = "ListBox3"
         Me.ListBox3.Size = New System.Drawing.Size(10, 20)
         Me.ListBox3.TabIndex = 227
@@ -2057,7 +2062,7 @@ Partial Class Form1
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(170, 3)
+        Me.Button1.Location = New System.Drawing.Point(7, 6)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(86, 48)
         Me.Button1.TabIndex = 228
@@ -2115,6 +2120,7 @@ Partial Class Form1
         '
         'TabPage2
         '
+        Me.TabPage2.BackColor = System.Drawing.Color.MintCream
         Me.TabPage2.Controls.Add(Me.Button3)
         Me.TabPage2.Controls.Add(Me.Button7)
         Me.TabPage2.Controls.Add(Me.txtHusband)
@@ -2149,14 +2155,13 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.btnUpdate)
         Me.TabPage2.Controls.Add(Me.DateTimePicker1)
         Me.TabPage2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabPage2.ForeColor = System.Drawing.Color.SeaGreen
+        Me.TabPage2.ForeColor = System.Drawing.Color.Black
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1214, 761)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
         '
         'Button3
         '
@@ -2275,6 +2280,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.BackColor = System.Drawing.Color.MintCream
         Me.TabPage3.Controls.Add(Me.txtDiagnosis)
         Me.TabPage3.Controls.Add(Me.txtVisAmount)
         Me.TabPage3.Controls.Add(Me.Labeltime)
@@ -2313,7 +2319,6 @@ Partial Class Form1
         Me.TabPage3.Size = New System.Drawing.Size(1214, 761)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
-        Me.TabPage3.UseVisualStyleBackColor = True
         '
         'txtDiagnosis
         '
@@ -2376,7 +2381,7 @@ Partial Class Form1
         '
         'Panel4
         '
-        Me.Panel4.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel4.BackColor = System.Drawing.Color.MintCream
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel4.Controls.Add(Me.DTPAtt)
         Me.Panel4.Controls.Add(Me.txtAtt5)
@@ -2496,7 +2501,7 @@ Partial Class Form1
         '
         'btnOpen5
         '
-        Me.btnOpen5.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnOpen5.BackColor = System.Drawing.Color.Teal
         Me.btnOpen5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnOpen5.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.btnOpen5.ForeColor = System.Drawing.Color.White
@@ -2509,7 +2514,7 @@ Partial Class Form1
         '
         'btnOpen4
         '
-        Me.btnOpen4.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnOpen4.BackColor = System.Drawing.Color.Teal
         Me.btnOpen4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnOpen4.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.btnOpen4.ForeColor = System.Drawing.Color.White
@@ -2522,7 +2527,7 @@ Partial Class Form1
         '
         'btnOpen3
         '
-        Me.btnOpen3.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnOpen3.BackColor = System.Drawing.Color.Teal
         Me.btnOpen3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnOpen3.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.btnOpen3.ForeColor = System.Drawing.Color.White
@@ -2535,7 +2540,7 @@ Partial Class Form1
         '
         'btnOpen2
         '
-        Me.btnOpen2.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnOpen2.BackColor = System.Drawing.Color.Teal
         Me.btnOpen2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnOpen2.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.btnOpen2.ForeColor = System.Drawing.Color.White
@@ -2603,7 +2608,7 @@ Partial Class Form1
         '
         'btnOpen1
         '
-        Me.btnOpen1.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnOpen1.BackColor = System.Drawing.Color.Teal
         Me.btnOpen1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnOpen1.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.btnOpen1.ForeColor = System.Drawing.Color.White
@@ -2800,7 +2805,7 @@ Partial Class Form1
         '
         'btnPrintInv
         '
-        Me.btnPrintInv.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnPrintInv.BackColor = System.Drawing.Color.Teal
         Me.btnPrintInv.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnPrintInv.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
         Me.btnPrintInv.ForeColor = System.Drawing.Color.White
@@ -2934,13 +2939,13 @@ Partial Class Form1
         '
         'btnVisClear
         '
-        Me.btnVisClear.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnVisClear.BackColor = System.Drawing.Color.Teal
         Me.btnVisClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnVisClear.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnVisClear.ForeColor = System.Drawing.Color.White
-        Me.btnVisClear.Location = New System.Drawing.Point(18, 185)
+        Me.btnVisClear.Location = New System.Drawing.Point(18, 154)
         Me.btnVisClear.Name = "btnVisClear"
-        Me.btnVisClear.Size = New System.Drawing.Size(85, 32)
+        Me.btnVisClear.Size = New System.Drawing.Size(85, 41)
         Me.btnVisClear.TabIndex = 190
         Me.btnVisClear.Text = "Clear"
         Me.btnVisClear.UseVisualStyleBackColor = False
@@ -2961,7 +2966,7 @@ Partial Class Form1
         '
         'btnInv
         '
-        Me.btnInv.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnInv.BackColor = System.Drawing.Color.Teal
         Me.btnInv.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnInv.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnInv.ForeColor = System.Drawing.Color.White
@@ -3302,16 +3307,17 @@ Partial Class Form1
         Me.btnPatient.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnPatient.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnPatient.ForeColor = System.Drawing.Color.White
-        Me.btnPatient.Location = New System.Drawing.Point(18, 147)
+        Me.btnPatient.Location = New System.Drawing.Point(16, 64)
         Me.btnPatient.Name = "btnPatient"
-        Me.btnPatient.Size = New System.Drawing.Size(85, 32)
+        Me.btnPatient.Size = New System.Drawing.Size(10, 10)
         Me.btnPatient.TabIndex = 188
         Me.btnPatient.Text = "Patients"
         Me.btnPatient.UseVisualStyleBackColor = False
+        Me.btnPatient.Visible = False
         '
         'Panel6
         '
-        Me.Panel6.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel6.BackColor = System.Drawing.Color.MintCream
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel6.Controls.Add(Me.Label54)
         Me.Panel6.Controls.Add(Me.Label55)
@@ -3706,7 +3712,7 @@ Partial Class Form1
         '
         'btnPrint
         '
-        Me.btnPrint.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnPrint.BackColor = System.Drawing.Color.Teal
         Me.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnPrint.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
         Me.btnPrint.ForeColor = System.Drawing.Color.White
@@ -3733,13 +3739,13 @@ Partial Class Form1
         '
         'btnNewVisit
         '
-        Me.btnNewVisit.BackColor = System.Drawing.Color.ForestGreen
+        Me.btnNewVisit.BackColor = System.Drawing.Color.Teal
         Me.btnNewVisit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnNewVisit.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnNewVisit.ForeColor = System.Drawing.Color.White
-        Me.btnNewVisit.Location = New System.Drawing.Point(18, 110)
+        Me.btnNewVisit.Location = New System.Drawing.Point(18, 112)
         Me.btnNewVisit.Name = "btnNewVisit"
-        Me.btnNewVisit.Size = New System.Drawing.Size(85, 28)
+        Me.btnNewVisit.Size = New System.Drawing.Size(85, 36)
         Me.btnNewVisit.TabIndex = 189
         Me.btnNewVisit.Text = "New Visit"
         Me.btnNewVisit.UseVisualStyleBackColor = False
@@ -3782,6 +3788,9 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.BackColor = System.Drawing.Color.MintCream
+        Me.TabPage4.Controls.Add(Me.DataGridView7)
+        Me.TabPage4.Controls.Add(Me.TextBox9)
         Me.TabPage4.Controls.Add(Me.Button10)
         Me.TabPage4.Controls.Add(Me.Button11)
         Me.TabPage4.Controls.Add(Me.Label77)
@@ -3793,178 +3802,52 @@ Partial Class Form1
         Me.TabPage4.Controls.Add(Me.Button9)
         Me.TabPage4.Controls.Add(Me.Label76)
         Me.TabPage4.Controls.Add(Me.Label75)
+        Me.TabPage4.Controls.Add(Me.ListBox1)
+        Me.TabPage4.Controls.Add(Me.ListBox3)
         Me.TabPage4.Controls.Add(Me.Label53)
+        Me.TabPage4.Controls.Add(Me.ListBox2)
         Me.TabPage4.Controls.Add(Me.Label7)
         Me.TabPage4.Controls.Add(Me.DataGridView3)
         Me.TabPage4.Controls.Add(Me.DateTimePicker3)
         Me.TabPage4.Controls.Add(Me.DateTimePicker2)
+        Me.TabPage4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabPage4.ForeColor = System.Drawing.SystemColors.ControlText
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Size = New System.Drawing.Size(1214, 761)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
-        Me.TabPage4.UseVisualStyleBackColor = True
         '
-        'Button9
+        'DataGridView7
         '
-        Me.Button9.BackColor = System.Drawing.Color.SeaGreen
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button9.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Button9.ForeColor = System.Drawing.Color.White
-        Me.Button9.Location = New System.Drawing.Point(1009, 152)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(128, 49)
-        Me.Button9.TabIndex = 235
-        Me.Button9.Text = "Display"
-        Me.Button9.UseVisualStyleBackColor = False
+        Me.DataGridView7.AllowUserToAddRows = False
+        Me.DataGridView7.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView7.Location = New System.Drawing.Point(601, 45)
+        Me.DataGridView7.Name = "DataGridView7"
+        Me.DataGridView7.ReadOnly = True
+        Me.DataGridView7.Size = New System.Drawing.Size(602, 247)
+        Me.DataGridView7.TabIndex = 252
         '
-        'Label76
+        'TextBox9
         '
-        Me.Label76.AutoSize = True
-        Me.Label76.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label76.ForeColor = System.Drawing.Color.Black
-        Me.Label76.Location = New System.Drawing.Point(934, 54)
-        Me.Label76.Name = "Label76"
-        Me.Label76.Size = New System.Drawing.Size(39, 19)
-        Me.Label76.TabIndex = 242
-        Me.Label76.Text = "End"
-        '
-        'Label75
-        '
-        Me.Label75.AutoSize = True
-        Me.Label75.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label75.ForeColor = System.Drawing.Color.Black
-        Me.Label75.Location = New System.Drawing.Point(934, 98)
-        Me.Label75.Name = "Label75"
-        Me.Label75.Size = New System.Drawing.Size(50, 19)
-        Me.Label75.TabIndex = 241
-        Me.Label75.Text = "Start"
-        '
-        'Label53
-        '
-        Me.Label53.AutoSize = True
-        Me.Label53.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label53.ForeColor = System.Drawing.Color.Black
-        Me.Label53.Location = New System.Drawing.Point(63, 8)
-        Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(28, 24)
-        Me.Label53.TabIndex = 240
-        Me.Label53.Text = "--"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(501, 8)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(28, 24)
-        Me.Label7.TabIndex = 239
-        Me.Label7.Text = "--"
-        '
-        'DataGridView3
-        '
-        Me.DataGridView3.AllowUserToAddRows = False
-        Me.DataGridView3.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Location = New System.Drawing.Point(5, 45)
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.ReadOnly = True
-        Me.DataGridView3.Size = New System.Drawing.Size(914, 247)
-        Me.DataGridView3.TabIndex = 238
-        '
-        'DateTimePicker3
-        '
-        Me.DateTimePicker3.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker3.Location = New System.Drawing.Point(1009, 48)
-        Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(128, 27)
-        Me.DateTimePicker3.TabIndex = 231
-        Me.DateTimePicker3.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
-        '
-        'DateTimePicker2
-        '
-        Me.DateTimePicker2.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker2.Location = New System.Drawing.Point(1009, 92)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(128, 27)
-        Me.DateTimePicker2.TabIndex = 230
-        Me.DateTimePicker2.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.SeaGreen
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(918, 6)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(136, 49)
-        Me.Button2.TabIndex = 232
-        Me.Button2.Text = "Expected Date Of Delivery"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.Button8)
-        Me.Panel2.Controls.Add(Me.Button6)
-        Me.Panel2.Controls.Add(Me.btnN)
-        Me.Panel2.Controls.Add(Me.TabControl1)
-        Me.Panel2.Controls.Add(Me.DateTimePicker4)
-        Me.Panel2.Controls.Add(Me.btnClose)
-        Me.Panel2.Controls.Add(Me.btnVisits)
-        Me.Panel2.Controls.Add(Me.btnclear)
-        Me.Panel2.Controls.Add(Me.btnRefresh)
-        Me.Panel2.Controls.Add(Me.btnBackup)
-        Me.Panel2.Controls.Add(Me.Button1)
-        Me.Panel2.Controls.Add(Me.Button2)
-        Me.Panel2.Controls.Add(Me.TextBox3)
-        Me.Panel2.Controls.Add(Me.ListBox1)
-        Me.Panel2.Controls.Add(Me.ListBox3)
-        Me.Panel2.Controls.Add(Me.ListBox2)
-        Me.Panel2.Location = New System.Drawing.Point(0, 2)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1228, 864)
-        Me.Panel2.TabIndex = 233
-        '
-        'Button8
-        '
-        Me.Button8.BackColor = System.Drawing.Color.Teal
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.Location = New System.Drawing.Point(262, 3)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(68, 48)
-        Me.Button8.TabIndex = 234
-        Me.Button8.Text = "Visits"
-        Me.Button8.UseVisualStyleBackColor = False
-        '
-        'Button6
-        '
-        Me.Button6.BackColor = System.Drawing.Color.SeaGreen
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button6.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(88, 3)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(76, 48)
-        Me.Button6.TabIndex = 232
-        Me.Button6.Text = "History"
-        Me.Button6.UseVisualStyleBackColor = False
-        '
-        'PrintDocument1
-        '
+        Me.TextBox9.AutoCompleteCustomSource.AddRange(New String() {"Free  P.S.A.", "Bilharzial Titre", "Bone Scan", "Salmonella  Typhi H Ab", "Urinary Microprotein.", "Bilirubin T", "Abdomino Pelvic Ultrasonography", "Alkaline Phosphatase", "Ascending  Cystogram", "Ascending Urethrogram", "B.T.   C.T.", "C.T,", "C/S OF  Prost. Secretion", "C/S OF Ureth. Discharge.", "C/S OF URINE", "CAVERNOSOGRAM", "CBC", "CHOLEST.", "creatinine", "creatinine ,Clearence", "Creatinine Clearence", "CT Abdomen, Pelvis", "Doppler of Penis", "E.C.G.", "ECHOCARDIOGRAPHY", "F.Bl.sugar", "F.S.H.", "Fructose Test", "FULL Investigations", "H.B.", "H.B.S.", "INFUSION    I.V.U.", "IVP", "KUB", "L.H.", "M.R.U.", "Micturating CystoUrethrogram", "Multisclice  C.T.", "Na, K", "P. P. BL.SUGAR", "P.S.A.", "plain abdomen", "Plain U T.", "Plain U T.     RT.Lat. Film", "Plasma Protein", "Post. Coital Urine Analysis", "prlactin", "Prolactin", "protein in 24 hours urine", "Proth.Act.", "PT", "PTT", "Radio isotope Renal stud.", "S.G.O.T.", "Salmonella Para Typhy", "Salmonella Typhi", "SEM INOGRAM", "Sr. protein Total", "STONE ANALYSIS", "Stool Analysis", "Testosterone", "Triglycerides", "Triphasic Spiral C.T.", "TSH", "U/S", "U/S  OF PENIS", "U/S ABD. PELVIS", "U/S SCROTUM", "U/S SCROTUM  Doppler  varicocoeles", "urea", "URIC ACID", "URINE  CYTOLOGY", "URINE ANALYSIS", "Urodynamic Study", "US on Prostate", "Vasogram", "W.B.Cs."})
+        Me.TextBox9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TextBox9.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBox9.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox9.Location = New System.Drawing.Point(222, 304)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TextBox9.Size = New System.Drawing.Size(262, 24)
+        Me.TextBox9.TabIndex = 251
         '
         'Button10
         '
-        Me.Button10.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button10.BackColor = System.Drawing.Color.Teal
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button10.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Button10.ForeColor = System.Drawing.Color.White
-        Me.Button10.Location = New System.Drawing.Point(892, 543)
+        Me.Button10.Location = New System.Drawing.Point(1009, 543)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(155, 36)
         Me.Button10.TabIndex = 248
@@ -3973,11 +3856,11 @@ Partial Class Form1
         '
         'Button11
         '
-        Me.Button11.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button11.BackColor = System.Drawing.Color.Teal
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button11.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Button11.ForeColor = System.Drawing.Color.White
-        Me.Button11.Location = New System.Drawing.Point(892, 298)
+        Me.Button11.Location = New System.Drawing.Point(1009, 298)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(155, 31)
         Me.Button11.TabIndex = 250
@@ -4013,7 +3896,7 @@ Partial Class Form1
         Me.DataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView5.Location = New System.Drawing.Point(5, 585)
         Me.DataGridView5.Name = "DataGridView5"
-        Me.DataGridView5.Size = New System.Drawing.Size(1214, 171)
+        Me.DataGridView5.Size = New System.Drawing.Size(1205, 171)
         Me.DataGridView5.TabIndex = 246
         '
         'Label79
@@ -4021,7 +3904,7 @@ Partial Class Form1
         Me.Label79.AutoSize = True
         Me.Label79.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label79.ForeColor = System.Drawing.Color.Black
-        Me.Label79.Location = New System.Drawing.Point(501, 305)
+        Me.Label79.Location = New System.Drawing.Point(711, 300)
         Me.Label79.Name = "Label79"
         Me.Label79.Size = New System.Drawing.Size(28, 24)
         Me.Label79.TabIndex = 245
@@ -4046,8 +3929,158 @@ Partial Class Form1
         Me.DataGridView6.Location = New System.Drawing.Point(5, 338)
         Me.DataGridView6.MultiSelect = False
         Me.DataGridView6.Name = "DataGridView6"
-        Me.DataGridView6.Size = New System.Drawing.Size(1214, 199)
+        Me.DataGridView6.Size = New System.Drawing.Size(1205, 199)
         Me.DataGridView6.TabIndex = 243
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.Teal
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button9.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Button9.ForeColor = System.Drawing.Color.White
+        Me.Button9.Location = New System.Drawing.Point(601, 7)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(128, 25)
+        Me.Button9.TabIndex = 235
+        Me.Button9.Text = "Display"
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label76.ForeColor = System.Drawing.Color.Black
+        Me.Label76.Location = New System.Drawing.Point(788, 10)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(35, 17)
+        Me.Label76.TabIndex = 242
+        Me.Label76.Text = "End"
+        '
+        'Label75
+        '
+        Me.Label75.AutoSize = True
+        Me.Label75.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label75.ForeColor = System.Drawing.Color.Black
+        Me.Label75.Location = New System.Drawing.Point(1019, 10)
+        Me.Label75.Name = "Label75"
+        Me.Label75.Size = New System.Drawing.Size(43, 17)
+        Me.Label75.TabIndex = 241
+        Me.Label75.Text = "Start"
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label53.ForeColor = System.Drawing.Color.Black
+        Me.Label53.Location = New System.Drawing.Point(63, 8)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(28, 24)
+        Me.Label53.TabIndex = 240
+        Me.Label53.Text = "--"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(251, 8)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(28, 24)
+        Me.Label7.TabIndex = 239
+        Me.Label7.Text = "--"
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.AllowUserToAddRows = False
+        Me.DataGridView3.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Location = New System.Drawing.Point(5, 45)
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.ReadOnly = True
+        Me.DataGridView3.Size = New System.Drawing.Size(577, 247)
+        Me.DataGridView3.TabIndex = 238
+        '
+        'DateTimePicker3
+        '
+        Me.DateTimePicker3.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker3.Location = New System.Drawing.Point(833, 4)
+        Me.DateTimePicker3.Name = "DateTimePicker3"
+        Me.DateTimePicker3.Size = New System.Drawing.Size(128, 24)
+        Me.DateTimePicker3.TabIndex = 231
+        Me.DateTimePicker3.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
+        '
+        'DateTimePicker2
+        '
+        Me.DateTimePicker2.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker2.Location = New System.Drawing.Point(1075, 5)
+        Me.DateTimePicker2.Name = "DateTimePicker2"
+        Me.DateTimePicker2.Size = New System.Drawing.Size(128, 24)
+        Me.DateTimePicker2.TabIndex = 230
+        Me.DateTimePicker2.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(255, 6)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(119, 48)
+        Me.Button2.TabIndex = 232
+        Me.Button2.Text = "Expected Date Of Delivery"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Button8)
+        Me.Panel2.Controls.Add(Me.Button6)
+        Me.Panel2.Controls.Add(Me.btnN)
+        Me.Panel2.Controls.Add(Me.TabControl1)
+        Me.Panel2.Controls.Add(Me.DateTimePicker4)
+        Me.Panel2.Controls.Add(Me.btnClose)
+        Me.Panel2.Controls.Add(Me.btnVisits)
+        Me.Panel2.Controls.Add(Me.btnclear)
+        Me.Panel2.Controls.Add(Me.btnRefresh)
+        Me.Panel2.Controls.Add(Me.btnBackup)
+        Me.Panel2.Controls.Add(Me.Button1)
+        Me.Panel2.Controls.Add(Me.Button2)
+        Me.Panel2.Controls.Add(Me.TextBox3)
+        Me.Panel2.Location = New System.Drawing.Point(0, 2)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1228, 864)
+        Me.Panel2.TabIndex = 233
+        '
+        'Button8
+        '
+        Me.Button8.BackColor = System.Drawing.Color.Teal
+        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Button8.ForeColor = System.Drawing.Color.White
+        Me.Button8.Location = New System.Drawing.Point(181, 6)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(68, 48)
+        Me.Button8.TabIndex = 234
+        Me.Button8.Text = "Visits"
+        Me.Button8.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.SeaGreen
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button6.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Button6.ForeColor = System.Drawing.Color.White
+        Me.Button6.Location = New System.Drawing.Point(99, 6)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(76, 48)
+        Me.Button6.TabIndex = 232
+        Me.Button6.Text = "History"
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'PrintDocument1
+        '
         '
         'Form1
         '
@@ -4084,11 +4117,12 @@ Partial Class Form1
         Me.Panel6.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        CType(Me.DataGridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4385,4 +4419,6 @@ Partial Class Form1
     Friend WithEvents Label79 As Label
     Friend WithEvents Label80 As Label
     Friend WithEvents DataGridView6 As DataGridView
+    Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents DataGridView7 As DataGridView
 End Class

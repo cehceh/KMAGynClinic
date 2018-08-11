@@ -433,7 +433,10 @@ Public Class Form1
         Gyn2Disabled()
         FillDGV1()
         FillDGV2()
-
+        FillDGV5()
+        FillDGV6()
+        'DGVPatients()
+        FillDGV7()
         'btnL.Enabled = True
         'btnB.Enabled = True
         'Trace.WriteLine("btnclear_Click FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
@@ -788,6 +791,72 @@ Public Class Form1
         'MsgBox("Patient ID = " & txtNo.Text)
         con.Close()
         Label50.Text = (DataGridView2.Rows.Count).ToString()
+    End Sub
+
+    Sub FillDGV3()
+
+    End Sub
+
+    Sub FillDGV6()
+        'If txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Then
+
+        Label79.Text = "Previous Visits"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(MnsDate)AS[Visit Date],(NVD)AS[NVD],(CS)AS[CS],
+                                (G)AS[G],(P)AS[P],(A)AS[A],(HPOC)AS[Previous Obstetric Complications],(LD)AS[LD],
+                                (LC)AS[LC],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],
+                                (ElapW)AS[Gestational age],(GAW)AS[Remaining],(MedH1)AS[Medical History1],(MedH2)AS[Medical History2],(MedH3)AS[Medical History3],
+                                (SurH1)AS[Surgical History1],(SurH2)AS[Surgical History2],(SurH3)AS[Surgical History3],(GynH1)AS[Gynecological History1],
+                                (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
+                                FROM [Gyn] WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn")
+        DataGridView6.DataSource = ds.Tables("Gyn").DefaultView
+
+        con.Close()
+        Label80.Text = (DataGridView6.Rows.Count).ToString()
+        'End If
+    End Sub
+
+    Sub FillDGV5()
+        Label77.Text = "U/S Visits"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(AttDt)AS[Visit Date],(GL)AS[General Look],(Pls)AS[Puls],
+                               (BP)AS[Blood Pressure],(Wt)AS[Weight],(BdBt)AS[Body Built],(ChtH)AS[Chest and Heart],
+                               (HdNe)AS[Head and Neck],(Ext)AS[Extremities],(FunL)AS[Fundal Level],(Scrs)AS[Scars],
+                               (Edm)AS[Edema],(US)AS[Ultra Sound],(Amount)AS[Amount]
+                               FROM Gyn2 WHERE Patient_no = @Patient_no
+                               ORDER BY Vis_no DESC", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn2")
+        DataGridView5.DataSource = ds.Tables("Gyn2").DefaultView
+        'MsgBox("Patient ID = " & txtNo.Text)
+        con.Close()
+        Label78.Text = (DataGridView5.Rows.Count).ToString()
+    End Sub
+
+    Sub FillDGV7()
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Name) AS [Patient Name],(Address) AS [Address],
+                                        (Birthdate) AS [Birth Date],(Age) AS [Age],(Phone) AS [Phone],(HusName) AS [Husband Name]
+                                        FROM Pat WHERE Patient_no = @Patient_no", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Pat")
+        DataGridView7.DataSource = ds.Tables("Pat").DefaultView
+
+        con.Close()
     End Sub
 
     Private Sub cbxSearch_TextChanged(sender As Object, e As EventArgs) Handles cbxSearch.TextChanged
@@ -3641,8 +3710,6 @@ Public Class Form1
         TextBox6.Text = txtNo.Text
         ClearForDGV2()
         Dim dgv As DataGridViewRow = DataGridView1.SelectedRows(0)
-        'Dim dgv As DataGridView
-        'dgv = DataGridView1
         txtNo.Text = dgv.Cells(0).Value.ToString
         txtVis1.Text = dgv.Cells(1).Value.ToString
         DTPickerMns.Value = CDate(dgv.Cells(2).Value.ToString)
@@ -4870,6 +4937,7 @@ Public Class Form1
         btnNewVisit.Enabled = False
         rdoVisit.Checked = True
         InvAndAttDisabled()
+        DrugDisabled()
         lblcurTime.Text = Now.ToShortDateString
 
         'Trace.WriteLine("btnVisClear_Click FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
@@ -6809,6 +6877,7 @@ Public Class Form1
         End If
 
         InvAndAttEnabled()
+        DrugEnabled()
         'Panel4.Visible = True
         ShowInvVisTable()
         ShowAttachVisTable()
@@ -6821,7 +6890,7 @@ Public Class Form1
             txt1.Text = CType(ListBox4.SelectedItem, String)
         End If
         InvAndAttEnabled()
-
+        DrugEnabled()
     End Sub
 
     Private Sub txt1_TextChanged(sender As Object, e As EventArgs) Handles txt1.TextChanged
@@ -6895,6 +6964,44 @@ Public Class Form1
         txtCo5.Enabled = False
         DTPickerAtt.Enabled = False
 
+    End Sub
+
+    Sub DrugEnabled()
+        cbxDrug1.Enabled = True
+        cbxDrug2.Enabled = True
+        cbxDrug3.Enabled = True
+        cbxDrug4.Enabled = True
+        cbxDrug5.Enabled = True
+        cbxDrug6.Enabled = True
+        cbxDrug7.Enabled = True
+        cbxDrug8.Enabled = True
+        cbxPlan1.Enabled = True
+        cbxPlan2.Enabled = True
+        cbxPlan3.Enabled = True
+        cbxPlan4.Enabled = True
+        cbxPlan5.Enabled = True
+        cbxPlan6.Enabled = True
+        cbxPlan7.Enabled = True
+        cbxPlan8.Enabled = True
+    End Sub
+
+    Sub DrugDisabled()
+        cbxDrug1.Enabled = False
+        cbxDrug2.Enabled = False
+        cbxDrug3.Enabled = False
+        cbxDrug4.Enabled = False
+        cbxDrug5.Enabled = False
+        cbxDrug6.Enabled = False
+        cbxDrug7.Enabled = False
+        cbxDrug8.Enabled = False
+        cbxPlan1.Enabled = False
+        cbxPlan2.Enabled = False
+        cbxPlan3.Enabled = False
+        cbxPlan4.Enabled = False
+        cbxPlan5.Enabled = False
+        cbxPlan6.Enabled = False
+        cbxPlan7.Enabled = False
+        cbxPlan8.Enabled = False
     End Sub
 
     Private Sub cbxVisSearch_Validating(sender As Object, e As CancelEventArgs) Handles cbxVisSearch.Validating
@@ -7013,11 +7120,16 @@ Public Class Form1
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        ListBox4.Items.Clear()
         TabControl1.SelectedTab = Me.TabPage3
         If txtPatName.Text <> "" Then
             txtVisPatNo.Text = txtNo.Text
             txtVisName.Text = txtPatName.Text
+            ShowVisitsPatTable()
         End If
+        btnNewVisit.Enabled = True
+        InvAndAttDisabled()
+        DrugDisabled()
     End Sub
 
     Private Sub DateTimePicker3_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker3.ValueChanged
@@ -7044,7 +7156,61 @@ Public Class Form1
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
     End Sub
 
-    Private Sub DataGridView3_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Label7.Text = "Expected Date Of Delivery"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
+                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND (GAW <= 4) AND (GAW > -1) AND (EDDDate <> LMPDate) AND (Gyn = 0)
+                               ORDER BY EDDDate DESC", con)
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn")
+        DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
+
+        con.Close()
+        Label53.Text = (DataGridView3.Rows.Count).ToString()
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        If txtPatName.Text <> "" Then
+
+            'TabControl1.SelectedTab = Me.TabPage2
+            Label48.Text = "Previous Visits"
+            Dim con As New OleDbConnection(cs)
+            con.Open()
+            cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(MnsDate)AS[Visit Date],(NVD)AS[NVD],(CS)AS[CS],
+                                        (G)AS[G],(P)AS[P],(A)AS[A],(HPOC)AS[Previous Obstetric Complications],(LD)AS[LD],
+                                        (LC)AS[LC],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],
+                                        (ElapW)AS[Gestational age],(GAW)AS[Remaining],(MedH1)AS[Medical History1],(MedH2)AS[Medical History2],(MedH3)AS[Medical History3],
+                                        (SurH1)AS[Surgical History1],(SurH2)AS[Surgical History2],(SurH3)AS[Surgical History3],(GynH1)AS[Gynecological History1],
+                                        (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
+                                        FROM Gyn WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
+            cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+            'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+            Dim da As New OleDbDataAdapter(cmd)
+            Dim ds As New DataSet
+            da.Fill(ds, "Gyn")
+            DataGridView6.DataSource = ds.Tables("Gyn").DefaultView
+
+            con.Close()
+            Label47.Text = (DataGridView6.Rows.Count).ToString()
+
+        End If
+        Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        Dim date2 As Date = DTPickerLMP.Value
+        Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        If DTPickerEDD.Value = DTPickerLMP.Value Then
+            Exit Sub
+        End If
+        txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        txtGA.Text = CStr(40 - weeks)
+        DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+    End Sub
+
+    Private Sub DataGridView3_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView3.RowHeaderMouseClick
 
         Dim dgv As DataGridViewRow = DataGridView3.SelectedRows(0)
 
@@ -7068,27 +7234,124 @@ Public Class Form1
         ShowGynTabletxtVis1()
         GynEnabled()
         TextBox5.Text = txtPatName.Text
+        TextBox9.Text = txtPatName.Text
         ClearForDGV2()
-        FillDGV1()
-        FillDGV2()
+        FillDGV5()
+        FillDGV6()
+        DGVPatients()
     End Sub
 
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        Label7.Text = "Expected Date Of Delivery"
-        Dim con As New OleDbConnection(cs)
-        con.Open()
-        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
-                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND (GAW <= 4) AND (GAW > -1) AND (EDDDate <> LMPDate) AND (Gyn = 0)
-                               ORDER BY EDDDate DESC", con)
-        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
-        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
-        Dim da As New OleDbDataAdapter(cmd)
-        Dim ds As New DataSet
-        da.Fill(ds, "Gyn")
-        DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
+    Sub DGVPatients()
+        If txtPatName.Text <> "" Then
 
-        con.Close()
-        Label53.Text = (DataGridView3.Rows.Count).ToString()
+            'TabControl1.SelectedTab = Me.TabPage2
+            'Label48.Text = "Previous Visits"
+            Dim con As New OleDbConnection(cs)
+            con.Open()
+            cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Name) AS [Patient Name],(Address) AS [Address],
+                                        (Birthdate) AS [Birth Date],(Age) AS [Age],(Phone) AS [Phone],(HusName) AS [Husband Name]
+                                        FROM Pat WHERE Patient_no = @Patient_no", con)
+            cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+            'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+            Dim da As New OleDbDataAdapter(cmd)
+            Dim ds As New DataSet
+            da.Fill(ds, "Pat")
+            DataGridView7.DataSource = ds.Tables("Pat").DefaultView
+
+            con.Close()
+            'Label47.Text = (DataGridView6.Rows.Count).ToString()
+        End If
+    End Sub
+
+    Private Sub DataGridView6_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView6.RowHeaderMouseClick
+        TextBox5.Text = txtPatName.Text
+        TextBox6.Text = txtNo.Text
+        ClearForDGV2()
+        Dim dgv As DataGridViewRow = DataGridView6.SelectedRows(0)
+        txtNo.Text = dgv.Cells(0).Value.ToString
+        txtVis1.Text = dgv.Cells(1).Value.ToString
+        DTPickerMns.Value = CDate(dgv.Cells(2).Value.ToString)
+        chbxNVD.Checked = CBool(dgv.Cells(3).Value.ToString)
+        chbxCS.Checked = CBool(dgv.Cells(4).Value.ToString)
+        txtG.Text = dgv.Cells(5).Value.ToString
+        txtP.Text = dgv.Cells(6).Value.ToString
+        txtA.Text = dgv.Cells(7).Value.ToString
+        'chbxNVD.Checked = CBool(dgv.Cells(5).Value.ToString)
+        'chbxCS.Checked = CBool(dgv.Cells(6).Value.ToString)
+        cbxHPOC.Text = dgv.Cells(8).Value.ToString
+        cbxLD.Text = dgv.Cells(9).Value.ToString
+        cbxLC.Text = dgv.Cells(10).Value.ToString
+        'DTPickerMns.Value = CDate(dgv.Cells(10).Value.ToString)
+        DTPickerLMP.Value = CDate(dgv.Cells(11).Value.ToString)
+        DTPickerEDD.Value = CDate(dgv.Cells(12).Value.ToString)
+        txtElapsed.Text = dgv.Cells(13).Value.ToString
+        txtGA.Text = dgv.Cells(14).Value.ToString
+        cbxMedH1.Text = dgv.Cells(15).Value.ToString
+        cbxMedH2.Text = dgv.Cells(16).Value.ToString
+        cbxMedH3.Text = dgv.Cells(17).Value.ToString
+        cbxSurH1.Text = dgv.Cells(18).Value.ToString
+        cbxSurH2.Text = dgv.Cells(19).Value.ToString
+        cbxSurH3.Text = dgv.Cells(20).Value.ToString
+        cbxGynH1.Text = dgv.Cells(21).Value.ToString
+        cbxGynH2.Text = dgv.Cells(22).Value.ToString
+        cbxGynH3.Text = dgv.Cells(23).Value.ToString
+        cbxDrugH1.Text = dgv.Cells(24).Value.ToString
+        cbxDrugH2.Text = dgv.Cells(25).Value.ToString
+        cbxDrugH3.Text = dgv.Cells(26).Value.ToString
+        chbxGyn.Checked = CBool(dgv.Cells(27).Value.ToString)
+
+        TabControl1.SelectedTab = Me.TabPage1
+        TextBox5.Text = txtPatName.Text
+        TextBox6.Text = txtNo.Text
+        GynEnabled()
+        Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        Dim date2 As Date = DTPickerLMP.Value
+        Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        If DTPickerEDD.Value = DTPickerLMP.Value Then
+            Exit Sub
+        End If
+        txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        txtGA.Text = CStr(40 - weeks)
+        DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+    End Sub
+
+    Private Sub DataGridView5_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView5.RowHeaderMouseClick
+        Dim dgv As DataGridViewRow = DataGridView5.SelectedRows(0)
+        'If (DataGridView2.Rows.Count) - 1 = 0 Then
+        '    MsgBox("Empty")
+        '    Exit Sub
+        'End If
+        TextBox8.Text = txtPatName.Text
+        TextBox7.Text = txtNo.Text
+        ClearForDGV1()
+        'txtVis.Text = dgv.Cells(0).Value.ToString
+        txtNo.Text = dgv.Cells(0).Value.ToString
+        txtVis.Text = dgv.Cells(1).Value.ToString
+        DTPickerAtt.Value = CDate(dgv.Cells(2).Value.ToString)
+        cbxGL.Text = dgv.Cells(3).Value.ToString
+        cbxPuls.Text = dgv.Cells(4).Value.ToString
+        cbxBP.Text = dgv.Cells(5).Value.ToString
+        cbxWeight.Text = dgv.Cells(6).Value.ToString
+        cbxBodyBuilt.Text = dgv.Cells(7).Value.ToString
+        cbxChtH.Text = dgv.Cells(8).Value.ToString
+        cbxHdNe.Text = dgv.Cells(9).Value.ToString
+        cbxExt.Text = dgv.Cells(10).Value.ToString
+        cbxFunL.Text = dgv.Cells(11).Value.ToString
+        cbxScars.Text = dgv.Cells(12).Value.ToString
+        cbxEdema.Text = dgv.Cells(13).Value.ToString
+        cbxUS.Text = dgv.Cells(14).Value.ToString
+        txtAmount.Text = dgv.Cells(15).Value.ToString
+        'cbxGL.Text = dgv.Cells(15).Value.ToString
+        'DTPickerAtt.Value = CDate(dgv.Cells(15).Value.ToString)
+
+        TabControl1.SelectedTab = Me.TabPage1
+        'TextBox5.Text = txtPatName.Text
+        'TextBox6.Text = txtNo.Text
+        'GynEnabled()
+        TextBox8.Text = txtPatName.Text
+        TextBox7.Text = txtNo.Text
+
+        Gyn2Enabled()
     End Sub
 End Class
 
