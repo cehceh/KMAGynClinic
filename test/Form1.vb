@@ -12,19 +12,20 @@ Imports System.ComponentModel
 Public Class Form1
 
     Inherits System.Windows.Forms.Form
-
-    Dim cs As String = "provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923"
+    '("provider=microsoft.ace.oledb.12.0; data source=|DataDirectory|\TestDB.accdb;jet oledb:database password=mero1981923")
+    Dim cs As String = "provider=microsoft.ace.oledb.12.0; data source=" & Application.StartupPath & "\TestDB.accdb;jet oledb:database password=mero1981923"
     Dim conn As New OleDbConnection(cs)
     Dim cmd As New OleDbCommand
     Public dr As OleDbDataReader
 
     Dim f2 As Form2
 
-    Dim WindowsApplication1 As System.STAThreadAttribute()
+    'Dim WindowsApplication1 As System.STAThreadAttribute()
+
     'To make the App. to open a fixed times
-    Private WithEvents usage As ApplicationUsage
-    Private _maxTimes As Integer = 1
-    Private _usageLimitExceeded As Boolean = False
+    'Private WithEvents usage As ApplicationUsage
+    'Private _maxTimes As Integer = 1
+    'Private _usageLimitExceeded As Boolean = False
 
     ''##from Daniweb.com  https://www.daniweb.com/programming/software-development/threads/339730/visual-basic-code-to-setup-your-program-to-expire-after-30-days#post1972097
     ''##Very Useful code for make expiration date 
@@ -78,14 +79,28 @@ Public Class Form1
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
 
+        Expire()
+        If TextBox3.Text <> "amr_bakry" Then
+            MsgBox("You Are Not Authorized," + vbCrLf +
+                   "Please Call 01067174141")
+            End
+        End If
+        Label81.Text = "Patient's Data"
+
+        Me.AutoScroll = True
+        DTPNow()
         DTPickerNow()
         DateTimePicker1.Value = Now
         DTPicker.Value = Now
+        DateTimePicker2.Value = Now
+        DateTimePicker3.Value = Now
 
         LoadPicture()
-        Me.AutoScroll = True
+
         FillAuto()
         txtNo.Select()
+        'txtVisNo.Select()
+
     End Sub
 
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -98,16 +113,16 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Expire()
-        If TextBox3.Text <> "amr_bakry" Then
-            MsgBox("You Are Not Authorized, Please Call 01067174141")
-            End
-        End If
-        'If DateTimePicker4.Value < Now Then
-        'DateTimePicker4.Value = DateTimePicker4.Value.AddDays(50)
+        'Expire()
+        'If TextBox3.Text <> "amr_bakry" Then
+        '    MsgBox("You Are Not Authorized, Please Call 01067174141")
+        '    End
         'End If
+        ''If DateTimePicker4.Value < Now Then
+        ''DateTimePicker4.Value = DateTimePicker4.Value.AddDays(50)
+        ''End If
 
-
+        'Label81.Text = "Patient's Data"
 
         '_maxTimes = CInt(Val(My.Settings.MyAppScopedSetting))
         'DateGood(CInt(Val(My.Settings.Date_Days)))
@@ -174,18 +189,17 @@ Public Class Form1
         '    End
 
         'End If
-        'GetDriveSerialNumber()
-        'HDDSerial()
-    End Sub
-
-    Private Sub _
-        usage_MaximumExceeded(sender As Object,
-                              e As System.EventArgs) _
-                              Handles usage.MaximumExceeded
-
-        _usageLimitExceeded = True
 
     End Sub
+
+    'Private Sub _
+    '    usage_MaximumExceeded(sender As Object,
+    '                          e As System.EventArgs) _
+    '                          Handles usage.MaximumExceeded
+
+    '    _usageLimitExceeded = True
+
+    'End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
 
@@ -198,7 +212,7 @@ Public Class Form1
         RDXmlInv2()
         RDXmlInvRes()
         RDXmlPlan()
-        'RDXmlJobs()
+        RDXmlJobs()
         RDXmlMob()
 
         CompactAccessDatabase()
@@ -214,7 +228,7 @@ Public Class Form1
         Me.Location = New Point(0, 0)
         Me.Size = Screen.PrimaryScreen.WorkingArea.Size
 
-        ShowPatTable()
+        'ShowPatTable()
         GynDisabled()
         Gyn2Disabled()
 
@@ -233,7 +247,7 @@ Public Class Form1
     End Function
 
     Private Sub Expire()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -282,6 +296,10 @@ Public Class Form1
         DTPickerLMP.Value = Now
         DTPickerEDD.Value = Now
         DTPickerAtt.Value = Now
+        DateTimePicker2.Value = Now
+        DateTimePicker3.Value = Now
+        DateTimePicker5.Value = Now
+        DateTimePicker6.Value = Now
 
         'Trace.WriteLine("DTPickerNow FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
@@ -346,6 +364,8 @@ Public Class Form1
         txtA.Text = ""
         txtG.Text = ""
         txtP.Text = ""
+        TextBox6.Text = ""
+        TextBox5.Text = ""
         chbxGyn.Checked = False
         chbxNVD.Checked = False
         chbxCS.Checked = False
@@ -356,13 +376,13 @@ Public Class Form1
         DTPickerLMP.Value = Now
         DTPickerEDD.Value = Now
 
-        cbxLD.ResetText()
-        cbxLC.ResetText()
-        cbxHPOC.ResetText()
-        cbxMedH1.ResetText()
-        cbxMedH2.ResetText()
-        cbxMedH3.ResetText()
-        cbxSurH1.ResetText()
+        cbxLD.Text = ""
+        cbxLC.Text = ""
+        cbxHPOC.Text = ""
+        cbxMedH1.Text = ""
+        cbxMedH2.Text = ""
+        cbxMedH3.Text = ""
+        cbxSurH1.Text = ""
         cbxSurH2.ResetText()
         cbxSurH3.ResetText()
         cbxGynH1.ResetText()
@@ -381,6 +401,8 @@ Public Class Form1
     Sub ClearGyn2()
         'Trace.WriteLine("ClearGyn2 STARED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
         txtVis.Text = ""
+        TextBox7.Text = ""
+        TextBox8.Text = ""
         cbxGL.Text = ""
         cbxPuls.Text = ""
         cbxBP.Text = ""
@@ -403,25 +425,36 @@ Public Class Form1
 
     Private Sub btnclear_Click(sender As Object, e As EventArgs) Handles btnclear.Click
         'Trace.WriteLine("btnclear_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        'Me.ListBox1.Items.Clear()
-        'Me.ListBox2.Items.Clear()
-        'Me.ListBox3.Items.Clear()
+        'If Label81.Text = "Patient's Data" Then
+
+        'ElseIf Label81.Text = "" Then
+
+        'ElseIf Label81.Text = "" Then
+
+        'ElseIf Label81.Text = "" Then
+
+        'End If
 
         cbxSearch.Text = ""
         txtPatName.Text = ""
+        cbxJob.Text = ""
         cbxAddress.Text = ""
         DTPicker.Value = Now
-        DTPNow()
         txtAge.Text = ""
         txtPhone.Text = ""
         txtHusband.Text = ""
+        cbxHusJob.Text = ""
 
         TextBox1.Text = ""
         TextBox2.Text = ""
-        TextBox5.Text = ""
-        TextBox6.Text = ""
-        TextBox7.Text = ""
-        TextBox8.Text = ""
+        'TextBox5.Text = ""
+        'TextBox6.Text = ""
+        'TextBox7.Text = ""
+        'TextBox8.Text = ""
+        'TextBox9.Text = ""
+        DateTimePicker2.Value = Now
+        DateTimePicker3.Value = Now
+
         ''##This line must come after the 'for loop' because for loop erase every textbox in the form
         ''##And the autonumber come after that
         txtNo.Text = GetAutonumber("Pat", "Patient_no")
@@ -429,14 +462,17 @@ Public Class Form1
         ClearGyn()
         ClearGyn2()
 
+        DTPNow()
+
         GynDisabled()
         Gyn2Disabled()
-        FillDGV1()
-        FillDGV2()
-        FillDGV5()
-        FillDGV6()
+        'FillDGV1()
+        'FillDGV2()
+        'FillDGV3()
+        'FillDGV5()
+        'FillDGV6()
         'DGVPatients()
-        FillDGV7()
+        'FillDGV7()
         'btnL.Enabled = True
         'btnB.Enabled = True
         'Trace.WriteLine("btnclear_Click FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
@@ -444,7 +480,7 @@ Public Class Form1
 
     Sub ShowGyn2Table()
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -479,7 +515,7 @@ Public Class Form1
 
     Sub ShowGyn2PatTable()
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -560,7 +596,7 @@ Public Class Form1
 
 
     Sub ShowGynTable()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
@@ -607,7 +643,7 @@ Public Class Form1
     End Sub
 
     Sub ShowPatTable()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -619,13 +655,15 @@ Public Class Form1
                     dt.Load(cmd.ExecuteReader)
                     If dt.Rows.Count > 0 Then
                         txtNo.Text = dt.Rows(0).Item("Patient_no").ToString
-                        'txtName.Text = dt.Rows(0).Item("Name")
                         txtPatName.Text = dt.Rows(0).Item("Name").ToString
+                        cbxJob.Text = dt.Rows(0).Item("Job").ToString
                         cbxAddress.Text = dt.Rows(0).Item("Address").ToString
                         DTPicker.Text = dt.Rows(0).Item("Birthdate").ToString
                         txtAge.Text = dt.Rows(0).Item("Age").ToString
                         txtPhone.Text = dt.Rows(0).Item("Phone").ToString
                         txtHusband.Text = dt.Rows(0).Item("HusName").ToString
+                        cbxHusJob.Text = dt.Rows(0).Item("HusJob").ToString
+
                     End If
                 End Using
             End Using
@@ -633,7 +671,7 @@ Public Class Form1
     End Sub
 
     Sub ShowPatTableTextBox6()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -645,13 +683,14 @@ Public Class Form1
                     dt.Load(cmd.ExecuteReader)
                     If dt.Rows.Count > 0 Then
                         txtNo.Text = dt.Rows(0).Item("Patient_no").ToString
-                        'txtName.Text = dt.Rows(0).Item("Name")
                         txtPatName.Text = dt.Rows(0).Item("Name").ToString
+                        cbxJob.Text = dt.Rows(0).Item("Job").ToString
                         cbxAddress.Text = dt.Rows(0).Item("Address").ToString
                         DTPicker.Text = dt.Rows(0).Item("Birthdate").ToString
                         txtAge.Text = dt.Rows(0).Item("Age").ToString
                         txtPhone.Text = dt.Rows(0).Item("Phone").ToString
                         txtHusband.Text = dt.Rows(0).Item("HusName").ToString
+                        cbxHusJob.Text = dt.Rows(0).Item("HusJob").ToString
                     End If
                 End Using
             End Using
@@ -714,6 +753,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxSearch_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxSearch.Validating
+        'ClearGyn()
 
         If rdoName.Checked Then
             SearchName()
@@ -728,9 +768,10 @@ Public Class Form1
         'ListBox2.Items.Clear()
         GynDisabled()
         Gyn2Disabled()
-
+        'showgyn
         'FillDGV1()
         'FillDGV2()
+        'FillDGV8()
 
         ''##https://social.msdn.microsoft.com/Forums/vstudio/en-US/b2a15b26-6d51-49d5-81cf-20fef70e8316/when-datetimepicker-value-changed-this-error-occured?forum=vbgeneral
         operations.ToAgeString(DTPicker.Value)
@@ -745,6 +786,7 @@ Public Class Form1
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
         txtGA.Text = CStr(40 - weeks)
         'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+        'txtPatName.Focus()
     End Sub
 
     Sub FillDGV1()
@@ -759,7 +801,7 @@ Public Class Form1
                                 (ElapW)AS[Gestational age],(GAW)AS[Remaining],(MedH1)AS[Medical History1],(MedH2)AS[Medical History2],(MedH3)AS[Medical History3],
                                 (SurH1)AS[Surgical History1],(SurH2)AS[Surgical History2],(SurH3)AS[Surgical History3],(GynH1)AS[Gynecological History1],
                                 (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
-                                FROM [Gyn] WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
+                                FROM Gyn WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
         cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
         'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
         Dim da As New OleDbDataAdapter(cmd)
@@ -794,7 +836,20 @@ Public Class Form1
     End Sub
 
     Sub FillDGV3()
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
+                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND (GAW <= 4) AND (GAW > -1) AND (EDDDate <> LMPDate) AND (Gyn = 0)
+                               ORDER BY EDDDate DESC", con)
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn")
+        DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
 
+        con.Close()
+        Label53.Text = (DataGridView3.Rows.Count).ToString()
     End Sub
 
     Sub FillDGV6()
@@ -811,6 +866,32 @@ Public Class Form1
                                 (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
                                 FROM [Gyn] WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
         cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn")
+        DataGridView6.DataSource = ds.Tables("Gyn").DefaultView
+
+        con.Close()
+        Label80.Text = (DataGridView6.Rows.Count).ToString()
+        'End If
+    End Sub
+
+
+    Sub FillDGV6Empty()
+        'If txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Then
+
+        Label79.Text = "Previous Visits"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(MnsDate)AS[Visit Date],(NVD)AS[NVD],(CS)AS[CS],
+                                (G)AS[G],(P)AS[P],(A)AS[A],(HPOC)AS[Previous Obstetric Complications],(LD)AS[LD],
+                                (LC)AS[LC],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],
+                                (ElapW)AS[Gestational age],(GAW)AS[Remaining],(MedH1)AS[Medical History1],(MedH2)AS[Medical History2],(MedH3)AS[Medical History3],
+                                (SurH1)AS[Surgical History1],(SurH2)AS[Surgical History2],(SurH3)AS[Surgical History3],(GynH1)AS[Gynecological History1],
+                                (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
+                                FROM Gyn WHERE Patient_no = @Patient_no", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(TextBox9.Text))
         'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
         Dim da As New OleDbDataAdapter(cmd)
         Dim ds As New DataSet
@@ -843,6 +924,26 @@ Public Class Form1
         Label78.Text = (DataGridView5.Rows.Count).ToString()
     End Sub
 
+    Sub FillDGV5Empty()
+        Label77.Text = "U/S Visits"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(AttDt)AS[Visit Date],(GL)AS[General Look],(Pls)AS[Puls],
+                               (BP)AS[Blood Pressure],(Wt)AS[Weight],(BdBt)AS[Body Built],(ChtH)AS[Chest and Heart],
+                               (HdNe)AS[Head and Neck],(Ext)AS[Extremities],(FunL)AS[Fundal Level],(Scrs)AS[Scars],
+                               (Edm)AS[Edema],(US)AS[Ultra Sound],(Amount)AS[Amount]
+                               FROM Gyn2 WHERE Patient_no = @Patient_no", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(TextBox9.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn2")
+        DataGridView5.DataSource = ds.Tables("Gyn2").DefaultView
+        'MsgBox("Patient ID = " & txtNo.Text)
+        con.Close()
+        Label78.Text = (DataGridView5.Rows.Count).ToString()
+    End Sub
+
     Sub FillDGV7()
         Dim con As New OleDbConnection(cs)
         con.Open()
@@ -856,6 +957,38 @@ Public Class Form1
         da.Fill(ds, "Pat")
         DataGridView7.DataSource = ds.Tables("Pat").DefaultView
 
+        con.Close()
+    End Sub
+
+    Sub FillDGV7Empty()
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Name) AS [Patient Name],(Address) AS [Address],
+                                        (Birthdate) AS [Birth Date],(Age) AS [Age],(Phone) AS [Phone],(HusName) AS [Husband Name]
+                                        FROM Pat WHERE Patient_no = @Patient_no", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(TextBox9.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Pat")
+        DataGridView7.DataSource = ds.Tables("Pat").DefaultView
+
+        con.Close()
+    End Sub
+
+    Sub FillDGV8()
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Visit_no)AS[Visit No],(Complain)AS[Complain],(Sign)AS[Sign],
+                                        (Diagnosis)AS[Diagnosis],(Intervention)AS[Intervention],(Amount)AS[Amount],(VisDate)AS[Visit Date] 
+                                        FROM Visits WHERE Patient_no = @Patient_no ORDER BY Visit_no DESC", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Visits")
+        DataGridView8.DataSource = ds.Tables("Visits").DefaultView
+        Label82.Text = DataGridView8.Rows.Count().ToString
         con.Close()
     End Sub
 
@@ -894,7 +1027,7 @@ Public Class Form1
         'End While
         'conn.Close()
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -909,12 +1042,15 @@ Public Class Form1
                     dt.Load(cmd.ExecuteReader)
                     If dt.Rows.Count > 0 Then
                         txtNo.Text = dt.Rows(0).Item("Patient_no").ToString
+
                         txtPatName.Text = dt.Rows(0).Item("Name").ToString
+                        cbxJob.Text = dt.Rows(0).Item("Job").ToString
                         cbxAddress.Text = dt.Rows(0).Item("Address").ToString
                         DTPicker.Text = dt.Rows(0).Item("Birthdate").ToString
                         txtAge.Text = dt.Rows(0).Item("Age").ToString
                         txtPhone.Text = dt.Rows(0).Item("Phone").ToString
                         txtHusband.Text = dt.Rows(0).Item("HusName").ToString
+                        cbxHusJob.Text = dt.Rows(0).Item("HusJob").ToString
                     End If
                 End Using
             End Using
@@ -922,7 +1058,7 @@ Public Class Form1
     End Sub
 
     Sub SearchID()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -937,12 +1073,15 @@ Public Class Form1
                     dt.Load(cmd.ExecuteReader)
                     If dt.Rows.Count > 0 Then
                         txtNo.Text = dt.Rows(0).Item("Patient_no").ToString
+
                         txtPatName.Text = dt.Rows(0).Item("Name").ToString
+                        cbxJob.Text = dt.Rows(0).Item("Job").ToString
                         cbxAddress.Text = dt.Rows(0).Item("Address").ToString
                         DTPicker.Text = dt.Rows(0).Item("Birthdate").ToString
                         txtAge.Text = dt.Rows(0).Item("Age").ToString
                         txtPhone.Text = dt.Rows(0).Item("Phone").ToString
                         txtHusband.Text = dt.Rows(0).Item("HusName").ToString
+                        cbxHusJob.Text = dt.Rows(0).Item("HusJob").ToString
                     End If
                 End Using
             End Using
@@ -950,7 +1089,7 @@ Public Class Form1
     End Sub
 
     Private Sub SearchHusband()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -965,13 +1104,15 @@ Public Class Form1
                     dt.Load(cmd.ExecuteReader)
                     If dt.Rows.Count > 0 Then
                         txtNo.Text = dt.Rows(0).Item("Patient_no").ToString
-                        'txtName.Text = dt.Rows(0).Item("Name")
+
                         txtPatName.Text = dt.Rows(0).Item("Name").ToString
+                        cbxJob.Text = dt.Rows(0).Item("Job").ToString
                         cbxAddress.Text = dt.Rows(0).Item("Address").ToString
                         DTPicker.Text = dt.Rows(0).Item("Birthdate").ToString
                         txtAge.Text = dt.Rows(0).Item("Age").ToString
                         txtPhone.Text = dt.Rows(0).Item("Phone").ToString
                         txtHusband.Text = dt.Rows(0).Item("HusName").ToString
+                        cbxHusJob.Text = dt.Rows(0).Item("HusJob").ToString
                     End If
                 End Using
             End Using
@@ -979,7 +1120,7 @@ Public Class Form1
     End Sub
 
     Sub SearchPhone()
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -994,12 +1135,15 @@ Public Class Form1
                     dt.Load(cmd.ExecuteReader)
                     If dt.Rows.Count > 0 Then
                         txtNo.Text = dt.Rows(0).Item("Patient_no").ToString
+
                         txtPatName.Text = dt.Rows(0).Item("Name").ToString
+                        cbxJob.Text = dt.Rows(0).Item("Job").ToString
                         cbxAddress.Text = dt.Rows(0).Item("Address").ToString
                         DTPicker.Text = dt.Rows(0).Item("Birthdate").ToString
                         txtAge.Text = dt.Rows(0).Item("Age").ToString
                         txtPhone.Text = dt.Rows(0).Item("Phone").ToString
                         txtHusband.Text = dt.Rows(0).Item("HusName").ToString
+                        cbxHusJob.Text = dt.Rows(0).Item("HusJob").ToString
                     End If
                 End Using
             End Using
@@ -1024,18 +1168,19 @@ Public Class Form1
                 'RunCommand("INSERT INTO Pat(Patient_no, Name, Address, Birthdate, Age, Phone, HusName)" &
                 '   "VALUES(" & txtNo.Text & ", '" & txtPatName.Text & "', '" & cbxAddress.Text & "', '" & DTPicker.Text & "', '" & txtAge.Text & "', '" & txtPhone.Text & "', '" & txtHusband.Text & "')")
 
-                cmd = New OleDbCommand("INSERT INTO Pat(Patient_no, Name, Address, Birthdate, Age, Phone, HusName)" &
-                   "VALUES(@Patient_no, @Name, @Address, @Birthdate, @Age, @Phone, @HusName)", conn)
+                cmd = New OleDbCommand("INSERT INTO Pat(Patient_no, Name, Job, Address, Birthdate, Age, Phone, HusName,HusJob)" &
+                   "VALUES(@Patient_no, @Name, @Job, @Address, @Birthdate, @Age, @Phone, @HusName, @HusJob)", conn)
 
                 With cmd.Parameters
                     .Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
                     .Add("@Name", OleDbType.VarChar).Value = txtPatName.Text
+                    .Add("@Job", OleDbType.VarChar).Value = cbxJob.Text
                     .Add("@Address", OleDbType.VarChar).Value = cbxAddress.Text
-                    .Add("@Birthdate", OleDbType.DBDate).Value = CDate(DTPicker.Value)
+                    .Add("@Birthdate", OleDbType.DBDate).Value = (DTPicker.Value)
                     .Add("@Age", OleDbType.VarChar).Value = txtAge.Text
                     .Add("@Phone", OleDbType.VarChar).Value = txtPhone.Text
                     .Add("@HusName", OleDbType.VarChar).Value = txtHusband.Text
-
+                    .Add("@HusJob", OleDbType.VarChar).Value = cbxHusJob.Text
                 End With
 
                 If conn.State = ConnectionState.Open Then
@@ -1056,17 +1201,20 @@ Public Class Form1
             If txtPatName.Text <> "" And txtNo.Text <> GetAutonumber("Pat", "Patient_no") Then
                 'RunCommand("UPDATE Pat SET Name='" & txtPatName.Text & "', Address='" & cbxAddress.Text & "', Birthdate='" & DTPicker.Text & "', Age='" & txtAge.Text & "', Phone='" & txtPhone.Text & "', HusName='" & txtHusband.Text & "' WHERE Patient_no=" & txtNo.Text)
                 'RunCommand("UPDATE Visits SET Name='" & txtName.Text & "' WHERE Patient_no=" & frm2.txtVisNo.Text)
-                cmd = New OleDbCommand("UPDATE Pat SET Name=@Name, Address=@Address," &
+                cmd = New OleDbCommand("UPDATE Pat SET Name=@Name, Job=@Job, Address=@Address," &
                                    " Birthdate=@Birthdate, Age=@Age, Phone=@Phone," &
-                                   " HusName=@HusName WHERE Patient_no=@Patient_no", conn)
+                                   " HusName=@HusName, HusJob=@HusJob WHERE Patient_no=@Patient_no", conn)
 
                 With cmd.Parameters
+
                     .Add("@Name", OleDbType.VarChar).Value = txtPatName.Text
+                    .Add("@Job", OleDbType.VarChar).Value = cbxJob.Text
                     .Add("@Address", OleDbType.VarChar).Value = cbxAddress.Text
-                    .Add("@Birthdate", OleDbType.DBDate).Value = CDate(DTPicker.Value)
+                    .Add("@Birthdate", OleDbType.DBDate).Value = (DTPicker.Value)
                     .Add("@Age", OleDbType.VarChar).Value = txtAge.Text
                     .Add("@Phone", OleDbType.VarChar).Value = txtPhone.Text
                     .Add("@HusName", OleDbType.VarChar).Value = txtHusband.Text
+                    .Add("@HusJob", OleDbType.VarChar).Value = cbxHusJob.Text
                     .Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
                 End With
 
@@ -1301,10 +1449,10 @@ Public Class Form1
 
         '##Path For Real Projects by "Application.StartupPath"
         'Dim DatabasePath As String = "D:KMAClinic\bin\Release\Dr_T.accdb"
-        Dim DatabasePath As String = Path.Combine(Application.StartupPath, "TestDB.accdb")
+        Dim DatabasePath As String = Path.Combine(Application.StartupPath, "\KMAClinic\TestDB.accdb")
 
         '##For Real Projects
-        Dim DatabasePathCompacted As String = "D:\KMAClinic\Backups\_" & Format(Now(), "ddMMyyyy_hhmmss") & ".accdb"
+        Dim DatabasePathCompacted As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\_" & Format(Now(), "ddMMyyyy_hhmmss") & ".accdb")
 
         Dim CompactDB As New Microsoft.Office.Interop.Access.Dao.DBEngine
 
@@ -1312,46 +1460,48 @@ Public Class Form1
         CompactDB.CompactDatabase(DatabasePath, DatabasePathCompacted, , , ";pwd=mero1981923")
         CompactDB = Nothing
 
-        My.Computer.FileSystem.CopyFile("D:\KMAClinic\TestDB.accdb",
-             "D:\KMAClinic\Backups\Docs\TestDB_" & Format(Now(), "MM_yyyy") & ".accdb", True)
+        Dim backuppath As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\TestDB_" &
+                                                                            Format(Now(), "MM_yyyy") & ".accdb")
+        My.Computer.FileSystem.CopyFile(DatabasePath,
+                                        backuppath, True)
         My.Computer.FileSystem.CopyFile(DatabasePathCompacted,
-               "D:\KMAClinic\TestDB.accdb", True)
+               DatabasePath, True)
 
     End Sub
 
     Private Sub BackupXML()
-        Dim SourcePatNames As String = Path.Combine(Application.StartupPath, "PatNames.xml")
-        Dim patnames As String = "D:\KMAClinic\Backups\Docs\PatNames" + ".xml"
+        Dim SourcePatNames As String = Path.Combine(Application.StartupPath, "\KMAClinic\PatNames.xml")
+        Dim patnames As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\PatNames" + ".xml")
 
-        Dim SourcePatNames1 As String = Path.Combine(Application.StartupPath, "PatNames1.xml")
-        Dim patnames1 As String = "D:\KMAClinic\Backups\Docs\PatNames1" + ".xml"
+        Dim SourcePatNames1 As String = Path.Combine(Application.StartupPath, "\KMAClinic\PatNames1.xml")
+        Dim patnames1 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\PatNames1" + ".xml")
 
-        Dim SourcePatNames2 As String = Path.Combine(Application.StartupPath, "PatNames2.xml")
-        Dim patnames2 As String = "D:\KMAClinic\Backups\Docs\PatNames2" + ".xml"
+        Dim SourcePatNames2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\PatNames2.xml")
+        Dim patnames2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\PatNames2" + ".xml")
 
-        Dim SourceInvestigations As String = Path.Combine(Application.StartupPath, "Investigations.xml")
-        Dim investigations As String = "D:\KMAClinic\Backups\Docs\Investigations" + ".xml"
+        Dim SourceInvestigations As String = Path.Combine(Application.StartupPath, "\KMAClinic\Investigations.xml")
+        Dim investigations As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Investigations" + ".xml")
 
-        Dim Sourceinvestigations2 As String = Path.Combine(Application.StartupPath, "Investigations2.xml")
-        Dim investigations2 As String = "D:\KMAClinic\Backups\Docs\Investigations2" + ".xml"
+        Dim Sourceinvestigations2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Investigations2.xml")
+        Dim investigations2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Investigations2" + ".xml")
 
-        Dim SourceDrugs As String = Path.Combine(Application.StartupPath, "Drugs1.xml")
-        Dim drugs As String = "D:\KMAClinic\Backups\Docs\Drugs1" + ".xml"
+        Dim SourceDrugs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Drugs1.xml")
+        Dim drugs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Drugs1" + ".xml")
 
-        Dim SourcePlans As String = Path.Combine(Application.StartupPath, "Plans.xml")
-        Dim plans As String = "D:\KMAClinic\Backups\Docs\Plans" + ".xml"
+        Dim SourcePlans As String = Path.Combine(Application.StartupPath, "\KMAClinic\Plans.xml")
+        Dim plans As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Plans" + ".xml")
 
-        Dim SourceInvRes As String = Path.Combine(Application.StartupPath, "InvRes.xml")
-        Dim invres As String = "D:\KMAClinic\Backups\Docs\InvRes" + ".xml"
+        Dim SourceInvRes As String = Path.Combine(Application.StartupPath, "\KMAClinic\InvRes.xml")
+        Dim invres As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\InvRes" + ".xml")
 
-        Dim SourceDiaInter As String = Path.Combine(Application.StartupPath, "DiaInter.xml")
-        Dim diainter As String = "D:\KMAClinic\Backups\Docs\DiaInter" + ".xml"
+        Dim SourceDiaInter As String = Path.Combine(Application.StartupPath, "\KMAClinic\DiaInter.xml")
+        Dim diainter As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\DiaInter" + ".xml")
 
-        Dim SourceMob As String = Path.Combine(Application.StartupPath, "Mob.xml")
-        Dim mob As String = "D:\KMAClinic\Backups\Docs\Mob.xml"
+        Dim SourceMob As String = Path.Combine(Application.StartupPath, "\KMAClinic\Mob.xml")
+        Dim mob As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Mob.xml")
 
-        Dim SourceJobs As String = Path.Combine(Application.StartupPath, "Jobs.xml")
-        Dim jobs As String = "D:\KMAClinic\Backups\Docs\Jobs.xml"
+        Dim SourceJobs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Jobs.xml")
+        Dim jobs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Jobs.xml")
 
         If Not File.Exists(patnames) Then
             File.Copy(SourcePatNames, patnames)
@@ -1436,6 +1586,7 @@ Public Class Form1
         RDXmlDrugs()
         RDXmlPlan()
         RDXmlMob()
+        RDXmlJobs()
         RDXmlInv()
         RDXmlInv2()
         RDXmlInvRes()
@@ -1455,12 +1606,14 @@ Public Class Form1
         End If
         CompactAccessDatabase()
         BackupXML()
-        Dim BackupFilePath As String = "D:\KMAClinic\Backups"
+        Dim BackupFilePath As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups")
         MsgBox("Backup Done @" & vbCrLf & BackupFilePath, MsgBoxStyle.Information, "Backup")
     End Sub
 
     Private Sub btnNewGyn_Click(sender As Object, e As EventArgs) Handles btnNewGyn.Click
         ClearGyn()
+        TextBox6.Text = txtNo.Text
+        TextBox5.Text = txtPatName.Text
         If txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Then
             txtVis1.Text = GetAutonumber("Gyn", "Vis_no")
             txtVis1.Select()
@@ -1468,14 +1621,14 @@ Public Class Form1
             SaveGyn()
             txtVis1.Select()
         End If
-        'TextBox7.Text = txtNo.Text
-        'TextBox8.Text = txtPatName.Text
         GynEnabled()
         btnL.Enabled = True
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         ClearGyn2()
+        TextBox7.Text = txtNo.Text
+        TextBox8.Text = txtPatName.Text
         If txtVis.Text <> GetAutonumber("Gyn2", "Vis_no") Then
             txtVis.Text = GetAutonumber("Gyn2", "Vis_no")
             txtVis.Select()
@@ -1484,22 +1637,118 @@ Public Class Form1
             txtVis.Select()
         End If
         Gyn2Enabled()
-        TextBox7.Text = txtNo.Text
-        TextBox8.Text = txtPatName.Text
+
 
     End Sub
 
-    Private Sub cbxAddress_Validating(sender As Object, e As EventArgs) Handles cbxAddress.Validating
-        If txtPatName.Text <> String.Empty Then
 
+    Private Sub txtPatName_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPatName.Validating
+        Dim ds As DataSet = New DataSet
+        Dim da As OleDbDataAdapter = New OleDbDataAdapter("SELECT Name FROM Pat WHERE Name='" & txtPatName.Text & "'", conn)
+        da.Fill(ds, "Pat")
+        Dim dv As DataView = New DataView(ds.Tables("Pat"))
+        Dim cur As CurrencyManager
+        cur = CType(Me.BindingContext(dv), CurrencyManager)
+
+        If cur.Count <> 0 And txtNo.Text = GetAutonumber("Pat", "Patient_no") Then
+            MsgBox("تأكد من الاسم. هذا الاسم موجود من قبل", MsgBoxStyle.OkOnly, "يجب تغيير الاسم")
+            txtPatName.ResetText()
+            Exit Sub
+        End If
+        If txtPatName.Text <> "" Then
+            SaveButton()
+            'SaveGyn()
             UpdatePatient()
+        End If
+    End Sub
+
+    Private Sub txtPatName_Click(sender As Object, e As EventArgs) Handles txtPatName.Click
+        'If CheckBox1.Checked = False Then
+        '    InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
+        'ElseIf CheckBox1.Checked = True Then
+        '    InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
+        'End If
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
+
+        '' Read the XML file from disk only once
+        'Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames.xml")
+        '' Parse the XML document only once
+        'Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
+        '' Now fill the ComboBox's 
+        'txtPatName.Items.AddRange(cbElements)
+    End Sub
+
+    Private Sub txtPatName_Validated(sender As Object, e As EventArgs) Handles txtPatName.Validated
+        If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
-            'Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames1.xml")
+            Dim xDoc = XElement.Load(Application.StartupPath + "\Jobs.xml")
             '' Parse the XML document only once
-            'Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
+            Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
             '' Now fill the ComboBox's 
-            'txtHusband.Items.AddRange(cbElements)
+            cbxJob.Items.AddRange(cbElements)
+            SaveInXmlPatNames()
+        End If
+
+    End Sub
+
+    Private Sub txtPatName_TextChanged(sender As Object, e As EventArgs) Handles txtPatName.TextChanged
+        'TextBox5.Text = txtPatName.Text
+        'TextBox8.Text = txtPatName.Text
+    End Sub
+
+    Private Sub cbxJob_Validating(sender As Object, e As CancelEventArgs) Handles cbxJob.Validating
+        If txtPatName.Text = String.Empty Then
+            Exit Sub
+        End If
+        UpdatePatient()
+        SaveInXmlJobs()
+        '' Read the XML file from disk only once
+        Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames2.xml")
+        '' Parse the XML document only once
+        Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
+        '' Now fill the ComboBox's 
+        cbxAddress.Items.AddRange(cbElements)
+    End Sub
+
+    Private Sub cbxJob_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxJob.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
+        '' Read the XML file from disk only once
+        Dim xDoc = XElement.Load(Application.StartupPath + "\Jobs.xml")
+        '' Parse the XML document only once
+        Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
+        '' Now fill the ComboBox's 
+        cbxJob.Items.AddRange(cbElements)
+    End Sub
+
+    Private Sub cbxHusJob_Validating(sender As Object, e As CancelEventArgs) Handles cbxHusJob.Validating
+        If txtPatName.Text = String.Empty Then
+            Exit Sub
+        End If
+        UpdatePatient()
+        SaveInXmlJobs()
+    End Sub
+
+    Private Sub cbxHusJob_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxHusJob.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
+        '' Read the XML file from disk only once
+        Dim xDoc = XElement.Load(Application.StartupPath + "\Jobs.xml")
+        '' Parse the XML document only once
+        Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
+        '' Now fill the ComboBox's 
+        cbxHusJob.Items.AddRange(cbElements)
+    End Sub
+
+
+    Private Sub cbxAddress_Validating(sender As Object, e As CancelEventArgs) Handles cbxAddress.Validating
+        If txtPatName.Text <> String.Empty Then
+            UpdatePatient()
             SaveInXmlPatNames2()
+            '' Read the XML file from disk only once
+            Dim xDoc = XElement.Load(Application.StartupPath + "\Jobs.xml")
+            '' Parse the XML document only once
+            Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
+            '' Now fill the ComboBox's 
+            cbxHusJob.Items.AddRange(cbElements)
         End If
     End Sub
 
@@ -1552,16 +1801,11 @@ Public Class Form1
 
     Private Sub txtHusband_Click(sender As Object, e As EventArgs) Handles txtHusband.Click
         InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
-        '' Read the XML file from disk only once
-        'Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames1.xml")
-        '' Parse the XML document only once
-        'Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
-        '' Now fill the ComboBox's 
-        'txtHusband.Items.AddRange(cbElements)
+
     End Sub
 
     Private Sub PictureBox1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDoubleClick
-        'Close()
+
         End
     End Sub
 
@@ -1572,7 +1816,8 @@ Public Class Form1
         DTPickerEDD.Visible = True
         txtElapsed.Visible = True
         txtGA.Visible = True
-
+        Label73.Text = "Weeks"
+        Label74.Text = "Weeks"
     End Sub
 
     Private Sub DisabledMenst()
@@ -1582,6 +1827,8 @@ Public Class Form1
         DTPickerEDD.Visible = False
         txtElapsed.Visible = False
         txtGA.Visible = False
+        Label73.Text = ""
+        Label74.Text = ""
     End Sub
 
     Private Sub chbxGyn_CheckedChanged(sender As Object, e As EventArgs) Handles chbxGyn.CheckedChanged
@@ -1706,6 +1953,7 @@ Public Class Form1
 
     Private Sub cbxHPOC_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxHPOC.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -1756,6 +2004,8 @@ Public Class Form1
         End If
     End Sub
     Private Sub cbxLC_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxLC.Validating
+
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -1766,7 +2016,6 @@ Public Class Form1
             cbxMedH1.Items.AddRange(cbElements)
             SaveInXmlDiaInter()
         End If
-
     End Sub
 
     Private Sub cbxLC_Click(sender As Object, e As EventArgs) Handles cbxLC.Click
@@ -1835,17 +2084,6 @@ Public Class Form1
         '#For increasing 40 weeks = 280 days 
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
 
-        'Dim sum1, sum2 As Integer
-        'sum1 = CInt(Val(txtA.Text) + Val(txtP.Text)) + 1
-        'sum2 = CInt(Val(txtA.Text) + Val(txtP.Text))
-        'If txtG.Text = CType(sum1, String) Then
-        '    txtElapsed.Text = weeks & "  Weeks"
-        '    DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
-        'ElseIf txtg.Text = CType(sum2, String) Or txtG.Text = "" Then
-        '    DTPickerEDD.Enabled = False
-        '    txtGA.Text = ""
-        '    txtElapsed.Text = ""
-        'End If
     End Sub
 
     Private Sub DTPickerLMP_Validating(sender As Object, e As EventArgs) Handles DTPickerLMP.Validating
@@ -1860,21 +2098,7 @@ Public Class Form1
     End Sub
 
     Private Sub txtGA_TextChanged(sender As Object, e As EventArgs) Handles txtGA.TextChanged
-        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
-        'Dim date2 As Date = DTPickerLMP.Value
-        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
-        ''txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        ''txtGA.Text = CStr(40 - weeks)
-        'If DTPickerLMP.Value = DTPickerMns.Value Then
-        '    DTPickerEDD.Value = DTPickerMns.Value
-        '    txtElapsed.Text = "0" '& "  Weeks"
-        '    txtGA.Text = "0" '& "  Weeks"
-        'Else
-        '    txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        '    txtGA.Text = CStr(40 - weeks) '& "  Weeks"
-        'End If
-
-        If TextBox5.Text = String.Empty Then
+        If txtPatName.Text = String.Empty Then
             Exit Sub
         End If
         UpdateGyn()
@@ -1887,20 +2111,6 @@ Public Class Form1
     End Sub
 
     Private Sub txtElapsed_TextChanged(sender As Object, e As EventArgs) Handles txtElapsed.TextChanged
-        'Dim date1 As Date = DateTimePicker1.Value  'Now 'DTPickerMns.Value
-        'Dim date2 As Date = DTPickerLMP.Value
-
-        'Dim weeks As Integer = CInt((date2 - date1).TotalDays / 7)
-        ''txtGA.Text = CStr(40 - weeks) '& "  Weeks"
-
-        'If DTPickerLMP.Value = DTPickerMns.Value Then
-        '    DTPickerEDD.Value = DTPickerMns.Value
-        '    txtElapsed.Text = "0" '& "  Weeks"
-        '    txtGA.Text = "0" '& "  Weeks"
-        'Else
-        '    txtElapsed.Text = weeks & " "
-        '    txtGA.Text = CStr(40 - weeks) '& "  Weeks"
-        'End If
 
     End Sub
 
@@ -1912,6 +2122,7 @@ Public Class Form1
 
     Private Sub cbxMedH1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxMedH1.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -1926,6 +2137,7 @@ Public Class Form1
 
     Private Sub cbxMedH1_Click(sender As Object, e As EventArgs) Handles cbxMedH1.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -1938,6 +2150,7 @@ Public Class Form1
 
     Private Sub cbxMedH2_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxMedH2.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -1952,7 +2165,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxMedH2_Click(sender As Object, e As EventArgs) Handles cbxMedH2.Click
-
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -1965,7 +2178,6 @@ Public Class Form1
     End Sub
 
     Private Sub cbxMedH3_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxMedH3.Validating
-
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -1981,6 +2193,7 @@ Public Class Form1
 
     Private Sub cbxMedH3_Click(sender As Object, e As EventArgs) Handles cbxMedH3.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -1993,6 +2206,7 @@ Public Class Form1
 
     Private Sub cbxSurH1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxSurH1.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -2007,6 +2221,7 @@ Public Class Form1
 
     Private Sub cbxSurH1_Click(sender As Object, e As EventArgs) Handles cbxSurH1.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -2034,6 +2249,7 @@ Public Class Form1
 
     Private Sub cbxSurH2_Click(sender As Object, e As EventArgs) Handles cbxSurH2.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -2062,6 +2278,7 @@ Public Class Form1
 
     Private Sub cbxSurH3_Click(sender As Object, e As EventArgs) Handles cbxSurH3.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
 
             '' Read the XML file from disk only once
@@ -2075,6 +2292,7 @@ Public Class Form1
 
     Private Sub cbxGynH1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxGynH1.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
 
@@ -2090,6 +2308,7 @@ Public Class Form1
 
     Private Sub cbxGynH1_Click(sender As Object, e As EventArgs) Handles cbxGynH1.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -2117,6 +2336,7 @@ Public Class Form1
 
     Private Sub cbxGynH2_Click(sender As Object, e As EventArgs) Handles cbxGynH2.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -2144,6 +2364,7 @@ Public Class Form1
 
     Private Sub cbxGynH3_Click(sender As Object, e As EventArgs) Handles cbxGynH3.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -2156,6 +2377,7 @@ Public Class Form1
 
     Private Sub cbxDrugH1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrugH1.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             UpdateGyn()
             '' Read the XML file from disk only once
@@ -2170,6 +2392,7 @@ Public Class Form1
 
     Private Sub cbxDrugH1_Click(sender As Object, e As EventArgs) Handles cbxDrugH1.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -2196,6 +2419,7 @@ Public Class Form1
 
     Private Sub cbxDrugH2_Click(sender As Object, e As EventArgs) Handles cbxDrugH2.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -2223,6 +2447,7 @@ Public Class Form1
 
     Private Sub cbxDrugH3_Click(sender As Object, e As EventArgs) Handles cbxDrugH3.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -2234,12 +2459,14 @@ Public Class Form1
     End Sub
 
     Private Sub txtVis_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtVis.Validating
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVis.Text = GetAutonumber("Gyn2", "Vis_no") And txtPatName.Text <> "" Then
             SaveGyn2()
         End If
     End Sub
 
     Private Sub txtVis1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtVis1.Validating
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") And txtPatName.Text <> "" Then
             SaveGyn()
         End If
@@ -2247,6 +2474,7 @@ Public Class Form1
 
     Private Sub cbxGL_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxGL.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
 
             UpdateGyn2()
@@ -2263,6 +2491,7 @@ Public Class Form1
 
     Private Sub cbxGL_Click(sender As Object, e As EventArgs) Handles cbxGL.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2356,6 +2585,7 @@ Public Class Form1
 
     Private Sub cbxBodyBuilt_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxBodyBuilt.Validating
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
 
             UpdateGyn2()
@@ -2371,6 +2601,7 @@ Public Class Form1
 
     Private Sub cbxBodyBuilt_Click(sender As Object, e As EventArgs) Handles cbxBodyBuilt.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2398,6 +2629,7 @@ Public Class Form1
 
     Private Sub cbxChtH_Click(sender As Object, e As EventArgs) Handles cbxChtH.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2424,6 +2656,7 @@ Public Class Form1
 
     Private Sub cbxHdNe_Click(sender As Object, e As EventArgs) Handles cbxHdNe.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2450,6 +2683,7 @@ Public Class Form1
 
     Private Sub cbxExt_Click(sender As Object, e As EventArgs) Handles cbxExt.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2477,6 +2711,7 @@ Public Class Form1
 
     Private Sub cbxFunL_Click(sender As Object, e As EventArgs) Handles cbxFunL.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2504,6 +2739,7 @@ Public Class Form1
 
     Private Sub cbxScars_Click(sender As Object, e As EventArgs) Handles cbxScars.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2531,6 +2767,7 @@ Public Class Form1
 
     Private Sub cbxEdema_Click(sender As Object, e As EventArgs) Handles cbxEdema.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2558,6 +2795,7 @@ Public Class Form1
 
     Private Sub cbxUS_Click(sender As Object, e As EventArgs) Handles cbxUS.Click
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtPatName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Investigations2.xml")
@@ -2626,7 +2864,7 @@ Public Class Form1
         xmldoc.Save(Directory.GetCurrentDirectory & "\PatNames2.xml")
     End Sub
 
-    '##Save Husband Names
+    '##Save Mobile and Phone 
     Sub SaveInXmlMob()
         ''Writing XML content...
         Dim xmldoc As XmlDocument = New XmlDocument()
@@ -2634,11 +2872,32 @@ Public Class Form1
 
         With xmldoc.SelectSingleNode("/dataroot").CreateNavigator().AppendChild()
             .WriteStartElement("Names")
-            .WriteElementString("Name", txtHusband.Text)
+            .WriteElementString("Name", txtPhone.Text)
             .WriteEndElement()
             .Close()
         End With
         xmldoc.Save(Directory.GetCurrentDirectory & "\Mob.xml")
+
+    End Sub
+
+    Sub SaveInXmlJobs()
+        ''Writing XML content...
+        Dim xmldoc As XmlDocument = New XmlDocument()
+        xmldoc.Load(Directory.GetCurrentDirectory & "\Jobs.xml")
+
+        With xmldoc.SelectSingleNode("/dataroot").CreateNavigator().AppendChild()
+            .WriteStartElement("Names")
+            .WriteElementString("Name", cbxJob.Text)
+            .WriteEndElement()
+            .Close()
+        End With
+        With xmldoc.SelectSingleNode("/dataroot").CreateNavigator().AppendChild()
+            .WriteStartElement("Names")
+            .WriteElementString("Name", cbxHusJob.Text)
+            .WriteEndElement()
+            .Close()
+        End With
+        xmldoc.Save(Directory.GetCurrentDirectory & "\Jobs.xml")
 
     End Sub
 
@@ -2893,6 +3152,7 @@ Public Class Form1
         xdoc.Save(fileName)
         'Trace.WriteLine("RDXmlInvRes FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
+
     Sub RDXmlInv2()
         Dim fileName1 As String = "Investigations2.xml"
         Dim xdoc1 As XDocument = XDocument.Load(fileName1)
@@ -2937,7 +3197,7 @@ Public Class Form1
         ' Save the modified xdoc to the file system
         xdoc.Save(fileName1)
     End Sub
-    ''##Removing Dplicates from Names Xml file 
+    ''##Removing Duplicates from Names Xml file 
     Sub RDXmlPatNames()
         Dim fileName1 As String = "PatNames.xml"
         Dim xdoc1 As XDocument = XDocument.Load(fileName1)
@@ -3016,30 +3276,15 @@ Public Class Form1
     End Sub
 
     Private Sub btnF_Click(sender As Object, e As EventArgs) Handles btnF.Click
+        Button1.BackColor = Color.LightSeaGreen
+        Label81.Text = "Patient's Data"
+        If Button1.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+        End If
 
-        'ListBox2.Items.Clear()
         If txtPatName.Text <> "" Then
-            '    'btnF.Enabled = False
-            '    Dim connection As OleDbConnection = New OleDbConnection()
-            '    connection.ConnectionString = "provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923"
-            '    Dim command As OleDbCommand = New OleDbCommand()
-            '    command.Connection = connection
-            '    command.CommandText = "SELECT Vis_no FROM Gyn2 WHERE Patient_no =" & txtNo.Text & " " &
-            '    "ORDER BY Vis_no DESC"
-            '    command.CommandType = CommandType.Text
-            '    connection.Open()
-
-            '    Dim reader As OleDbDataReader = command.ExecuteReader()
-            '    While reader.Read()
-            '        'Dim PatientID As String = CStr(reader("Patient_no"))
-            '        Dim VisitNO As String = CStr(reader("Vis_no"))
-            '        Dim item As String = String.Format("{0}", VisitNO)
-            '        Me.ListBox2.Items.Add(item).ToString()
-            '    End While
-
-            '    reader.Close()
-            '    If connection.State = ConnectionState.Open Then connection.Close()
-
 
             TabControl1.SelectedTab = Me.TabPage2
             Label49.Text = "U/S Visits"
@@ -3067,61 +3312,49 @@ Public Class Form1
     End Sub
 
     Private Sub btnL_Click(sender As Object, e As EventArgs) Handles btnL.Click
-        Try
 
-            'ClearGyn()
-            'ListBox1.Items.Clear()
-            'ListBox2.Items.Clear()
-            If txtPatName.Text <> "" Then
-                '    'btnL.Enabled = False
-                '    Dim connection As OleDbConnection = New OleDbConnection()
-                '    connection.ConnectionString = "provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923"
-                '    Dim command As OleDbCommand = New OleDbCommand()
-                '    command.Connection = connection
-                '    command.CommandText = "SELECT Vis_no FROM Gyn WHERE Patient_no =" & txtNo.Text & " " &
-                '                          "ORDER BY Vis_no DESC"
-                '    command.CommandType = CommandType.Text
+        Button1.BackColor = Color.LightSeaGreen
+        Label81.Text = "Patient's Data"
+        If Button1.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+        End If
 
-                '    connection.Open()
-                '    Dim reader As OleDbDataReader = command.ExecuteReader()
-                '    While reader.Read()
-                '        'Dim PatientID As String = CStr(reader("Patient_no"))
-                '        Dim VisitNO As String = CStr(reader("Vis_no"))
-                '        Dim item As String = String.Format("{0}", VisitNO)
-                '        Me.ListBox1.Items.Add(item).ToString()
+        If txtPatName.Text <> "" Then
 
-                '    End While
+            TabControl1.SelectedTab = Me.TabPage2
+            Label48.Text = "Previous Visits"
+            Dim con As New OleDbConnection(cs)
+            con.Open()
+            cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(MnsDate)AS[Visit Date],(NVD)AS[NVD],(CS)AS[CS],
+                                    (G)AS[G],(P)AS[P],(A)AS[A],(HPOC)AS[Previous Obstetric Complications],(LD)AS[LD],
+                                    (LC)AS[LC],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],
+                                    (ElapW)AS[Gestational age],(GAW)AS[Remaining],(MedH1)AS[Medical History1],(MedH2)AS[Medical History2],(MedH3)AS[Medical History3],
+                                    (SurH1)AS[Surgical History1],(SurH2)AS[Surgical History2],(SurH3)AS[Surgical History3],(GynH1)AS[Gynecological History1],
+                                    (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
+                                    FROM Gyn WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
+            cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+            'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+            Dim da As New OleDbDataAdapter(cmd)
+            Dim ds As New DataSet
+            da.Fill(ds, "Gyn")
+            DataGridView1.DataSource = ds.Tables("Gyn").DefaultView
 
-                '    reader.Close()
-                '    If connection.State = ConnectionState.Open Then connection.Close()
+            con.Close()
+            Label47.Text = (DataGridView1.Rows.Count).ToString()
 
-                TabControl1.SelectedTab = Me.TabPage2
-                Label48.Text = "Previous Visits"
-                Dim con As New OleDbConnection(cs)
-                con.Open()
-                cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(MnsDate)AS[Visit Date],(NVD)AS[NVD],(CS)AS[CS],
-                                        (G)AS[G],(P)AS[P],(A)AS[A],(HPOC)AS[Previous Obstetric Complications],(LD)AS[LD],
-                                        (LC)AS[LC],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],
-                                        (ElapW)AS[Gestational age],(GAW)AS[Remaining],(MedH1)AS[Medical History1],(MedH2)AS[Medical History2],(MedH3)AS[Medical History3],
-                                        (SurH1)AS[Surgical History1],(SurH2)AS[Surgical History2],(SurH3)AS[Surgical History3],(GynH1)AS[Gynecological History1],
-                                        (GynH2)AS[Gynecological History2],(GynH3)AS[Gynecological History3],(DrugH1)AS[Drug History1],(DrugH2)AS[Drug History2],(DrugH3)AS[Drug History3],(Gyn)AS[Gyna]
-                                        FROM Gyn WHERE Patient_no = @Patient_no ORDER BY Vis_no DESC", con)
-                cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
-                'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
-                Dim da As New OleDbDataAdapter(cmd)
-                Dim ds As New DataSet
-                da.Fill(ds, "Gyn")
-                DataGridView1.DataSource = ds.Tables("Gyn").DefaultView
+        End If
+        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        'Dim date2 As Date = DTPickerLMP.Value
+        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        'If DTPickerEDD.Value = DTPickerLMP.Value Then
+        '    Exit Sub
+        'End If
+        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        'txtGA.Text = CStr(40 - weeks)
+        'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
 
-                con.Close()
-                Label47.Text = (DataGridView1.Rows.Count).ToString()
-
-            End If
-            'GynDisabled()
-            'Gyn2Disabled()
-        Catch ex As Exception
-            MsgBox(ErrorToString)
-        End Try
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
@@ -3411,7 +3644,16 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        cbxSearch.Text = ""
+        Button1.BackColor = Color.LightSeaGreen
         TabControl1.SelectedTab = Me.TabPage2
+        Label81.Text = "Patient's Data"
+        If Button1.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
+        End If
         'Me.ListBox3.Items.Clear()
         'btnL.Enabled = True
         'btnF.Enabled = True
@@ -3572,6 +3814,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        'Button2.ForeColor = Color.BlueViolet
         'UpdateGyn()
         'txtGA.Text = dgv.Cells().Value.ToString
 
@@ -3597,39 +3841,42 @@ Public Class Form1
         'End While
         'reader.Close()
         'If connection.State = ConnectionState.Open Then connection.Close()
+        Button2.BackColor = Color.LightSeaGreen
+        If Button2.BackColor = Color.LightSeaGreen Then
+            Button8.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
+        End If
 
-
-        'UpdateGAW()
         TabControl1.SelectedTab = Me.TabPage4
-        Label7.Text = "Expected Date Of Delivery"
-        Dim con As New OleDbConnection(cs)
-        con.Open()
-        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
-                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND (GAW <= 4) AND (GAW > -1) AND (EDDDate <> LMPDate) AND (Gyn = 0)
-                               ORDER BY EDDDate DESC", con)
-        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
-        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
-        Dim da As New OleDbDataAdapter(cmd)
-        Dim ds As New DataSet
-        da.Fill(ds, "Gyn")
-        DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
+        Label81.Text = "Expected Date Of Delivery"
+        'Label7.Text = "Expected Date Of Delivery"
+        'Dim con As New OleDbConnection(cs)
+        'con.Open()
+        'cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
+        '                      (GAW)AS[Remaining] FROM Gyn WHERE (DateDiff('ww',Date(),[EDDDate]) <= 4) AND (DateDiff('ww',Date(),[EDDDate]) >= 0) AND
+        '                        (EDDDate <> LMPDate) AND (Gyn = 0)
+        '                       ORDER BY EDDDate DESC", con)
+        ''cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+        ''cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+        'Dim da As New OleDbDataAdapter(cmd)
+        'Dim ds As New DataSet
+        'da.Fill(ds, "Gyn")
+        'DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
 
-        con.Close()
-        Label53.Text = (DataGridView3.Rows.Count).ToString()
+        'con.Close()
+        'Label53.Text = (DataGridView3.Rows.Count).ToString()
 
-        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
-        'Dim date2 As Date = DTPickerLMP.Value
-        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
-        'If DTPickerEDD.Value = DTPickerLMP.Value Then
-        '    Exit Sub
-        'End If
-        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        'txtGA.Text = CStr(40 - weeks)
-        'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
-
-        'Dim dgv As DataGridView
-        'dgv = DataGridView3
-        'dgv.CurrentRow.Cells(5).Value = (40 - weeks)
+        Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        Dim date2 As Date = DTPickerLMP.Value
+        Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        If DTPickerEDD.Value = DTPickerLMP.Value Then
+            Exit Sub
+        End If
+        txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        txtGA.Text = CStr(40 - weeks)
+        DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
 
     End Sub
 
@@ -3706,8 +3953,8 @@ Public Class Form1
         'If (DataGridView1.Rows.Count) - 1 = 0 Then
         '    Exit Sub
         'End If
-        TextBox5.Text = txtPatName.Text
-        TextBox6.Text = txtNo.Text
+        'TextBox5.Text = txtPatName.Text
+        'TextBox6.Text = txtNo.Text
         ClearForDGV2()
         Dim dgv As DataGridViewRow = DataGridView1.SelectedRows(0)
         txtNo.Text = dgv.Cells(0).Value.ToString
@@ -3771,15 +4018,26 @@ Public Class Form1
         'cbxDrugH2.Text = dgv.Rows(25).Cells("DrugH2").Value.ToString
         'cbxDrugH3.Text = dgv.Rows(26).Cells("DrugH3").Value.ToString
         'chbxGyn.Checked = CBool(dgv.Rows(27).Cells("Gyn").Value.ToString)
+        Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+        End If
 
         TabControl1.SelectedTab = Me.TabPage1
         TextBox5.Text = txtPatName.Text
         TextBox6.Text = txtNo.Text
+        'TextBox8.Text = txtPatName.Text
+        'TextBox7.Text = txtNo.Text
         GynEnabled()
         Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
         Dim date2 As Date = DTPickerLMP.Value
         Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
         If DTPickerEDD.Value = DTPickerLMP.Value Then
+            txtElapsed.Text = "0"
+            txtGA.Text = "0"
             Exit Sub
         End If
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
@@ -3808,24 +4066,24 @@ Public Class Form1
         DTPickerLMP.Value = Now
         DTPickerEDD.Value = Now
 
-        cbxLD.ResetText()
-        cbxLC.ResetText()
-        cbxHPOC.ResetText()
-        cbxMedH1.ResetText()
-        cbxMedH2.ResetText()
-        cbxMedH3.ResetText()
-        cbxSurH1.ResetText()
-        cbxSurH2.ResetText()
-        cbxSurH3.ResetText()
-        cbxGynH1.ResetText()
-        cbxGynH2.ResetText()
-        cbxGynH3.ResetText()
-        cbxDrugH1.ResetText()
-        cbxDrugH2.ResetText()
-        cbxDrugH3.ResetText()
-        chbxGyn.ResetText()
+        cbxLD.Text = ""
+        cbxLC.Text = ""
+        cbxHPOC.Text = ""
+        cbxMedH1.Text = ""
+        cbxMedH2.Text = ""
+        cbxMedH3.Text = ""
+        cbxSurH1.Text = ""
+        cbxSurH2.Text = ""
+        cbxSurH3.Text = ""
+        cbxGynH1.Text = ""
+        cbxGynH2.Text = ""
+        cbxGynH3.Text = ""
+        cbxDrugH1.Text = ""
+        cbxDrugH2.Text = ""
+        cbxDrugH3.Text = ""
+        'chbxGyn.Checked = False
         txtVis1.Text = GetAutonumber("Gyn", "Vis_no")
-
+        GynDisabled()
     End Sub
 
     Sub ClearForDGV2()
@@ -3851,13 +4109,14 @@ Public Class Form1
         TextBox8.Text = ""
         DTPickerAtt.Value = Now
         txtVis.Text = GetAutonumber("Gyn2", "Vis_no")
+        Gyn2Disabled()
         'Trace.WriteLine("ClearGyn2 FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
     End Sub
 
     Sub ShowGyn2AttDT()
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -3891,11 +4150,50 @@ Public Class Form1
     End Sub
 
     Private Sub txtNo_TextChanged(sender As Object, e As EventArgs) Handles txtNo.TextChanged
-
+        If txtNo.Text = GetAutonumber("Pat", "Patient_no") Then
+            txtNo.BackColor = Color.Teal
+            txtNo.ForeColor = Color.White
+        ElseIf txtNo.Text <> GetAutonumber("Pat", "Patient_no") Then
+            txtNo.BackColor = Color.MediumTurquoise
+            txtNo.ForeColor = Color.White
+        End If
+        FillDGV1()
+        FillDGV2()
+        FillDGV8()
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         TabControl1.SelectedTab = Me.TabPage1
+        Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
+        End If
+        'If txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Or DataGridView1.Rows.Count > 0 Then
+        '    Exit Sub
+        'End If
+        'If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") And MsgBox("You will create a new history Visit" & vbCrLf &
+        '    "to this Patient ID : (" & txtNo.Text & ") Are you sure ?", MsgBoxStyle.YesNo, "Warning") = vbNo Then
+        '    Exit Sub
+        'End If
+
+        'If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") Then
+        '    GynDisabled()
+        '    Exit Sub
+        'End If
+        'ClearGyn()
+        'ClearGyn2()
+        'GynDisabled()
+        'TextBox6.Text = txtNo.Text
+        'TextBox5.Text = txtPatName.Text
+        'TextBox7.Text = txtNo.Text
+        'TextBox8.Text = txtPatName.Text
+
+
+        'If txtVis1.Text Then
     End Sub
 
     Private Sub DataGridView2_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView2.RowHeaderMouseClick
@@ -3905,8 +4203,9 @@ Public Class Form1
         '    MsgBox("Empty")
         '    Exit Sub
         'End If
-        TextBox8.Text = txtPatName.Text
-        TextBox7.Text = txtNo.Text
+
+        'TextBox8.Text = txtPatName.Text
+        'TextBox7.Text = txtNo.Text
         ClearForDGV1()
         'txtVis.Text = dgv.Cells(0).Value.ToString
         txtNo.Text = dgv.Cells(0).Value.ToString
@@ -3927,11 +4226,18 @@ Public Class Form1
         txtAmount.Text = dgv.Cells(15).Value.ToString
         'cbxGL.Text = dgv.Cells(15).Value.ToString
         'DTPickerAtt.Value = CDate(dgv.Cells(15).Value.ToString)
+        Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
 
+        End If
         TabControl1.SelectedTab = Me.TabPage1
-        'TextBox5.Text = txtPatName.Text
-        'TextBox6.Text = txtNo.Text
-        'GynEnabled()
+        TextBox5.Text = txtPatName.Text
+        TextBox6.Text = txtNo.Text
         TextBox8.Text = txtPatName.Text
         TextBox7.Text = txtNo.Text
 
@@ -3939,71 +4245,18 @@ Public Class Form1
         'End If
     End Sub
 
-    Private Sub txtPatName_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPatName.Validating
-        Dim ds As DataSet = New DataSet
-        Dim da As OleDbDataAdapter = New OleDbDataAdapter("SELECT Name FROM Pat WHERE Name='" & txtPatName.Text & "'", conn)
-        da.Fill(ds, "Pat")
-        Dim dv As DataView = New DataView(ds.Tables("Pat"))
-        Dim cur As CurrencyManager
-        cur = CType(Me.BindingContext(dv), CurrencyManager)
-
-        If cur.Count <> 0 And txtNo.Text = GetAutonumber("Pat", "Patient_no") Then
-            MsgBox("تأكد من الاسم. هذا الاسم موجود من قبل", MsgBoxStyle.OkOnly, "يجب تغيير الاسم")
-            txtPatName.ResetText()
-            Exit Sub
-        End If
-        If txtPatName.Text <> "" Then
-            SaveButton()
-            'SaveGyn()
-            UpdatePatient()
-        End If
-    End Sub
-
-    Private Sub txtPatName_Click(sender As Object, e As EventArgs) Handles txtPatName.Click
-        'If CheckBox1.Checked = False Then
-        '    InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
-        'ElseIf CheckBox1.Checked = True Then
-        '    InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
-        'End If
-        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
-
-        '' Read the XML file from disk only once
-        'Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames.xml")
-        '' Parse the XML document only once
-        'Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
-        '' Now fill the ComboBox's 
-        'txtPatName.Items.AddRange(cbElements)
-    End Sub
-
-    Private Sub txtPatName_Validated(sender As Object, e As EventArgs) Handles txtPatName.Validated
-        If txtPatName.Text <> "" Then
-            '' Read the XML file from disk only once
-            Dim xDoc = XElement.Load(Application.StartupPath + "\PatNames2.xml")
-            '' Parse the XML document only once
-            Dim cbElements = xDoc.<Names>.Select(Function(n) n.Value).ToArray()
-            '' Now fill the ComboBox's 
-            cbxAddress.Items.AddRange(cbElements)
-            SaveInXmlPatNames()
-        End If
-
-    End Sub
-
-    Private Sub txtPatName_TextChanged(sender As Object, e As EventArgs) Handles txtPatName.TextChanged
-        'TextBox5.Text = txtPatName.Text
-        'TextBox8.Text = txtPatName.Text
-    End Sub
     '######################### Visit Screen #############################
 
     Sub ClearData()
         'Trace.WriteLine("ClearData STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
-        cbxSearch.Text = ""
+        'cbxVisSearch.Text = ""
         txtVisName.Text = ""
         txtComplain.Text = ""
         txtSign.Text = ""
         cbxDia.Text = ""
         cbxInter.Text = ""
-        txtAmount.Text = ""
+        txtVisAmount.Text = ""
 
         DTPNow()
 
@@ -4014,38 +4267,89 @@ Public Class Form1
 
     Sub ClearDrug()
         'Trace.WriteLine("ClearDrug STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        For Each i As Control In Panel6.Controls
-            If TypeOf i Is ComboBox Then
-                i.Text = ""
-            End If
-        Next
+        'For Each i As Control In Panel6.Controls
+        '    If TypeOf i Is ComboBox Then
+        '        i.Text = ""
+        '    End If
+        'Next
+        cbxDrug1.Text = ""
+        cbxDrug2.Text = ""
+        cbxDrug3.Text = ""
+        cbxDrug4.Text = ""
+        cbxDrug5.Text = ""
+        cbxDrug6.Text = ""
+        cbxDrug7.Text = ""
+        cbxPlan1.Text = ""
+        cbxPlan2.Text = ""
+        cbxPlan3.Text = ""
+        cbxPlan4.Text = ""
+        cbxPlan5.Text = ""
+        cbxPlan6.Text = ""
+        cbxPlan7.Text = ""
+
+        'cbxDrug1.ResetText()
+
         'Trace.WriteLine("ClearDrug FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Sub ClearInv()
         'Trace.WriteLine("ClearInv STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        For Each i As Control In Panel4.Controls
-            If TypeOf i Is TextBox Then
-                i.Text = ""
-            End If
-        Next
-        For Each combo As Control In Panel4.Controls
-            If TypeOf combo Is ComboBox Then
-                combo.Text = ""
-            End If
-        Next
+        'For Each i As Control In Panel4.Controls
+        '    If TypeOf i Is TextBox Then
+        '        i.Text = ""
+        '    End If
+        'Next
+        'For Each combo As Control In Panel4.Controls
+        '    If TypeOf combo Is ComboBox Then
+        '        combo.Text = ""
+        '    End If
+        'Next
+        cbxInvest.Text = ""
+        cbxInvest1.Text = ""
+        cbxInvest2.Text = ""
+        cbxInvest3.Text = ""
+        cbxInvest4.Text = ""
+        cbxInvest5.Text = ""
+        cbxResult.Text = ""
+        cbxResult1.Text = ""
+        cbxResult2.Text = ""
+        cbxResult3.Text = ""
+        cbxResult4.Text = ""
+        cbxResult5.Text = ""
+
+        txtAtt1.Text = ""
+        txtAtt2.Text = ""
+        txtAtt3.Text = ""
+        txtAtt4.Text = ""
+        txtAtt5.Text = ""
+        txtCo1.Text = ""
+        txtCo2.Text = ""
+        txtCo3.Text = ""
+        txtCo4.Text = ""
+        txtCo5.Text = ""
+
         'for visit screen
-        DTPNow()
+        'DTPNow()
         'Trace.WriteLine("ClearInv FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Sub DTPNow()
         'Trace.WriteLine("DTPNow STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        For Each L As Control In Panel4.Controls
-            If TypeOf L Is DateTimePicker Then
-                L.Text = CType(Now, String)
-            End If
-        Next
+        'For Each L As Control In Panel4.Controls
+        '    If TypeOf L Is DateTimePicker Then
+        '        L.Text = CType(Now, String)
+        '    End If
+        'Next
+        lblcurTime.Text = Now.ToShortDateString
+        DTPAtt.Value = Now
+        DTPickerInv.Value = Now
+        DTPickerInv1.Value = Now
+        DTPickerInv2.Value = Now
+        DTPickerInv3.Value = Now
+        DTPickerInv4.Value = Now
+        DTPickerInv5.Value = Now
+
+
         'Trace.WriteLine("DTPNow FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
@@ -4379,7 +4683,7 @@ Public Class Form1
 
     Sub ShowAttachPatTable()
         'Trace.WriteLine("ShowAttachPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4426,7 +4730,7 @@ Public Class Form1
 
     Sub ShowAttachVisTable()
         'Trace.WriteLine("ShowAttachPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4474,7 +4778,7 @@ Public Class Form1
 
     Sub ShowAttachTable()
         'Trace.WriteLine("ShowAttachTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4522,7 +4826,7 @@ Public Class Form1
 
     Sub ShowInvPatTable()
         'Trace.WriteLine("ShowInvPatTable STARED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4568,7 +4872,7 @@ Public Class Form1
 
     Sub ShowInvVisTable()
         'Trace.WriteLine("ShowInvPatTable STARED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4614,7 +4918,7 @@ Public Class Form1
 
     Sub ShowInvTable()
         'Trace.WriteLine("ShowInvTable STARED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4659,7 +4963,7 @@ Public Class Form1
 
     Sub ShowVisDPPatTable()
         'Trace.WriteLine("ShowVisDPPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4707,7 +5011,7 @@ Public Class Form1
 
     Sub ShowVisDPVisTable()
         'Trace.WriteLine("ShowVisDPPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4756,7 +5060,7 @@ Public Class Form1
     Sub ShowVisDPTable()
         'Trace.WriteLine("ShowVisDPTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
 
             Using cmd As New OleDbCommand
@@ -4804,7 +5108,7 @@ Public Class Form1
 
     Sub ShowVisitsPatTable()
         'Trace.WriteLine("ShowVisitsPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
@@ -4832,7 +5136,7 @@ Public Class Form1
 
     Sub ShowVisitsVisTable()
         'Trace.WriteLine("ShowVisitsPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
@@ -4861,13 +5165,42 @@ Public Class Form1
     Sub ShowVisitsTable()
         'Trace.WriteLine("ShowVisitsTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
                 cmd.CommandText = "SELECT * FROM Visits WHERE Visit_no=@Visit_no " &
                 "ORDER BY Visit_no"
                 cmd.Parameters.Add("@Visit_no", OleDbType.Integer).Value = CInt(Val(txt1.Text))
+                Using dt1 As New DataTable
+                    dt1.Load(cmd.ExecuteReader)
+                    If dt1.Rows.Count > 0 Then
+                        txtVisNo.Text = dt1.Rows(0).Item("Visit_no").ToString
+                        txtVisPatNo.Text = dt1.Rows(0).Item("Patient_no").ToString
+                        txtVisName.Text = dt1.Rows(0).Item("Name").ToString
+                        txtComplain.Text = dt1.Rows(0).Item("Complain").ToString
+                        txtSign.Text = dt1.Rows(0).Item("Sign").ToString
+                        cbxDia.Text = dt1.Rows(0).Item("Diagnosis").ToString
+                        cbxInter.Text = dt1.Rows(0).Item("Intervention").ToString
+                        txtVisAmount.Text = dt1.Rows(0).Item("Amount").ToString
+                        lblcurTime.Text = dt1.Rows(0).Item("VisDate").ToString
+                    End If
+                End Using
+            End Using
+        End Using
+        'Trace.WriteLine("ShowVisitsTable FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+    End Sub
+
+    Sub ShowVisits()
+        'Trace.WriteLine("ShowVisitsTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+            con.Open()
+            Using cmd As New OleDbCommand
+                cmd.Connection = con
+                cmd.CommandText = "SELECT * FROM Visits WHERE Visit_no = @Visit_no " &
+                "ORDER BY Visit_no"
+                cmd.Parameters.Add("@Visit_no", OleDbType.Integer).Value = CInt(Val(txtVisNo.Text))
                 Using dt1 As New DataTable
                     dt1.Load(cmd.ExecuteReader)
                     If dt1.Rows.Count > 0 Then
@@ -4936,6 +5269,7 @@ Public Class Form1
         ClearInv()
         btnNewVisit.Enabled = False
         rdoVisit.Checked = True
+        cbxVisSearch.Text = ""
         InvAndAttDisabled()
         DrugDisabled()
         lblcurTime.Text = Now.ToShortDateString
@@ -4972,34 +5306,35 @@ Public Class Form1
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         'Trace.WriteLine("btnPrint_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
-        If chbxR.Checked = True Then
+        'PrescriptionStr = "                " & Label1.Text & "                                                  " & Label7.Text & vbNewLine &
+        '                      "          " & Label2.Text & "                                        " & Label8.Text & vbNewLine &
+        '                      "          " & Label3.Text & "                                                  " & Label9.Text & vbCrLf &
+        '                      "          " & Label4.Text & "                                             " & Label10.Text & vbNewLine &
+        '                      "          " & Label5.Text & "                                                 " & Label11.Text & vbCrLf &
+        '                      "          " & Label6.Text & "                                             " & Label12.Text & vbCrLf & vbCrLf &
+        '                      "          " & "Name  : " & txtVisName.Text & "                    " & "ID : " & txtVisPatNo.Text & vbCrLf &
+        '                      "          " & "Diagnosis : " & cbxDia.Text & "     " & lblcurTime.Text & "        " & "No.: " & txtVisNo.Text & vbCrLf &
+        '                      "          " & "R/: " & vbNewLine &
+        '                      "          " & cbxDrug1.Text & vbNewLine & "                                                   " & cbxPlan1.Text & vbCrLf & "        " & cbxDrug2.Text & vbCrLf & "                                                  " & cbxPlan2.Text & vbCrLf &
+        '                      "          " & cbxDrug3.Text & vbCrLf & "                                                  " & cbxPlan3.Text & vbCrLf & "        " & cbxDrug4.Text & vbCrLf & "                                                  " & cbxPlan4.Text & vbCrLf &
+        '                      "          " & cbxDrug5.Text & vbCrLf & "                                                  " & cbxPlan5.Text & vbCrLf & "        " & cbxDrug6.Text & vbCrLf & "                                                  " & cbxPlan6.Text & vbCrLf &
+        '                      "          " & cbxDrug7.Text & vbCrLf & "                                                  " & cbxPlan7.Text & vbCrLf & "        " & cbxDrug8.Text & vbCrLf & "                                                  " & cbxPlan8.Text & vbCrLf &
+        '                      "          " & cbxDrug9.Text & vbCrLf & "                                                  " & cbxPlan9.Text & vbCrLf & vbCrLf & vbCrLf & vbCrLf &
+        '                      "               " & Label13.Text
 
-            PrescriptionStr = "                " & Label1.Text & "                                                  " & Label7.Text & vbNewLine &
-                              "          " & Label2.Text & "                                        " & Label8.Text & vbNewLine &
-                              "          " & Label3.Text & "                                                  " & Label9.Text & vbCrLf &
-                              "          " & Label4.Text & "                                             " & Label10.Text & vbNewLine &
-                              "          " & Label5.Text & "                                                 " & Label11.Text & vbCrLf &
-                              "          " & Label6.Text & "                                             " & Label12.Text & vbCrLf & vbCrLf &
-                              "          " & "Name  : " & txtVisName.Text & "                    " & "ID : " & txtVisPatNo.Text & vbCrLf &
-                              "          " & "Diagnosis : " & cbxDia.Text & "     " & lblcurTime.Text & "        " & "No.: " & txtVisNo.Text & vbCrLf &
-                              "          " & "R/: " & vbNewLine &
-                              "          " & cbxDrug1.Text & vbNewLine & "                                                   " & cbxPlan1.Text & vbCrLf & "        " & cbxDrug2.Text & vbCrLf & "                                                  " & cbxPlan2.Text & vbCrLf &
-                              "          " & cbxDrug3.Text & vbCrLf & "                                                  " & cbxPlan3.Text & vbCrLf & "        " & cbxDrug4.Text & vbCrLf & "                                                  " & cbxPlan4.Text & vbCrLf &
-                              "          " & cbxDrug5.Text & vbCrLf & "                                                  " & cbxPlan5.Text & vbCrLf & "        " & cbxDrug6.Text & vbCrLf & "                                                  " & cbxPlan6.Text & vbCrLf &
-                              "          " & cbxDrug7.Text & vbCrLf & "                                                  " & cbxPlan7.Text & vbCrLf & "        " & cbxDrug8.Text & vbCrLf & "                                                  " & cbxPlan8.Text & vbCrLf &
-                              "          " & cbxDrug9.Text & vbCrLf & "                                                  " & cbxPlan9.Text & vbCrLf & vbCrLf & vbCrLf & vbCrLf &
-                              "               " & Label13.Text
-            'vbCrLf & "        " & cbxDrug10.Text & vbCrLf & "                                                  " & cbxPlan10.Text & vbCrLf
-        ElseIf chbxR.Checked = False Then
-            PrescriptionStr = vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine &
-                              "          " & "     " & txtVisName.Text & "                    " & "ID : " & txtVisPatNo.Text & vbCrLf &
-                              "          " & "     " & lblcurTime.Text & "        " & "No.: " & txtVisNo.Text & vbCrLf & vbNewLine & vbNewLine &     '"    " & "R/: " & vbNewLine &
-                              "               " & cbxDrug1.Text & vbNewLine & "                                              " & cbxPlan1.Text & vbCrLf & vbCrLf & "               " & cbxDrug2.Text & vbCrLf & "                                             " & cbxPlan2.Text & vbCrLf & vbCrLf &
-                              "               " & cbxDrug3.Text & vbCrLf & "                                             " & cbxPlan3.Text & vbCrLf & vbCrLf & "               " & cbxDrug4.Text & vbCrLf & "                                             " & cbxPlan4.Text & vbCrLf & vbCrLf &
-                              "               " & cbxDrug5.Text & vbCrLf & "                                             " & cbxPlan5.Text & vbCrLf & vbCrLf & "               " & cbxDrug6.Text & vbCrLf & "                                             " & cbxPlan6.Text & vbCrLf & vbCrLf &
-                              "               " & cbxDrug7.Text & vbCrLf & "                                             " & cbxPlan7.Text & vbCrLf & vbCrLf & "               " & cbxDrug8.Text & vbCrLf & "                                             " & cbxPlan8.Text & vbCrLf & vbCrLf &
-                              "               " & cbxDrug9.Text & vbCrLf & "                                             " & cbxPlan9.Text & vbCrLf & vbCrLf & vbCrLf & vbCrLf
-        End If
+        PrescriptionStr = vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine &
+                            "          " & "Name  : " & txtVisName.Text & vbCrLf &
+                            "          " & lblcurTime.Text & "          " & "Visit No.: " & txtVisNo.Text & "          " & "Patient ID : " & txtVisPatNo.Text & vbCrLf &        '"    " & "R/: " & vbNewLine &
+                            "          " & "Diagnosis : " & cbxDia.Text & vbCrLf & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug1.Text & vbNewLine & "                                                   " & cbxPlan1.Text & vbCrLf & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug2.Text & vbCrLf & "                                                  " & cbxPlan2.Text & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug3.Text & vbCrLf & "                                                  " & cbxPlan3.Text & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug4.Text & vbCrLf & "                                                  " & cbxPlan4.Text & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug5.Text & vbCrLf & "                                                  " & cbxPlan5.Text & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug6.Text & vbCrLf & "                                                  " & cbxPlan6.Text & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug7.Text & vbCrLf & "                                                  " & cbxPlan7.Text & vbCrLf & vbCrLf &
+                            "                    " & cbxDrug8.Text & vbCrLf & "                                                  " & cbxPlan8.Text & vbCrLf &
+                            "                    " & cbxDrug9.Text & vbCrLf & "                                                  " & cbxPlan9.Text & vbCrLf & vbCrLf & vbCrLf & vbCrLf
 
         If cbxDrug1.Text <> "" And txtVisName.Text <> "" Then
             PrintDocument1.Print()
@@ -5009,36 +5344,18 @@ Public Class Form1
 
     Private Sub btnPrintInv_Click(sender As Object, e As EventArgs) Handles btnPrintInv.Click
         ''##This condition for investigation's prescription with report if checkbox7 is "checked"
-        If chbxRI.Checked = True Then
 
-            PrescriptionStr = "                " & Label1.Text & "                                                  " & Label7.Text & vbNewLine &
-                              "          " & Label2.Text & "                                        " & Label8.Text & vbNewLine &
-                              "          " & Label3.Text & "                                                  " & Label9.Text & vbCrLf &
-                              "          " & Label4.Text & "                                             " & Label10.Text & vbNewLine &
-                              "          " & Label5.Text & "                                                 " & Label11.Text & vbCrLf &
-                              "          " & Label6.Text & "                                             " & Label12.Text & vbCrLf & vbCrLf &
-                              "          " & "Name : " & txtVisName.Text & vbCrLf &
-                              "          " & "Patient ID : " & txtVisPatNo.Text & "          " & "Visit No. : " & txtVisNo.Text &
-                              "          " & lblcurTime.Text & vbCrLf & vbCrLf & "                              " & " PLEASE FOR " & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest1.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest2.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest3.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest4.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest5.Text & vbCrLf & vbCrLf & vbCrLf & vbCrLf & vbCrLf & vbCrLf & vbCrLf & vbCrLf &
-                              "               " & Label13.Text
-        ElseIf chbxRI.Checked = False Then
-            PrescriptionStr = vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine &
-                              "               " & "     " & txtVisName.Text & vbCrLf &
-                              "               " & "Visit No. : " & txtVisNo.Text & "     " & "Patient ID : " & txtVisPatNo.Text & "          " & lblcurTime.Text & vbCrLf & vbCrLf &
-                              "                                        " & " PLEASE FOR " & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest1.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest2.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest3.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest4.Text & vbCrLf & vbCrLf &
-                              "                    " & cbxInvest5.Text & vbCrLf & vbCrLf
-        End If
+        PrescriptionStr = vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine & vbNewLine &
+                              "               " & "Name : " & txtVisName.Text & vbCrLf & vbCrLf &
+                              "               " & "Visit No. : " & txtVisNo.Text & "     " & "Patient ID : " & txtVisPatNo.Text & "          " & lblcurTime.Text & vbCrLf & vbCrLf & vbCrLf & vbCrLf &
+                              "                                        " & " PLEASE FOR " & vbCrLf & vbCrLf & vbCrLf & vbCrLf &
+                              "                      " & cbxInvest.Text & vbCrLf & vbCrLf & vbCrLf &
+                              "                      " & cbxInvest1.Text & vbCrLf & vbCrLf & vbCrLf &
+                              "                      " & cbxInvest2.Text & vbCrLf & vbCrLf & vbCrLf &
+                              "                      " & cbxInvest3.Text & vbCrLf & vbCrLf & vbCrLf &
+                              "                      " & cbxInvest4.Text & vbCrLf & vbCrLf & vbCrLf &
+                              "                      " & cbxInvest5.Text & vbCrLf & vbCrLf & vbCrLf
+
         If txtVisName.Text <> "" And cbxInvest.Text <> "" Then
             PrintDocument1.Print()
         End If
@@ -5085,7 +5402,7 @@ Public Class Form1
 
     Private Sub SearchVisitNo()
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
@@ -5139,7 +5456,7 @@ Public Class Form1
 
     Private Sub SearchVisID()
 
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
@@ -5195,7 +5512,7 @@ Public Class Form1
 
     Private Sub SearchVisDia()
         MsgBox("why")
-        Using con As New OleDbConnection("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
@@ -5739,7 +6056,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxDrug2_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug2.Validating
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
         InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
 
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
@@ -5752,11 +6069,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan2.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug2_Click(sender As Object, e As EventArgs) Handles cbxDrug2.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5765,11 +6083,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug2.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug3_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug3.Validating
-        Trace.WriteLine("cbxDrug3_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug3_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5779,11 +6098,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan3.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug3_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug3_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug3_Click(sender As Object, e As EventArgs) Handles cbxDrug3.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5792,12 +6112,13 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug3.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug4_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug4.Validating
-        Trace.WriteLine("cbxDrug4_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug4_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
 
             UpdateVisitDP()
@@ -5809,11 +6130,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan4.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug4_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug4_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug4_Click(sender As Object, e As EventArgs) Handles cbxDrug4.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5822,11 +6144,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug4.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug5_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug5.Validating
-        Trace.WriteLine("cbxDrug5_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug5_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5837,11 +6160,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan5.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug5_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug5_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug5_Click(sender As Object, e As EventArgs) Handles cbxDrug5.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5850,11 +6174,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug5.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug6_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug6.Validating
-        Trace.WriteLine("cbxDrug6_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug6_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5865,11 +6190,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan6.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug6_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug6_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug6_Click(sender As Object, e As EventArgs) Handles cbxDrug6.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5878,11 +6204,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug6.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug7_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug7.Validating
-        Trace.WriteLine("cbxDrug7_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug7_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5893,11 +6220,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan7.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug7_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug7_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug7_Click(sender As Object, e As EventArgs) Handles cbxDrug7.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5906,11 +6234,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug7.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug8_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug8.Validating
-        Trace.WriteLine("cbxDrug8_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug8_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5921,11 +6250,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan8.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug8_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug8_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug8_Click(sender As Object, e As EventArgs) Handles cbxDrug8.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5934,11 +6264,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug8.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug9_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug9.Validating
-        Trace.WriteLine("cbxDrug9_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug9_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5949,11 +6280,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan9.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug9_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug9_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug9_Click(sender As Object, e As EventArgs) Handles cbxDrug9.Click
-        Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Drugs1.xml")
@@ -5962,11 +6294,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug9.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxDrug10_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDrug10.Validating
-        Trace.WriteLine("cbxDrug10_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug10_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXml()
@@ -5977,12 +6310,13 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxPlan10.Items.AddRange(PlElements)
         End If
-        Trace.WriteLine("cbxDrug10_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxDrug10_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan1.Validating
-        Trace.WriteLine("cbxPlan1_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan1_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -5993,11 +6327,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug2.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan1_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan1_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan2_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan2.Validating
-        Trace.WriteLine("cbxPlan2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan2_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6008,11 +6343,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug3.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan2_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan3_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan3.Validating
-        Trace.WriteLine("cbxPlan3_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan3_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6023,11 +6359,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug4.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan3_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan3_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan4_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan4.Validating
-        Trace.WriteLine("cbxPlan4_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan4_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6038,11 +6375,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug5.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan4_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan4_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan5_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan5.Validating
-        Trace.WriteLine("cbxPlan5_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan5_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6053,11 +6391,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug6.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan5_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan5_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan6_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan6.Validating
-        Trace.WriteLine("cbxPlan6_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        ' Trace.WriteLine("cbxPlan6_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6068,11 +6407,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug7.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan6_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan6_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan7_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan7.Validating
-        Trace.WriteLine("cbxPlan7_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan7_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6083,11 +6423,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug8.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan7_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan7_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan8_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan8.Validating
-        Trace.WriteLine("cbxPlan8_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan8_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6098,11 +6439,12 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug9.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan8_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan8_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan9_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan9.Validating
-        Trace.WriteLine("cbxPlan9_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan9_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
@@ -6113,19 +6455,21 @@ Public Class Form1
             '' Now fill the ComboBox's 
             cbxDrug10.Items.AddRange(cbElements)
         End If
-        Trace.WriteLine("cbxPlan9_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan9_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan10_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxPlan10.Validating
-        Trace.WriteLine("cbxPlan10_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan10_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisitDP()
             SaveInXmlPlan()
         End If
-        Trace.WriteLine("cbxPlan10_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        'Trace.WriteLine("cbxPlan10_Validating FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
     Private Sub cbxPlan1_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan1.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6137,6 +6481,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan2_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan2.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6148,6 +6493,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan3_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan3.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6159,6 +6505,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan4_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan4.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6170,6 +6517,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan5_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan5.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6181,6 +6529,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan6_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan6.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6192,6 +6541,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan7_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan7.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6203,6 +6553,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan8_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan8.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6214,6 +6565,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan9_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan9.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6225,6 +6577,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxPlan10_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlan10.MouseClick
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
         If txtVisName.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\Plans.xml")
@@ -6244,6 +6597,7 @@ Public Class Form1
     Private Sub cbxInvest_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxInvest.Validating
         'Trace.WriteLine("cbxInvest_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateInves()
             SaveInXmlInv()
@@ -6430,6 +6784,7 @@ Public Class Form1
 
     Private Sub DTPickerInv1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DTPickerInv1.Validating
         'Trace.WriteLine("DTPickerInv1_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateInves()
         End If
@@ -6516,6 +6871,7 @@ Public Class Form1
 
     Private Sub cbxResult1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxResult1.Validating
         'Trace.WriteLine("cbxResult1_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
 
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateInves()
@@ -6533,6 +6889,7 @@ Public Class Form1
 
     Private Sub cbxResult1_Click(sender As Object, e As EventArgs) Handles cbxResult1.Click
         'Trace.WriteLine("cbxResult1_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
 
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
@@ -6565,6 +6922,7 @@ Public Class Form1
     Private Sub cbxResult2_Click(sender As Object, e As EventArgs) Handles cbxResult2.Click
         'Trace.WriteLine("cbxResult2_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\InvRes.xml")
@@ -6596,6 +6954,7 @@ Public Class Form1
     Private Sub cbxResult3_Click(sender As Object, e As EventArgs) Handles cbxResult3.Click
         'Trace.WriteLine("cbxResult3_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\InvRes.xml")
@@ -6627,6 +6986,7 @@ Public Class Form1
     Private Sub cbxResult4_Click(sender As Object, e As EventArgs) Handles cbxResult4.Click
         'Trace.WriteLine("cbxResult4_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\InvRes.xml")
@@ -6649,6 +7009,7 @@ Public Class Form1
     Private Sub cbxResult5_Click(sender As Object, e As EventArgs) Handles cbxResult5.Click
         'Trace.WriteLine("cbxResult5_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
 
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\InvRes.xml")
@@ -6878,10 +7239,9 @@ Public Class Form1
 
         InvAndAttEnabled()
         DrugEnabled()
-        'Panel4.Visible = True
         ShowInvVisTable()
         ShowAttachVisTable()
-
+        ShowVisDPVisTable()
     End Sub
 
     Private Sub ListBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox4.SelectedIndexChanged
@@ -6933,6 +7293,11 @@ Public Class Form1
         txtCo4.Enabled = True
         txtCo5.Enabled = True
         DTPickerAtt.Enabled = True
+        btnOpen1.Enabled = True
+        btnOpen2.Enabled = True
+        btnOpen3.Enabled = True
+        btnOpen4.Enabled = True
+        btnOpen5.Enabled = True
 
     End Sub
 
@@ -6963,6 +7328,11 @@ Public Class Form1
         txtCo4.Enabled = False
         txtCo5.Enabled = False
         DTPickerAtt.Enabled = False
+        btnOpen1.Enabled = False
+        btnOpen2.Enabled = False
+        btnOpen3.Enabled = False
+        btnOpen4.Enabled = False
+        btnOpen5.Enabled = False
 
     End Sub
 
@@ -7010,20 +7380,23 @@ Public Class Form1
         If rdoVisit.Checked Then
             SearchVisitNo()
         ElseIf rdoD.Checked Then
+            ClearData()
+            ClearInv()
+            ClearDrug()
             SearchDiagnosis()
             'MessageBox.Show("dia works well")
         ElseIf rdoVisName.Checked Then
             SearchVisName()
         ElseIf rdoID.Checked Then
             SearchVisID()
-
         End If
 
-        ShowVisDPVisTable()
+        'ShowVisDPVisTable()
         'ShowInvVisTable()
         'ShowAttachVisTable()
         'Panel4.Visible = False
         InvAndAttDisabled()
+        DrugDisabled()
         btnNewVisit.Enabled = True
     End Sub
 
@@ -7032,6 +7405,7 @@ Public Class Form1
     End Sub
 
     Private Sub cbxVisSearch_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxVisSearch.MouseClick
+        ListBox4.Items.Clear()
         If rdoVisName.Checked Then
             InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(1)
             '' Read the XML file from disk only once
@@ -7121,18 +7495,28 @@ Public Class Form1
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         ListBox4.Items.Clear()
-        TabControl1.SelectedTab = Me.TabPage3
+        Button8.BackColor = Color.LightSeaGreen
+        Label81.Text = "Investigation Visits"
+        If Button8.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
+        End If
         If txtPatName.Text <> "" Then
-            txtVisPatNo.Text = txtNo.Text
             txtVisName.Text = txtPatName.Text
+            txtVisPatNo.Text = txtNo.Text
             ShowVisitsPatTable()
+
         End If
         btnNewVisit.Enabled = True
         InvAndAttDisabled()
         DrugDisabled()
+        TabControl1.SelectedTab = Me.TabPage3
+
     End Sub
 
-    Private Sub DateTimePicker3_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker3.ValueChanged
+    Private Sub DateTimePicker3_ValueChanged(sender As Object, e As EventArgs)
         Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
         Dim date2 As Date = DTPickerLMP.Value
         Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
@@ -7144,7 +7528,7 @@ Public Class Form1
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
     End Sub
 
-    Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
+    Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs)
         Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
         Dim date2 As Date = DTPickerLMP.Value
         Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
@@ -7154,17 +7538,41 @@ Public Class Form1
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
         txtGA.Text = CStr(40 - weeks)
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+    End Sub
+
+    Private Sub Button23_Click(sender As Object, e As EventArgs) Handles Button23.Click
+        Label7.Text = "Expected Date Of Delivery"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        'DateAdd('d',280,[LMPDate]) AND (EDDDate >= ?) AND (? >= EDDDate) 
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
+                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND
+                                (EDDDate <> LMPDate) AND (Gyn = 0)
+                               ORDER BY EDDDate DESC", con)
+
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker5.Value
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker6.Value
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn")
+        DataGridView3.DataSource = ds.Tables("Gyn").DefaultView
+
+        con.Close()
+        Label53.Text = (DataGridView3.Rows.Count).ToString()
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         Label7.Text = "Expected Date Of Delivery"
         Dim con As New OleDbConnection(cs)
         con.Open()
+        'DateAdd('d',280,[LMPDate]) AND (EDDDate >= ?) AND (? >= EDDDate) 
         cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(LMPDate)AS[LMPDate],(EDDDate)AS[Expected Date Of Delivery],(ElapW)AS[Gestational age],
-                              (GAW)AS[Remaining] FROM Gyn WHERE (EDDDate >= ?) AND (? >= EDDDate) AND (GAW <= 4) AND (GAW > -1) AND (EDDDate <> LMPDate) AND (Gyn = 0)
-                               ORDER BY EDDDate DESC", con)
-        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
-        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+                              (GAW)AS[Remaining] FROM Gyn WHERE (DateDiff('d',Date(),[EDDDate]) <= 30) AND (DateDiff('d',Date(),[EDDDate]) >= 0) AND
+                                (EDDDate <> LMPDate) AND (Gyn = 0)
+                               ORDER BY EDDDate ASC", con)
+
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker5.Value
+        cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker6.Value
         Dim da As New OleDbDataAdapter(cmd)
         Dim ds As New DataSet
         da.Fill(ds, "Gyn")
@@ -7175,11 +7583,11 @@ Public Class Form1
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        If txtPatName.Text <> "" Then
+        'If txtPatName.Text <> "" Then
 
-            'TabControl1.SelectedTab = Me.TabPage2
-            Label48.Text = "Previous Visits"
-            Dim con As New OleDbConnection(cs)
+        'TabControl1.SelectedTab = Me.TabPage2
+        Label79.Text = "Previous Visits"
+        Dim con As New OleDbConnection(cs)
             con.Open()
             cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(MnsDate)AS[Visit Date],(NVD)AS[NVD],(CS)AS[CS],
                                         (G)AS[G],(P)AS[P],(A)AS[A],(HPOC)AS[Previous Obstetric Complications],(LD)AS[LD],
@@ -7196,49 +7604,58 @@ Public Class Form1
             DataGridView6.DataSource = ds.Tables("Gyn").DefaultView
 
             con.Close()
-            Label47.Text = (DataGridView6.Rows.Count).ToString()
+        Label80.Text = (DataGridView6.Rows.Count).ToString()
 
-        End If
-        Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
-        Dim date2 As Date = DTPickerLMP.Value
-        Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
-        If DTPickerEDD.Value = DTPickerLMP.Value Then
-            Exit Sub
-        End If
-        txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        txtGA.Text = CStr(40 - weeks)
-        DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+        'End If
+        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        'Dim date2 As Date = DTPickerLMP.Value
+        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        'If DTPickerEDD.Value = DTPickerLMP.Value Then
+        '    Exit Sub
+        'End If
+        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        'txtGA.Text = CStr(40 - weeks)
+        'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
     End Sub
 
     Private Sub DataGridView3_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView3.RowHeaderMouseClick
 
         Dim dgv As DataGridViewRow = DataGridView3.SelectedRows(0)
 
-        TextBox6.Text = dgv.Cells(0).Value.ToString
+        txtNo.Text = dgv.Cells(0).Value.ToString
         txtVis1.Text = dgv.Cells(1).Value.ToString
-        DTPickerLMP.Value = CDate(dgv.Cells(2).Value.ToString)
-        DTPickerEDD.Value = CDate(dgv.Cells(3).Value.ToString)
-        txtElapsed.Text = dgv.Cells(4).Value.ToString
-        txtGA.Text = dgv.Cells(5).Value.ToString
+        'DTPickerLMP.Value = CDate(dgv.Cells(2).Value.ToString)
+        'DTPickerEDD.Value = CDate(dgv.Cells(3).Value.ToString)
+        'txtElapsed.Text = dgv.Cells(4).Value.ToString
+        'txtGA.Text = dgv.Cells(5).Value.ToString
 
-        Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
-        Dim date2 As Date = DTPickerLMP.Value
-        Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
-        If DTPickerEDD.Value = DTPickerLMP.Value Then
-            Exit Sub
-        End If
-        txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        txtGA.Text = CStr(40 - weeks)
-        DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
-        ShowPatTableTextBox6()
-        ShowGynTabletxtVis1()
-        GynEnabled()
-        TextBox5.Text = txtPatName.Text
-        TextBox9.Text = txtPatName.Text
-        ClearForDGV2()
-        FillDGV5()
-        FillDGV6()
+        ShowPatTable()
         DGVPatients()
+        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        'Dim date2 As Date = DTPickerLMP.Value
+        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        'If DTPickerEDD.Value = DTPickerLMP.Value Then
+        '    Exit Sub
+        'End If
+        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        'txtGA.Text = CStr(40 - weeks)
+        'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+
+
+        TextBox6.Text = txtNo.Text
+        TextBox7.Text = txtNo.Text
+
+        'FillDGV5()
+        'FillDGV6()
+
+        'ShowPatTableTextBox6()
+
+        'ShowGynTabletxtVis1()
+        TextBox5.Text = txtPatName.Text
+        TextBox8.Text = txtPatName.Text
+        TextBox9.Text = txtPatName.Text
+        GynEnabled()
+
     End Sub
 
     Sub DGVPatients()
@@ -7249,8 +7666,8 @@ Public Class Form1
             Dim con As New OleDbConnection(cs)
             con.Open()
             cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Name) AS [Patient Name],(Address) AS [Address],
-                                        (Birthdate) AS [Birth Date],(Age) AS [Age],(Phone) AS [Phone],(HusName) AS [Husband Name]
-                                        FROM Pat WHERE Patient_no = @Patient_no", con)
+                                   (Birthdate) AS [Birth Date],(Age) AS [Age],(Phone) AS [Phone],(HusName) AS [Husband Name]
+                                    FROM Pat WHERE Patient_no = @Patient_no", con)
             cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
             'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
             Dim da As New OleDbDataAdapter(cmd)
@@ -7264,9 +7681,17 @@ Public Class Form1
     End Sub
 
     Private Sub DataGridView6_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView6.RowHeaderMouseClick
-        TextBox5.Text = txtPatName.Text
-        TextBox6.Text = txtNo.Text
+
         ClearForDGV2()
+        Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
+        End If
+
         Dim dgv As DataGridViewRow = DataGridView6.SelectedRows(0)
         txtNo.Text = dgv.Cells(0).Value.ToString
         txtVis1.Text = dgv.Cells(1).Value.ToString
@@ -7300,6 +7725,8 @@ Public Class Form1
         cbxDrugH3.Text = dgv.Cells(26).Value.ToString
         chbxGyn.Checked = CBool(dgv.Cells(27).Value.ToString)
 
+        ShowPatTable()
+
         TabControl1.SelectedTab = Me.TabPage1
         TextBox5.Text = txtPatName.Text
         TextBox6.Text = txtNo.Text
@@ -7308,6 +7735,8 @@ Public Class Form1
         Dim date2 As Date = DTPickerLMP.Value
         Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
         If DTPickerEDD.Value = DTPickerLMP.Value Then
+            txtElapsed.Text = "0"
+            txtGA.Text = "0"
             Exit Sub
         End If
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
@@ -7316,13 +7745,18 @@ Public Class Form1
     End Sub
 
     Private Sub DataGridView5_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView5.RowHeaderMouseClick
+        Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+        End If
+
         Dim dgv As DataGridViewRow = DataGridView5.SelectedRows(0)
-        'If (DataGridView2.Rows.Count) - 1 = 0 Then
-        '    MsgBox("Empty")
-        '    Exit Sub
-        'End If
-        TextBox8.Text = txtPatName.Text
-        TextBox7.Text = txtNo.Text
+
+        'TextBox8.Text = txtPatName.Text
+        'TextBox7.Text = txtNo.Text
         ClearForDGV1()
         'txtVis.Text = dgv.Cells(0).Value.ToString
         txtNo.Text = dgv.Cells(0).Value.ToString
@@ -7344,6 +7778,8 @@ Public Class Form1
         'cbxGL.Text = dgv.Cells(15).Value.ToString
         'DTPickerAtt.Value = CDate(dgv.Cells(15).Value.ToString)
 
+        ShowPatTable()
+
         TabControl1.SelectedTab = Me.TabPage1
         'TextBox5.Text = txtPatName.Text
         'TextBox6.Text = txtNo.Text
@@ -7352,6 +7788,425 @@ Public Class Form1
         TextBox7.Text = txtNo.Text
 
         Gyn2Enabled()
+    End Sub
+
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        Try
+            If txtPatName.Text <> "" Then
+
+                'TabControl1.SelectedTab = Me.TabPage2
+                'Label48.Text = "Previous Visits"
+                Dim con As New OleDbConnection(cs)
+                con.Open()
+                cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Visit_no)AS[Visit No],(Complain)AS[Complain],(Sign)AS[Sign],
+                                        (Diagnosis)AS[Diagnosis],(Intervention)AS[Intervention],(Amount)AS[Amount],(VisDate)AS[Visit Date] 
+                                        FROM Visits WHERE Patient_no = @Patient_no ORDER BY Visit_no DESC", con)
+                cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+                'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+                Dim da As New OleDbDataAdapter(cmd)
+                Dim ds As New DataSet
+                da.Fill(ds, "Visits")
+                DataGridView8.DataSource = ds.Tables("Visits").DefaultView
+
+                con.Close()
+                Label82.Text = (DataGridView8.Rows.Count).ToString()
+            End If
+        Catch ex As Exception
+            MsgBox(ErrorToString)
+        End Try
+    End Sub
+
+    Private Sub DataGridView8_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView8.RowHeaderMouseClick
+        TabControl1.SelectedTab = Me.TabPage3
+        Button8.BackColor = Color.LightSeaGreen
+        Label81.Text = "Visits"
+        If Button8.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+        End If
+        ClearDrug()
+        ClearInv()
+        Dim dgv As DataGridViewRow = DataGridView8.SelectedRows(0)
+        txtVisPatNo.Text = dgv.Cells(0).Value.ToString
+        txtVisNo.Text = dgv.Cells(1).Value.ToString
+
+        txtVisPatNo.Text = txtNo.Text
+        txtVisName.Text = txtPatName.Text
+        ShowVisits()
+        InvAndAttDisabled()
+        DrugDisabled()
+
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+
+        'ListBox5.Items.Clear()
+        'conn.Open()
+        'Dim str As String = "SELECT Vis_no,Amount,AttDt
+        '                     FROM Gyn2 WHERE (? >= AttDt AND AttDt >= ?)"
+
+        'Dim cmd As OleDbCommand = New OleDbCommand(str, conn)
+        'cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+        'cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+        'Dim reader As OleDbDataReader = cmd.ExecuteReader
+        'While reader.Read
+        '    Dim VisitNo As String = CStr(reader("Vis_no"))
+        '    Dim Amo As String = CStr(reader("Amount"))
+        '    Dim vdate As String = CStr(reader("AttDt"))
+        '    Dim item As String = String.Format("{0}): {1}) : {2}", VisitNo, Amo, vdate)
+        '    ListBox5.Items.Add(item).ToString()
+        'End While
+        'reader.Close()
+        'conn.Close()
+
+        Using cn As New OleDbConnection(cs)
+            cn.Open()
+            Using cmd As New OleDbCommand
+                cmd.Connection = cn
+                cmd.CommandText = "SELECT (Patient_no)AS[ID], (Vis_no)AS[Visit No],Amount,(AttDt)AS[Visit Date] FROM Gyn2 WHERE 
+                                    (? >= AttDt AND AttDt >= ?)"
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+                Using da As New OleDbDataAdapter(cmd), ds As New DataSet
+                    da.Fill(ds, "Gyn2")
+                    DataGridView10.DataSource = ds.Tables("Gyn2").DefaultView
+                    Label85.Text = DataGridView10.Rows.Count.ToString
+                    'Using reader As OleDbDataReader = cmd.ExecuteReader
+                    'While reader.Read
+                    '    Dim VisitNo As String = CStr(reader("Vis_no"))
+                    '    Dim Amo As String = CStr(reader("Amount"))
+                    '    Dim vdate As String = CStr(reader("AttDt"))
+                    '    Dim item As String = String.Format("{0}): {1}): {2}", VisitNo, Amo, vdate)
+                    '    ListBox5.Items.Add(item).ToString()
+                    'End While
+                    'reader.Close()
+                    'End Using
+                End Using
+            End Using
+        End Using
+
+        SumAmountUS()
+
+
+    End Sub
+
+    Sub SumAmountUS()
+        Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+            con.Open()
+
+            Using cmd As New OleDbCommand
+                cmd.Connection = con
+
+                cmd.CommandText = "SELECT SUM(VAL(Amount)) AS total FROM Gyn2
+                                    WHERE (? >= AttDt AND AttDt >= ?)"
+                'ORDER BY Vis_no ASC"
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+                Using dt As New DataTable
+                    dt.Load(cmd.ExecuteReader)
+                    If dt.Rows.Count > 0 Then
+                        TextBox11.Text = dt.Rows(0).Item("total").ToString
+                    End If
+                End Using
+            End Using
+        End Using
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        'Dim con As New OleDbConnection(cs)
+        'con.Open()
+        'cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Visit_no)AS[Visit No],Amount,
+        '                           (VisDate)AS[Visit Date] FROM Visits WHERE (? >= VisDate AND VisDate >= ?)", con)
+        'cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+        'cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+        ''cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        'Dim da As New OleDbDataAdapter(cmd)
+        'Dim ds As New DataSet
+        'da.Fill(ds, "Visits")
+        'DataGridView9.DataSource = ds.Tables("Visits").DefaultView
+
+        'con.Close()
+
+        Using cn As New OleDbConnection(cs)
+            cn.Open()
+            Using cmd As New OleDbCommand
+                cmd.Connection = cn
+                cmd.CommandText = "SELECT (Patient_no)AS[ID],(Visit_no)AS[Visit No],Amount,
+                                   (VisDate)AS[Visit Date] FROM Visits WHERE (? >= VisDate AND VisDate >= ?)"
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+                Using ds As New DataSet, da As New OleDbDataAdapter(cmd)
+                    'Using da As New OleDbDataAdapter(cmd)
+                    da.Fill(ds, "Visits")
+                    DataGridView9.DataSource = ds.Tables("Visits").DefaultView
+                    Label86.Text = DataGridView9.Rows.Count
+                    'End Using
+                End Using
+            End Using
+        End Using
+
+
+        SumAmountVisits()
+    End Sub
+
+    Sub SumAmountVisits()
+        Using con As New OleDbConnection(cs)
+            con.Open()
+            Using cmd As New OleDbCommand
+                cmd.Connection = con
+                cmd.CommandText = "SELECT SUM(VAL(Amount)) AS total FROM Visits 
+                                   WHERE (? >= VisDate AND VisDate >= ?)"
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker3.Value
+                cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+                Using dt As New DataTable
+                    dt.Load(cmd.ExecuteReader)
+                    If dt.Rows.Count > 0 Then
+                        TextBox12.Text = dt.Rows(0).Item("total").ToString
+                    End If
+                End Using
+            End Using
+        End Using
+    End Sub
+
+    Private Sub FillDGV9Empty()
+        Using cn As New OleDbConnection(cs)
+            cn.Open()
+            Using cmd As New OleDbCommand
+                cmd.Connection = cn
+                cmd.CommandText = "SELECT (Patient_no)AS[ID],(Visit_no)AS[Visit No],Amount,
+                                   (VisDate)AS[Visit Date] FROM Visits WHERE Patient_no=?"
+                cmd.Parameters.Add("?", OleDbType.Integer).Value = CInt(Val(TextBox9.Text))
+                'cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+                Using ds As New DataSet, da As New OleDbDataAdapter(cmd)
+                    'Using da As New OleDbDataAdapter(cmd)
+                    da.Fill(ds, "Visits")
+                    DataGridView9.DataSource = ds.Tables("Visits").DefaultView
+                    Label86.Text = DataGridView9.Rows.Count
+                    'End Using
+                End Using
+            End Using
+        End Using
+    End Sub
+
+    Private Sub FillDGV10Empty()
+        Using cn As New OleDbConnection(cs)
+            cn.Open()
+            Using cmd As New OleDbCommand
+                cmd.Connection = cn
+                cmd.CommandText = "SELECT (Patient_no)AS[ID], (Vis_no)AS[Visit No],Amount,(AttDt)AS[Visit Date] FROM Gyn2 WHERE 
+                                   Patient_no = ?"
+                cmd.Parameters.Add("?", OleDbType.Integer).Value = CInt(Val(TextBox9.Text))
+                'cmd.Parameters.Add("?", OleDbType.DBDate).Value = DateTimePicker2.Value
+                Using da As New OleDbDataAdapter(cmd), ds As New DataSet
+                    da.Fill(ds, "Gyn2")
+                    DataGridView10.DataSource = ds.Tables("Gyn2").DefaultView
+                    Label85.Text = DataGridView10.Rows.Count.ToString
+                End Using
+            End Using
+        End Using
+    End Sub
+
+    Private Sub DTPickerEDD_VisibleChanged(sender As Object, e As EventArgs) Handles DTPickerEDD.VisibleChanged
+        UpdateGyn()
+    End Sub
+
+    Private Sub DTPickerEDD_ValueChanged(sender As Object, e As EventArgs) Handles DTPickerEDD.ValueChanged
+        UpdateGyn()
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        Label77.Text = "US Visits"
+        Dim con As New OleDbConnection(cs)
+        con.Open()
+        cmd = New OleDbCommand("SELECT (Patient_no)AS[ID],(Vis_no)AS[Visit No],(AttDt)AS[Visit Date],(GL)AS[General Look],(Pls)AS[Puls],
+                               (BP)AS[Blood Pressure],(Wt)AS[Weight],(BdBt)AS[Body Built],(ChtH)AS[Chest and Heart],
+                               (HdNe)AS[Head and Neck],(Ext)AS[Extremities],(FunL)AS[Fundal Level],(Scrs)AS[Scars],
+                               (Edm)AS[Edema],(US)AS[Ultra Sound],(Amount)AS[Amount]
+                               FROM Gyn2 WHERE Patient_no = @Patient_no
+                               ORDER BY Vis_no DESC", con)
+        cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+        'cmd.Parameters.Add("@Client_no", OleDbType.Integer).Value = CInt(Val(txtID.Text))
+        Dim da As New OleDbDataAdapter(cmd)
+        Dim ds As New DataSet
+        da.Fill(ds, "Gyn2")
+        DataGridView5.DataSource = ds.Tables("Gyn2").DefaultView
+
+        con.Close()
+        Label78.Text = (DataGridView5.Rows.Count).ToString()
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        'Dim sum As Integer
+        If TextBox11.Text = "" And TextBox12.Text = "" Then
+            Exit Sub
+        End If
+        TextBox13.Text = (Val(TextBox11.Text) + Val(TextBox12.Text))
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        TabControl1.SelectedTab = Me.TabPage5
+        Button17.BackColor = Color.LightSeaGreen
+        Label81.Text = "Income"
+        If Button17.BackColor = Color.LightSeaGreen Then
+            Button8.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button2.BackColor = Color.SeaGreen
+        End If
+    End Sub
+
+    Private Sub DataGridView9_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView9.RowHeaderMouseClick
+        Button8.BackColor = Color.LightSeaGreen
+        If Button8.BackColor = Color.LightSeaGreen Then
+            Button17.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button6.BackColor = Color.SeaGreen
+            Button2.BackColor = Color.SeaGreen
+        End If
+        Dim dgv As DataGridViewRow = DataGridView9.SelectedRows(0)
+        txtVisPatNo.Text = dgv.Cells(0).Value.ToString
+        txtVisNo.Text = dgv.Cells(1).Value.ToString
+
+        ShowPatTable()
+        ShowVisits()
+
+        TabControl1.SelectedTab = Me.TabPage3
+
+    End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        ClearGyn()
+    End Sub
+
+    Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
+        ClearGyn2()
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        cbxSearch.Text = ""
+        txtPatName.Text = ""
+        cbxJob.Text = ""
+        cbxAddress.Text = ""
+        DTPicker.Value = Now
+        txtAge.Text = ""
+        txtPhone.Text = ""
+        txtHusband.Text = ""
+        cbxHusJob.Text = ""
+        txtNo.Text = GetAutonumber("Pat", "Patient_no")
+    End Sub
+
+    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
+        TextBox9.Text = ""
+        FillDGV3()
+        FillDGV5Empty()
+        FillDGV6Empty()
+        FillDGV7Empty()
+    End Sub
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
+        TextBox11.Text = ""
+        TextBox12.Text = ""
+        TextBox13.Text = ""
+        FillDGV9Empty()
+        FillDGV10Empty()
+    End Sub
+
+    Private Sub DataGridView10_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView10.RowHeaderMouseClick
+
+        Button6.BackColor = Color.LightSeaGreen
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button8.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button17.BackColor = Color.SeaGreen
+            Button2.BackColor = Color.SeaGreen
+        End If
+
+        Dim dgv As DataGridViewRow = DataGridView10.SelectedRows(0)
+        txtNo.Text = dgv.Cells(0).Value.ToString
+        txtVis.Text = dgv.Cells(1).Value.ToString
+
+        ShowPatTable()
+        ShowGyn2Table()
+
+        TextBox6.Text = txtNo.Text
+        TextBox7.Text = txtNo.Text
+        TextBox5.Text = txtPatName.Text
+        TextBox8.Text = txtPatName.Text
+        Gyn2Enabled()
+        ClearForDGV1()
+
+        TabControl1.SelectedTab = Me.TabPage1
+
+    End Sub
+
+    Private Sub txtVisNo_TextChanged(sender As Object, e As EventArgs) Handles txtVisNo.TextChanged
+        If txtVisNo.Text = GetAutonumber("Visits", "Visit_no") Then
+            txtVisNo.BackColor = Color.SeaGreen
+            txtVisNo.ForeColor = Color.White
+        ElseIf txtVisNo.Text <> GetAutonumber("Visits", "Visit_no") Then
+            txtVisNo.BackColor = Color.LightSeaGreen
+            txtVisNo.ForeColor = Color.White
+        End If
+    End Sub
+
+    Private Sub txtVis1_TextChanged(sender As Object, e As EventArgs) Handles txtVis1.TextChanged
+        If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") Then
+            txtVis1.BackColor = Color.SeaGreen
+            txtVis1.ForeColor = Color.White
+        ElseIf txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Then
+            txtVis1.BackColor = Color.LightSeaGreen
+            txtVis1.ForeColor = Color.White
+        End If
+    End Sub
+
+    Private Sub txtVis_TextChanged(sender As Object, e As EventArgs) Handles txtVis.TextChanged
+        If txtVis.Text = GetAutonumber("Gyn2", "Vis_no") Then
+            txtVis.BackColor = Color.SeaGreen
+            txtVis.ForeColor = Color.White
+        ElseIf txtVis.Text <> GetAutonumber("Gyn2", "Vis_no") Then
+            txtVis.BackColor = Color.LightSeaGreen
+            txtVis.ForeColor = Color.White
+        End If
+    End Sub
+
+    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles TextBox6.TextChanged
+        If TextBox6.Text = GetAutonumber("Pat", "Patient_no") Then
+            TextBox6.BackColor = Color.Teal
+            TextBox6.ForeColor = Color.White
+        ElseIf TextBox6.Text <> GetAutonumber("Pat", "Patient_no") Then
+            TextBox6.BackColor = Color.MediumTurquoise
+            TextBox6.ForeColor = Color.White
+        End If
+    End Sub
+
+    Private Sub TextBox7_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
+        If TextBox7.Text = GetAutonumber("Pat", "Patient_no") Then
+            TextBox7.BackColor = Color.Teal
+            TextBox7.ForeColor = Color.White
+        ElseIf TextBox7.Text <> GetAutonumber("Pat", "Patient_no") Then
+            TextBox7.BackColor = Color.MediumTurquoise
+            TextBox7.ForeColor = Color.White
+        End If
+    End Sub
+
+    Private Sub cbxSearch_Validated(sender As Object, e As EventArgs) Handles cbxSearch.Validated
+        If txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Then
+            ClearGyn()
+        ElseIf txtVis.Text <> GetAutonumber("Gyn2", "Vis_no") Then
+            ClearGyn2()
+        End If
+
+    End Sub
+
+    Private Sub txtVisPatNo_TextChanged(sender As Object, e As EventArgs) Handles txtVisPatNo.TextChanged
+        If txtVisPatNo.Text = GetAutonumber("Pat", "Patient_no") Then
+            txtVisPatNo.BackColor = Color.Teal
+            txtVisPatNo.ForeColor = Color.White
+        ElseIf txtVisPatNo.Text <> GetAutonumber("Pat", "Patient_no") Then
+            txtVisPatNo.BackColor = Color.MediumTurquoise
+            txtVisPatNo.ForeColor = Color.White
+        End If
     End Sub
 End Class
 

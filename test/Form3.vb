@@ -84,7 +84,7 @@ Public Class frmMain
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(224, 36)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "A Licensed KMAClinic ." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "You Can Use It Now."
+        Me.Label1.Text = "A Licensed KMAClinic Application." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'cmdExit
         '
