@@ -2405,11 +2405,11 @@ Partial Class Form1
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label49.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label49.ForeColor = System.Drawing.Color.Black
-        Me.Label49.Location = New System.Drawing.Point(643, 547)
+        Me.Label49.Location = New System.Drawing.Point(643, 551)
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(28, 24)
+        Me.Label49.Size = New System.Drawing.Size(23, 19)
         Me.Label49.TabIndex = 234
         Me.Label49.Text = "--"
         Me.Label49.Visible = False
@@ -2417,11 +2417,11 @@ Partial Class Form1
         'Label50
         '
         Me.Label50.AutoSize = True
-        Me.Label50.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label50.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label50.ForeColor = System.Drawing.Color.Black
         Me.Label50.Location = New System.Drawing.Point(745, 551)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(28, 24)
+        Me.Label50.Size = New System.Drawing.Size(23, 19)
         Me.Label50.TabIndex = 233
         Me.Label50.Text = "--"
         '
@@ -2754,6 +2754,7 @@ Partial Class Form1
         Me.txtCo5.Location = New System.Drawing.Point(7, 449)
         Me.txtCo5.Multiline = True
         Me.txtCo5.Name = "txtCo5"
+        Me.txtCo5.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtCo5.Size = New System.Drawing.Size(485, 74)
         Me.txtCo5.TabIndex = 699
         '
@@ -2765,6 +2766,7 @@ Partial Class Form1
         Me.txtCo4.Location = New System.Drawing.Point(498, 375)
         Me.txtCo4.Multiline = True
         Me.txtCo4.Name = "txtCo4"
+        Me.txtCo4.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtCo4.Size = New System.Drawing.Size(235, 148)
         Me.txtCo4.TabIndex = 697
         '
@@ -2776,6 +2778,7 @@ Partial Class Form1
         Me.txtCo3.Location = New System.Drawing.Point(498, 256)
         Me.txtCo3.Multiline = True
         Me.txtCo3.Name = "txtCo3"
+        Me.txtCo3.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtCo3.Size = New System.Drawing.Size(235, 84)
         Me.txtCo3.TabIndex = 695
         '
@@ -2787,6 +2790,7 @@ Partial Class Form1
         Me.txtCo2.Location = New System.Drawing.Point(498, 145)
         Me.txtCo2.Multiline = True
         Me.txtCo2.Name = "txtCo2"
+        Me.txtCo2.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtCo2.Size = New System.Drawing.Size(235, 77)
         Me.txtCo2.TabIndex = 693
         '
@@ -2798,6 +2802,7 @@ Partial Class Form1
         Me.txtCo1.Location = New System.Drawing.Point(498, 31)
         Me.txtCo1.Multiline = True
         Me.txtCo1.Name = "txtCo1"
+        Me.txtCo1.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtCo1.Size = New System.Drawing.Size(235, 80)
         Me.txtCo1.TabIndex = 691
         '
@@ -3966,6 +3971,7 @@ Partial Class Form1
         Me.txtComplain.Location = New System.Drawing.Point(139, 36)
         Me.txtComplain.Multiline = True
         Me.txtComplain.Name = "txtComplain"
+        Me.txtComplain.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtComplain.Size = New System.Drawing.Size(263, 181)
         Me.txtComplain.TabIndex = 651
         '
@@ -3984,6 +3990,7 @@ Partial Class Form1
         Me.txtSign.Location = New System.Drawing.Point(530, 2)
         Me.txtSign.Multiline = True
         Me.txtSign.Name = "txtSign"
+        Me.txtSign.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtSign.Size = New System.Drawing.Size(273, 117)
         Me.txtSign.TabIndex = 652
         '
@@ -4157,7 +4164,7 @@ Partial Class Form1
         Me.Label77.AutoSize = True
         Me.Label77.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label77.ForeColor = System.Drawing.Color.Black
-        Me.Label77.Location = New System.Drawing.Point(501, 555)
+        Me.Label77.Location = New System.Drawing.Point(54, 553)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(28, 24)
         Me.Label77.TabIndex = 249
@@ -4168,7 +4175,7 @@ Partial Class Form1
         Me.Label78.AutoSize = True
         Me.Label78.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label78.ForeColor = System.Drawing.Color.Black
-        Me.Label78.Location = New System.Drawing.Point(16, 555)
+        Me.Label78.Location = New System.Drawing.Point(546, 553)
         Me.Label78.Name = "Label78"
         Me.Label78.Size = New System.Drawing.Size(28, 24)
         Me.Label78.TabIndex = 247
@@ -4189,7 +4196,7 @@ Partial Class Form1
         Me.Label79.AutoSize = True
         Me.Label79.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label79.ForeColor = System.Drawing.Color.Black
-        Me.Label79.Location = New System.Drawing.Point(501, 301)
+        Me.Label79.Location = New System.Drawing.Point(54, 303)
         Me.Label79.Name = "Label79"
         Me.Label79.Size = New System.Drawing.Size(28, 24)
         Me.Label79.TabIndex = 245
@@ -4200,7 +4207,7 @@ Partial Class Form1
         Me.Label80.AutoSize = True
         Me.Label80.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label80.ForeColor = System.Drawing.Color.Black
-        Me.Label80.Location = New System.Drawing.Point(16, 305)
+        Me.Label80.Location = New System.Drawing.Point(546, 303)
         Me.Label80.Name = "Label80"
         Me.Label80.Size = New System.Drawing.Size(28, 24)
         Me.Label80.TabIndex = 244

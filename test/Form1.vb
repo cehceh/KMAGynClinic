@@ -98,7 +98,7 @@ Public Class Form1
         LoadPicture()
 
         FillAuto()
-        txtNo.Select()
+        txtPatName.Select()
         'txtVisNo.Select()
 
     End Sub
@@ -214,9 +214,17 @@ Public Class Form1
         RDXmlPlan()
         RDXmlJobs()
         RDXmlMob()
+        Dim databasepath As String = Path.Combine(Application.StartupPath,
+                                                Directory.GetCurrentDirectory + "\TestDB.accdb")
+        Dim backuppath As String = Path.Combine(Application.StartupPath,
+                                                  Directory.GetCurrentDirectory + "\Backups\_" &
+                                                                            Format(Now(), "dd_MM_yyyy_hhmmtt") & ".accdb")
+        Dim backuppath1 As String = Path.Combine(Application.StartupPath,
+                                                  Directory.GetCurrentDirectory + "\Backups\Docs\TestDB_" &
+                                                                            Format(Now(), "MM_yyyy") & ".accdb")
 
-        CompactAccessDatabase()
-        BackupXML()
+        My.Computer.FileSystem.CopyFile(databasepath, backuppath, True)
+        My.Computer.FileSystem.CopyFile(databasepath, backuppath1, True)
 
         'If e.CloseReason = CloseReason.UserClosing Then
         '    usage.Save()
@@ -458,7 +466,7 @@ Public Class Form1
         ''##This line must come after the 'for loop' because for loop erase every textbox in the form
         ''##And the autonumber come after that
         txtNo.Text = GetAutonumber("Pat", "Patient_no")
-        txtNo.Select()
+        txtPatName.Select()
         ClearGyn()
         ClearGyn2()
 
@@ -466,6 +474,12 @@ Public Class Form1
 
         GynDisabled()
         Gyn2Disabled()
+        'DataGridView1.DataSource = Nothing
+        'Label48.Text = "0"
+        'DataGridView2.DataSource = Nothing
+        'Label49.Text = "0"
+        'DataGridView8.DataSource = Nothing
+        'Label82.Text = "0"
         'FillDGV1()
         'FillDGV2()
         'FillDGV3()
@@ -1449,10 +1463,13 @@ Public Class Form1
 
         '##Path For Real Projects by "Application.StartupPath"
         'Dim DatabasePath As String = "D:KMAClinic\bin\Release\Dr_T.accdb"
-        Dim DatabasePath As String = Path.Combine(Application.StartupPath, "\KMAClinic\TestDB.accdb")
+        Dim DatabasePath As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\TestDB.accdb")
 
         '##For Real Projects
-        Dim DatabasePathCompacted As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\_" & Format(Now(), "ddMMyyyy_hhmmss") & ".accdb")
+        Dim DatabasePathCompacted As String = Path.Combine(Application.StartupPath,
+                                                           Directory.GetCurrentDirectory +
+                                                           "\Backups\_" & Format(Now(),
+                                                           "dd_MM_yyyy_hhmmsstt") & ".accdb")
 
         Dim CompactDB As New Microsoft.Office.Interop.Access.Dao.DBEngine
 
@@ -1460,8 +1477,10 @@ Public Class Form1
         CompactDB.CompactDatabase(DatabasePath, DatabasePathCompacted, , , ";pwd=mero1981923")
         CompactDB = Nothing
 
-        Dim backuppath As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\TestDB_" &
-                                                                            Format(Now(), "MM_yyyy") & ".accdb")
+        Dim backuppath As String = Path.Combine(Application.StartupPath,
+                                                Directory.GetCurrentDirectory +
+                                                "\Backups\Docs\TestDB_" &
+                                                Format(Now(), "MM_yyyy") & ".accdb")
         My.Computer.FileSystem.CopyFile(DatabasePath,
                                         backuppath, True)
         My.Computer.FileSystem.CopyFile(DatabasePathCompacted,
@@ -1470,38 +1489,38 @@ Public Class Form1
     End Sub
 
     Private Sub BackupXML()
-        Dim SourcePatNames As String = Path.Combine(Application.StartupPath, "\KMAClinic\PatNames.xml")
-        Dim patnames As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\PatNames" + ".xml")
+        Dim SourcePatNames As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\PatNames.xml")
+        Dim patnames As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\PatNames" + ".xml")
 
-        Dim SourcePatNames1 As String = Path.Combine(Application.StartupPath, "\KMAClinic\PatNames1.xml")
-        Dim patnames1 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\PatNames1" + ".xml")
+        Dim SourcePatNames1 As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\PatNames1.xml")
+        Dim patnames1 As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\PatNames1" + ".xml")
 
-        Dim SourcePatNames2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\PatNames2.xml")
-        Dim patnames2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\PatNames2" + ".xml")
+        Dim SourcePatNames2 As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\PatNames2.xml")
+        Dim patnames2 As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\PatNames2" + ".xml")
 
-        Dim SourceInvestigations As String = Path.Combine(Application.StartupPath, "\KMAClinic\Investigations.xml")
-        Dim investigations As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Investigations" + ".xml")
+        Dim SourceInvestigations As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Investigations.xml")
+        Dim investigations As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\Investigations" + ".xml")
 
-        Dim Sourceinvestigations2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Investigations2.xml")
-        Dim investigations2 As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Investigations2" + ".xml")
+        Dim Sourceinvestigations2 As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Investigations2.xml")
+        Dim investigations2 As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\Investigations2" + ".xml")
 
-        Dim SourceDrugs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Drugs1.xml")
-        Dim drugs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Drugs1" + ".xml")
+        Dim SourceDrugs As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Drugs1.xml")
+        Dim drugs As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\Drugs1" + ".xml")
 
-        Dim SourcePlans As String = Path.Combine(Application.StartupPath, "\KMAClinic\Plans.xml")
-        Dim plans As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Plans" + ".xml")
+        Dim SourcePlans As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Plans.xml")
+        Dim plans As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\Plans" + ".xml")
 
-        Dim SourceInvRes As String = Path.Combine(Application.StartupPath, "\KMAClinic\InvRes.xml")
-        Dim invres As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\InvRes" + ".xml")
+        Dim SourceInvRes As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\InvRes.xml")
+        Dim invres As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\InvRes" + ".xml")
 
-        Dim SourceDiaInter As String = Path.Combine(Application.StartupPath, "\KMAClinic\DiaInter.xml")
-        Dim diainter As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\DiaInter" + ".xml")
+        Dim SourceDiaInter As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\DiaInter.xml")
+        Dim diainter As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\DiaInter" + ".xml")
 
-        Dim SourceMob As String = Path.Combine(Application.StartupPath, "\KMAClinic\Mob.xml")
-        Dim mob As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Mob.xml")
+        Dim SourceMob As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Mob.xml")
+        Dim mob As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\Mob.xml")
 
-        Dim SourceJobs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Jobs.xml")
-        Dim jobs As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups\Docs\Jobs.xml")
+        Dim SourceJobs As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Jobs.xml")
+        Dim jobs As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups\Docs\Jobs.xml")
 
         If Not File.Exists(patnames) Then
             File.Copy(SourcePatNames, patnames)
@@ -1598,15 +1617,15 @@ Public Class Form1
     End Sub
 
     Private Sub btnBackup_Click(sender As Object, e As EventArgs) Handles btnBackup.Click
-        If MsgBox("Are you sure that the Network PC is turned off," & vbCrLf &
-                  "In order to perform this action?",
+        If MsgBox("We will make automatic Backup when you close the application," & vbCrLf &
+                  "Are you sure to perform this action now?",
                   MsgBoxStyle.YesNo,
-                  "Turn Off the network PC") = vbNo Then
+                  "Confirmation Backup") = vbNo Then
             Exit Sub
         End If
         CompactAccessDatabase()
         BackupXML()
-        Dim BackupFilePath As String = Path.Combine(Application.StartupPath, "\KMAClinic\Backups")
+        Dim BackupFilePath As String = Path.Combine(Application.StartupPath, Directory.GetCurrentDirectory + "\Backups")
         MsgBox("Backup Done @" & vbCrLf & BackupFilePath, MsgBoxStyle.Information, "Backup")
     End Sub
 
@@ -3815,6 +3834,8 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+        FillDGV6()
+        FillDGV5()
         'Button2.ForeColor = Color.BlueViolet
         'UpdateGyn()
         'txtGA.Text = dgv.Cells().Value.ToString
@@ -3847,6 +3868,7 @@ Public Class Form1
             Button1.BackColor = Color.SeaGreen
             Button6.BackColor = Color.SeaGreen
             Button17.BackColor = Color.SeaGreen
+
         End If
 
         TabControl1.SelectedTab = Me.TabPage4
@@ -3877,6 +3899,7 @@ Public Class Form1
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
         txtGA.Text = CStr(40 - weeks)
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+
 
     End Sub
 
@@ -4029,8 +4052,8 @@ Public Class Form1
         TabControl1.SelectedTab = Me.TabPage1
         TextBox5.Text = txtPatName.Text
         TextBox6.Text = txtNo.Text
-        'TextBox8.Text = txtPatName.Text
-        'TextBox7.Text = txtNo.Text
+        TextBox8.Text = txtPatName.Text
+        TextBox7.Text = txtNo.Text
         GynEnabled()
         Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
         Dim date2 As Date = DTPickerLMP.Value
@@ -4157,9 +4180,15 @@ Public Class Form1
             txtNo.BackColor = Color.MediumTurquoise
             txtNo.ForeColor = Color.White
         End If
-        FillDGV1()
-        FillDGV2()
-        FillDGV8()
+        DataGridView1.DataSource = Nothing
+        Label47.Text = "0"
+        DataGridView2.DataSource = Nothing
+        Label50.Text = "0"
+        DataGridView8.DataSource = Nothing
+        Label82.Text = "0"
+        'FillDGV1()
+        'FillDGV2()
+        'FillDGV8()
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
@@ -5922,7 +5951,7 @@ Public Class Form1
 
     Private Sub txtComplain_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtComplain.Validating
         'Trace.WriteLine("txtComplain_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisits()
         End If
@@ -5932,7 +5961,7 @@ Public Class Form1
 
     Private Sub txtSign_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtSign.Validating
         'Trace.WriteLine("txtSign_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisits()
             '' Read the XML file from disk only once
@@ -5948,6 +5977,7 @@ Public Class Form1
 
     Private Sub cbxDia_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxDia.Validating
         'Trace.WriteLine("cbxDia_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisits()
             SaveInXmlDiaInter()
@@ -5964,7 +5994,7 @@ Public Class Form1
 
     Private Sub cbxDia_Click(sender As Object, e As EventArgs) Handles cbxDia.Click
         'Trace.WriteLine("txtDia_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -5978,7 +6008,7 @@ Public Class Form1
 
     Private Sub cbxInter_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cbxInter.Validating
         'Trace.WriteLine("cbxInter_Validating STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             UpdateVisits()
             SaveInXmlDiaInter()
@@ -5994,7 +6024,7 @@ Public Class Form1
 
     Private Sub cbxInter_Click(sender As Object, e As EventArgs) Handles cbxInter.Click
         'Trace.WriteLine("cbxInter_Click STRTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
         If txtVisName.Text <> "" And txtVisPatNo.Text <> "" Then
             '' Read the XML file from disk only once
             Dim xDoc = XElement.Load(Application.StartupPath + "\DiaInter.xml")
@@ -7628,7 +7658,6 @@ Public Class Form1
         'DTPickerEDD.Value = CDate(dgv.Cells(3).Value.ToString)
         'txtElapsed.Text = dgv.Cells(4).Value.ToString
         'txtGA.Text = dgv.Cells(5).Value.ToString
-
         ShowPatTable()
         DGVPatients()
         'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
@@ -7640,17 +7669,8 @@ Public Class Form1
         'txtElapsed.Text = CStr(weeks) '& "  Weeks"
         'txtGA.Text = CStr(40 - weeks)
         'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
-
-
         TextBox6.Text = txtNo.Text
         TextBox7.Text = txtNo.Text
-
-        'FillDGV5()
-        'FillDGV6()
-
-        'ShowPatTableTextBox6()
-
-        'ShowGynTabletxtVis1()
         TextBox5.Text = txtPatName.Text
         TextBox8.Text = txtPatName.Text
         TextBox9.Text = txtPatName.Text
@@ -8098,18 +8118,30 @@ Public Class Form1
 
     Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
         TextBox9.Text = ""
-        FillDGV3()
-        FillDGV5Empty()
-        FillDGV6Empty()
-        FillDGV7Empty()
+        'FillDGV3()
+        DataGridView3.DataSource = Nothing
+        Label53.Text = "0"
+        DataGridView5.DataSource = Nothing
+        Label78.Text = "0"
+        DataGridView6.DataSource = Nothing
+        Label80.Text = "0"
+        DataGridView7.DataSource = Nothing
+
+        'FillDGV5Empty()
+        'FillDGV6Empty()
+        'FillDGV7Empty()
     End Sub
 
     Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
         TextBox11.Text = ""
         TextBox12.Text = ""
         TextBox13.Text = ""
-        FillDGV9Empty()
-        FillDGV10Empty()
+        DataGridView9.DataSource = Nothing
+        Label86.Text = "0"
+        DataGridView10.DataSource = Nothing
+        Label85.Text = "0"
+        'FillDGV9Empty()
+        'FillDGV10Empty()
     End Sub
 
     Private Sub DataGridView10_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView10.RowHeaderMouseClick
@@ -8207,6 +8239,14 @@ Public Class Form1
             txtVisPatNo.BackColor = Color.MediumTurquoise
             txtVisPatNo.ForeColor = Color.White
         End If
+    End Sub
+
+    Private Sub txtComplain_Click(sender As Object, e As EventArgs) Handles txtComplain.Click
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
+    End Sub
+
+    Private Sub txtSign_Click(sender As Object, e As EventArgs) Handles txtSign.Click
+        InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
     End Sub
 End Class
 

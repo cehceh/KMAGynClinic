@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_260E7E1CF4FD95B9CC0E3B185F8E4150"
+        "OwnerKey" = "8:_D4F967D5200146478A759154FF744A6C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_26C23E8411EF42E09CC11EF6A4873110"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -165,12 +171,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D9734D17E8D9A4D7C008E975A3D637AF"
-        "OwnerKey" = "8:_D4F967D5200146478A759154FF744A6C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FDB0E0A3AB514B439575BFBA5D9BC178"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -184,7 +184,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D9734D17E8D9A4D7C008E975A3D637AF"
+        "OwnerKey" = "8:_260E7E1CF4FD95B9CC0E3B185F8E4150"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -302,6 +302,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_260E7E1CF4FD95B9CC0E3B185F8E4150"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ApplicationEnhancement, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_260E7E1CF4FD95B9CC0E3B185F8E4150"
+                    {
+                    "Name" = "8:ApplicationEnhancement.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ApplicationEnhancement.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_26C23E8411EF42E09CC11EF6A4873110"
             {
             "SourcePath" = "8:..\\test\\bin\\Release\\Docs\\DiaInter.xml"
@@ -327,7 +358,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\PatNames.xml"
             "TargetName" = "8:PatNames.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -347,7 +378,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\InvRes.xml"
             "TargetName" = "8:InvRes.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -367,7 +398,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Jobs.xml"
             "TargetName" = "8:Jobs.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -387,7 +418,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Head_physician.ico"
             "TargetName" = "8:Head_physician.ico"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -407,7 +438,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Plans.xml"
             "TargetName" = "8:Plans.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -427,7 +458,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\PatNames2.xml"
             "TargetName" = "8:PatNames2.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -467,7 +498,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Docs\\TestDB.accdb"
             "TargetName" = "8:TestDB.accdb"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -507,7 +538,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Investigations2.xml"
             "TargetName" = "8:Investigations2.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -567,7 +598,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\PatNames1.xml"
             "TargetName" = "8:PatNames1.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -587,7 +618,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Mob.xml"
             "TargetName" = "8:Mob.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -627,7 +658,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\sabah2.png"
             "TargetName" = "8:sabah2.png"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -667,7 +698,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Investigations.xml"
             "TargetName" = "8:Investigations.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -687,7 +718,7 @@
             "SourcePath" = "8:..\\test\\bin\\Release\\Drugs1.xml"
             "TargetName" = "8:Drugs1.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -762,43 +793,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D9734D17E8D9A4D7C008E975A3D637AF"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ApplicationEnhancement, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D9734D17E8D9A4D7C008E975A3D637AF"
-                    {
-                    "Name" = "8:ApplicationEnhancement.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:ApplicationEnhancement.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDB0E0A3AB514B439575BFBA5D9BC178"
             {
             "SourcePath" = "8:..\\test\\bin\\Release\\DiaInter.xml"
             "TargetName" = "8:DiaInter.xml"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -862,35 +862,24 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_31D347C710BC412D9F814FF493C12B4D"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_152F1B4C29D44013BED5607D95EE1CEE"
                     {
-                    "Name" = "8:KMAClinic"
+                    "Name" = "8:Backups"
                     "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_99796614513643E9A1ED008BF80D7625"
+                    "Property" = "8:_868983AA995E426EA50BDF8154365ECD"
                         "Folders"
                         {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_EBBAC4B6E15442C39F1833415A87B71E"
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_5BBDFB86DF654A608FBFBFAE7C4EC2AC"
                             {
-                            "Name" = "8:Backups"
+                            "Name" = "8:Docs"
                             "AlwaysCreate" = "11:TRUE"
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
-                            "Property" = "8:_868983AA995E426EA50BDF8154365ECD"
+                            "Property" = "8:_B62964383DBB46B88D57F5F13EC642C2"
                                 "Folders"
                                 {
-                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5BBDFB86DF654A608FBFBFAE7C4EC2AC"
-                                    {
-                                    "Name" = "8:Docs"
-                                    "AlwaysCreate" = "11:TRUE"
-                                    "Condition" = "8:"
-                                    "Transitive" = "11:FALSE"
-                                    "Property" = "8:_B62964383DBB46B88D57F5F13EC642C2"
-                                        "Folders"
-                                        {
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -914,7 +903,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:KMAGynClinic"
         "ProductCode" = "8:{613D3B00-621D-4AFC-BE29-FE35061CAC8E}"
-        "PackageCode" = "8:{60F36B6B-3A51-40D6-8F6A-CB94B8251CE3}"
+        "PackageCode" = "8:{2DEECDC3-6E57-406E-B26C-EBF05CB0B9C0}"
         "UpgradeCode" = "8:{C7DE8DB7-B7C7-44B6-AFCD-5A0072BA6BFD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1452,7 +1441,7 @@
             "SourcePath" = "8:..\\test\\obj\\Release\\test.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_31D347C710BC412D9F814FF493C12B4D"
+            "Folder" = "8:_CCC28DA538224470B7992C98C72A7482"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
