@@ -55,6 +55,8 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBox17 = New System.Windows.Forms.TextBox()
+        Me.TextBox16 = New System.Windows.Forms.TextBox()
         Me.Button20 = New System.Windows.Forms.Button()
         Me.Button19 = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
@@ -171,7 +173,9 @@ Partial Class Form1
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TextBox15 = New System.Windows.Forms.TextBox()
         Me.Button18 = New System.Windows.Forms.Button()
         Me.cbxHusJob = New System.Windows.Forms.ComboBox()
         Me.Label88 = New System.Windows.Forms.Label()
@@ -189,7 +193,6 @@ Partial Class Form1
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.txtDiagnosis = New System.Windows.Forms.TextBox()
         Me.txtVisAmount = New System.Windows.Forms.TextBox()
@@ -370,10 +373,10 @@ Partial Class Form1
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.DataGridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -470,11 +473,11 @@ Partial Class Form1
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.DateTimePicker1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateTimePicker1.Location = New System.Drawing.Point(1081, 6)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(122, 20)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(122, 24)
         Me.DateTimePicker1.TabIndex = 157
         Me.DateTimePicker1.Value = New Date(2017, 11, 1, 0, 0, 0, 0)
         '
@@ -523,12 +526,13 @@ Partial Class Form1
         Me.btnclear.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnclear.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnclear.ForeColor = System.Drawing.Color.White
-        Me.btnclear.Location = New System.Drawing.Point(880, 5)
+        Me.btnclear.Location = New System.Drawing.Point(939, 6)
         Me.btnclear.Name = "btnclear"
-        Me.btnclear.Size = New System.Drawing.Size(70, 49)
+        Me.btnclear.Size = New System.Drawing.Size(11, 49)
         Me.btnclear.TabIndex = 148
         Me.btnclear.Text = "Clear"
         Me.btnclear.UseVisualStyleBackColor = False
+        Me.btnclear.Visible = False
         '
         'DTPicker
         '
@@ -644,7 +648,7 @@ Partial Class Form1
         Me.btnVisits.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnVisits.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnVisits.ForeColor = System.Drawing.Color.White
-        Me.btnVisits.Location = New System.Drawing.Point(863, 7)
+        Me.btnVisits.Location = New System.Drawing.Point(926, 6)
         Me.btnVisits.Name = "btnVisits"
         Me.btnVisits.Size = New System.Drawing.Size(11, 48)
         Me.btnVisits.TabIndex = 147
@@ -754,6 +758,8 @@ Partial Class Form1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.TextBox17)
+        Me.Panel1.Controls.Add(Me.TextBox16)
         Me.Panel1.Controls.Add(Me.Button20)
         Me.Panel1.Controls.Add(Me.Button19)
         Me.Panel1.Controls.Add(Me.Button13)
@@ -857,6 +863,32 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1217, 758)
         Me.Panel1.TabIndex = 166
+        '
+        'TextBox17
+        '
+        Me.TextBox17.AutoCompleteCustomSource.AddRange(New String() {"Free  P.S.A.", "Bilharzial Titre", "Bone Scan", "Salmonella  Typhi H Ab", "Urinary Microprotein.", "Bilirubin T", "Abdomino Pelvic Ultrasonography", "Alkaline Phosphatase", "Ascending  Cystogram", "Ascending Urethrogram", "B.T.   C.T.", "C.T,", "C/S OF  Prost. Secretion", "C/S OF Ureth. Discharge.", "C/S OF URINE", "CAVERNOSOGRAM", "CBC", "CHOLEST.", "creatinine", "creatinine ,Clearence", "Creatinine Clearence", "CT Abdomen, Pelvis", "Doppler of Penis", "E.C.G.", "ECHOCARDIOGRAPHY", "F.Bl.sugar", "F.S.H.", "Fructose Test", "FULL Investigations", "H.B.", "H.B.S.", "INFUSION    I.V.U.", "IVP", "KUB", "L.H.", "M.R.U.", "Micturating CystoUrethrogram", "Multisclice  C.T.", "Na, K", "P. P. BL.SUGAR", "P.S.A.", "plain abdomen", "Plain U T.", "Plain U T.     RT.Lat. Film", "Plasma Protein", "Post. Coital Urine Analysis", "prlactin", "Prolactin", "protein in 24 hours urine", "Proth.Act.", "PT", "PTT", "Radio isotope Renal stud.", "S.G.O.T.", "Salmonella Para Typhy", "Salmonella Typhi", "SEM INOGRAM", "Sr. protein Total", "STONE ANALYSIS", "Stool Analysis", "Testosterone", "Triglycerides", "Triphasic Spiral C.T.", "TSH", "U/S", "U/S  OF PENIS", "U/S ABD. PELVIS", "U/S SCROTUM", "U/S SCROTUM  Doppler  varicocoeles", "urea", "URIC ACID", "URINE  CYTOLOGY", "URINE ANALYSIS", "Urodynamic Study", "US on Prostate", "Vasogram", "W.B.Cs."})
+        Me.TextBox17.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TextBox17.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBox17.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.TextBox17.Location = New System.Drawing.Point(1013, 351)
+        Me.TextBox17.Name = "TextBox17"
+        Me.TextBox17.ReadOnly = True
+        Me.TextBox17.Size = New System.Drawing.Size(69, 24)
+        Me.TextBox17.TabIndex = 595
+        Me.TextBox17.Visible = False
+        '
+        'TextBox16
+        '
+        Me.TextBox16.AutoCompleteCustomSource.AddRange(New String() {"Free  P.S.A.", "Bilharzial Titre", "Bone Scan", "Salmonella  Typhi H Ab", "Urinary Microprotein.", "Bilirubin T", "Abdomino Pelvic Ultrasonography", "Alkaline Phosphatase", "Ascending  Cystogram", "Ascending Urethrogram", "B.T.   C.T.", "C.T,", "C/S OF  Prost. Secretion", "C/S OF Ureth. Discharge.", "C/S OF URINE", "CAVERNOSOGRAM", "CBC", "CHOLEST.", "creatinine", "creatinine ,Clearence", "Creatinine Clearence", "CT Abdomen, Pelvis", "Doppler of Penis", "E.C.G.", "ECHOCARDIOGRAPHY", "F.Bl.sugar", "F.S.H.", "Fructose Test", "FULL Investigations", "H.B.", "H.B.S.", "INFUSION    I.V.U.", "IVP", "KUB", "L.H.", "M.R.U.", "Micturating CystoUrethrogram", "Multisclice  C.T.", "Na, K", "P. P. BL.SUGAR", "P.S.A.", "plain abdomen", "Plain U T.", "Plain U T.     RT.Lat. Film", "Plasma Protein", "Post. Coital Urine Analysis", "prlactin", "Prolactin", "protein in 24 hours urine", "Proth.Act.", "PT", "PTT", "Radio isotope Renal stud.", "S.G.O.T.", "Salmonella Para Typhy", "Salmonella Typhi", "SEM INOGRAM", "Sr. protein Total", "STONE ANALYSIS", "Stool Analysis", "Testosterone", "Triglycerides", "Triphasic Spiral C.T.", "TSH", "U/S", "U/S  OF PENIS", "U/S ABD. PELVIS", "U/S SCROTUM", "U/S SCROTUM  Doppler  varicocoeles", "urea", "URIC ACID", "URINE  CYTOLOGY", "URINE ANALYSIS", "Urodynamic Study", "US on Prostate", "Vasogram", "W.B.Cs."})
+        Me.TextBox16.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TextBox16.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBox16.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.TextBox16.Location = New System.Drawing.Point(1013, 7)
+        Me.TextBox16.Name = "TextBox16"
+        Me.TextBox16.ReadOnly = True
+        Me.TextBox16.Size = New System.Drawing.Size(69, 24)
+        Me.TextBox16.TabIndex = 594
+        Me.TextBox16.Visible = False
         '
         'Button20
         '
@@ -1962,7 +1994,7 @@ Partial Class Form1
         '
         Me.DateTimePicker4.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker4.Location = New System.Drawing.Point(1038, 44)
+        Me.DateTimePicker4.Location = New System.Drawing.Point(1022, 11)
         Me.DateTimePicker4.Name = "DateTimePicker4"
         Me.DateTimePicker4.Size = New System.Drawing.Size(35, 20)
         Me.DateTimePicker4.TabIndex = 233
@@ -1975,7 +2007,7 @@ Partial Class Form1
         Me.btnN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnN.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnN.ForeColor = System.Drawing.Color.White
-        Me.btnN.Location = New System.Drawing.Point(1022, 39)
+        Me.btnN.Location = New System.Drawing.Point(1063, 5)
         Me.btnN.Name = "btnN"
         Me.btnN.Size = New System.Drawing.Size(10, 26)
         Me.btnN.TabIndex = 220
@@ -2118,9 +2150,9 @@ Partial Class Form1
         Me.TextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.TextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.TextBox3.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.TextBox3.Location = New System.Drawing.Point(1081, 44)
+        Me.TextBox3.Location = New System.Drawing.Point(1030, 37)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(77, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(173, 20)
         Me.TextBox3.TabIndex = 221
         Me.TextBox3.Visible = False
         '
@@ -2182,25 +2214,40 @@ Partial Class Form1
         Me.DataGridView1.Location = New System.Drawing.Point(5, 337)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1214, 199)
+        Me.DataGridView1.Size = New System.Drawing.Size(1205, 199)
         Me.DataGridView1.TabIndex = 228
         '
         'TabControl1
         '
+        Me.TabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.ItemSize = New System.Drawing.Size(0, 1)
         Me.TabControl1.Location = New System.Drawing.Point(3, 66)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1222, 787)
+        Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 228
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Panel1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 5)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1214, 778)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
+        Me.TabPage2.Controls.Add(Me.TextBox15)
         Me.TabPage2.Controls.Add(Me.Button18)
         Me.TabPage2.Controls.Add(Me.cbxHusJob)
         Me.TabPage2.Controls.Add(Me.Label88)
@@ -2247,12 +2294,24 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.DateTimePicker1)
         Me.TabPage2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabPage2.ForeColor = System.Drawing.Color.Black
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 5)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1214, 761)
+        Me.TabPage2.Size = New System.Drawing.Size(1214, 778)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
+        '
+        'TextBox15
+        '
+        Me.TextBox15.AutoCompleteCustomSource.AddRange(New String() {"Free  P.S.A.", "Bilharzial Titre", "Bone Scan", "Salmonella  Typhi H Ab", "Urinary Microprotein.", "Bilirubin T", "Abdomino Pelvic Ultrasonography", "Alkaline Phosphatase", "Ascending  Cystogram", "Ascending Urethrogram", "B.T.   C.T.", "C.T,", "C/S OF  Prost. Secretion", "C/S OF Ureth. Discharge.", "C/S OF URINE", "CAVERNOSOGRAM", "CBC", "CHOLEST.", "creatinine", "creatinine ,Clearence", "Creatinine Clearence", "CT Abdomen, Pelvis", "Doppler of Penis", "E.C.G.", "ECHOCARDIOGRAPHY", "F.Bl.sugar", "F.S.H.", "Fructose Test", "FULL Investigations", "H.B.", "H.B.S.", "INFUSION    I.V.U.", "IVP", "KUB", "L.H.", "M.R.U.", "Micturating CystoUrethrogram", "Multisclice  C.T.", "Na, K", "P. P. BL.SUGAR", "P.S.A.", "plain abdomen", "Plain U T.", "Plain U T.     RT.Lat. Film", "Plasma Protein", "Post. Coital Urine Analysis", "prlactin", "Prolactin", "protein in 24 hours urine", "Proth.Act.", "PT", "PTT", "Radio isotope Renal stud.", "S.G.O.T.", "Salmonella Para Typhy", "Salmonella Typhi", "SEM INOGRAM", "Sr. protein Total", "STONE ANALYSIS", "Stool Analysis", "Testosterone", "Triglycerides", "Triphasic Spiral C.T.", "TSH", "U/S", "U/S  OF PENIS", "U/S ABD. PELVIS", "U/S SCROTUM", "U/S SCROTUM  Doppler  varicocoeles", "urea", "URIC ACID", "URINE  CYTOLOGY", "URINE ANALYSIS", "Urodynamic Study", "US on Prostate", "Vasogram", "W.B.Cs."})
+        Me.TextBox15.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TextBox15.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBox15.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.TextBox15.Location = New System.Drawing.Point(309, 304)
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.Size = New System.Drawing.Size(275, 20)
+        Me.TextBox15.TabIndex = 510
+        Me.TextBox15.Visible = False
         '
         'Button18
         '
@@ -2458,17 +2517,6 @@ Partial Class Form1
         Me.Label47.TabIndex = 230
         Me.Label47.Text = "--"
         '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.Panel1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1214, 761)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.Color.White
@@ -2505,9 +2553,9 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(AmountLabel)
         Me.TabPage3.Controls.Add(Me.txtVisPatNo)
         Me.TabPage3.Controls.Add(Me.txtSign)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 5)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(1214, 761)
+        Me.TabPage3.Size = New System.Drawing.Size(1214, 778)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         '
@@ -4022,9 +4070,9 @@ Partial Class Form1
         Me.TabPage4.Controls.Add(Me.DataGridView3)
         Me.TabPage4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabPage4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 5)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(1214, 761)
+        Me.TabPage4.Size = New System.Drawing.Size(1214, 778)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         '
@@ -4059,7 +4107,7 @@ Partial Class Form1
         Me.Label89.AutoSize = True
         Me.Label89.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label89.ForeColor = System.Drawing.Color.Black
-        Me.Label89.Location = New System.Drawing.Point(195, 12)
+        Me.Label89.Location = New System.Drawing.Point(187, 12)
         Me.Label89.Name = "Label89"
         Me.Label89.Size = New System.Drawing.Size(35, 17)
         Me.Label89.TabIndex = 257
@@ -4079,7 +4127,7 @@ Partial Class Form1
         'DateTimePicker5
         '
         Me.DateTimePicker5.CustomFormat = ""
-        Me.DateTimePicker5.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.DateTimePicker5.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateTimePicker5.Location = New System.Drawing.Point(58, 9)
         Me.DateTimePicker5.Name = "DateTimePicker5"
@@ -4089,9 +4137,9 @@ Partial Class Form1
         '
         'DateTimePicker6
         '
-        Me.DateTimePicker6.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.DateTimePicker6.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker6.Location = New System.Drawing.Point(236, 9)
+        Me.DateTimePicker6.Location = New System.Drawing.Point(228, 9)
         Me.DateTimePicker6.Name = "DateTimePicker6"
         Me.DateTimePicker6.Size = New System.Drawing.Size(104, 24)
         Me.DateTimePicker6.TabIndex = 254
@@ -4261,6 +4309,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.BackColor = System.Drawing.Color.White
         Me.TabPage5.Controls.Add(Me.Button22)
         Me.TabPage5.Controls.Add(Me.TextBox13)
         Me.TabPage5.Controls.Add(Me.Button16)
@@ -4278,12 +4327,11 @@ Partial Class Form1
         Me.TabPage5.Controls.Add(Me.TextBox11)
         Me.TabPage5.Controls.Add(Me.Label84)
         Me.TabPage5.Controls.Add(Me.Label83)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 5)
         Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(1214, 761)
+        Me.TabPage5.Size = New System.Drawing.Size(1214, 778)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "TabPage5"
-        Me.TabPage5.UseVisualStyleBackColor = True
         '
         'Button22
         '
@@ -4303,6 +4351,7 @@ Partial Class Form1
         Me.TextBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox13.Location = New System.Drawing.Point(395, 8)
         Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.ReadOnly = True
         Me.TextBox13.Size = New System.Drawing.Size(100, 23)
         Me.TextBox13.TabIndex = 258
         '
@@ -4414,21 +4463,21 @@ Partial Class Form1
         'DateTimePicker3
         '
         Me.DateTimePicker3.CustomFormat = ""
-        Me.DateTimePicker3.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.DateTimePicker3.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker3.Location = New System.Drawing.Point(267, 6)
+        Me.DateTimePicker3.Location = New System.Drawing.Point(256, 7)
         Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(106, 24)
+        Me.DateTimePicker3.Size = New System.Drawing.Size(119, 24)
         Me.DateTimePicker3.TabIndex = 244
         Me.DateTimePicker3.Value = New Date(2018, 8, 16, 0, 0, 0, 0)
         '
         'DateTimePicker2
         '
-        Me.DateTimePicker2.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.DateTimePicker2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
         Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker2.Location = New System.Drawing.Point(92, 7)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(78, 7)
         Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(104, 24)
+        Me.DateTimePicker2.Size = New System.Drawing.Size(117, 24)
         Me.DateTimePicker2.TabIndex = 243
         Me.DateTimePicker2.Value = New Date(2018, 6, 28, 0, 0, 0, 0)
         '
@@ -4437,6 +4486,7 @@ Partial Class Form1
         Me.TextBox12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox12.Location = New System.Drawing.Point(395, 63)
         Me.TextBox12.Name = "TextBox12"
+        Me.TextBox12.ReadOnly = True
         Me.TextBox12.Size = New System.Drawing.Size(100, 23)
         Me.TextBox12.TabIndex = 3
         '
@@ -4445,6 +4495,7 @@ Partial Class Form1
         Me.TextBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox11.Location = New System.Drawing.Point(982, 63)
         Me.TextBox11.Name = "TextBox11"
+        Me.TextBox11.ReadOnly = True
         Me.TextBox11.Size = New System.Drawing.Size(100, 23)
         Me.TextBox11.TabIndex = 2
         '
@@ -4531,7 +4582,7 @@ Partial Class Form1
         Me.Label81.AutoSize = True
         Me.Label81.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label81.ForeColor = System.Drawing.Color.SeaGreen
-        Me.Label81.Location = New System.Drawing.Point(581, 22)
+        Me.Label81.Location = New System.Drawing.Point(674, 22)
         Me.Label81.Name = "Label81"
         Me.Label81.Size = New System.Drawing.Size(0, 23)
         Me.Label81.TabIndex = 237
@@ -4575,7 +4626,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Panel2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
-        Me.Text = "Patients"
+        Me.Text = "KMA Gyn Clinic"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4583,11 +4634,11 @@ Partial Class Form1
         Me.Panel1.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.DataGridView8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage1.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.Panel4.ResumeLayout(False)
@@ -4943,4 +4994,7 @@ Partial Class Form1
     Friend WithEvents DateTimePicker6 As DateTimePicker
     Friend WithEvents Button23 As Button
     Friend WithEvents TextBox14 As TextBox
+    Friend WithEvents TextBox15 As TextBox
+    Friend WithEvents TextBox17 As TextBox
+    Friend WithEvents TextBox16 As TextBox
 End Class

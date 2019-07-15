@@ -13,14 +13,14 @@ Public Class Form1
 
     Inherits System.Windows.Forms.Form
     '("provider=microsoft.ace.oledb.12.0; data source=|DataDirectory|\TestDB.accdb;jet oledb:database password=mero1981923")
-    Dim cs As String = "provider=microsoft.ace.oledb.12.0; data source=" & Application.StartupPath & "\TestDB.accdb;jet oledb:database password=mero1981923"
+    Dim cs As String = "provider=microsoft.ace.oledb.12.0; data source=" & Application.StartupPath & "\TestDB.accdb;jet oledb:database password=hgpl]GGI"
     Dim conn As New OleDbConnection(cs)
     Dim cmd As New OleDbCommand
     Public dr As OleDbDataReader
 
     Dim f2 As Form2
 
-    'Dim WindowsApplication1 As System.STAThreadAttribute()
+    Dim hddserial As System.STAThreadAttribute()
 
     'To make the App. to open a fixed times
     'Private WithEvents usage As ApplicationUsage
@@ -78,13 +78,14 @@ Public Class Form1
         ' This call is required by the designer.
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
+        'HDDSer()
+        'Expire()
+        'If TextBox3.Text <> "amr_bakry" Then
+        '    MsgBox("You Are Not Authorized," + vbCrLf +
+        '           "Please Call 01067174141", MsgBoxStyle.Exclamation, "Error")
+        '    End
+        'End If
 
-        Expire()
-        If TextBox3.Text <> "amr_bakry" Then
-            MsgBox("You Are Not Authorized," + vbCrLf +
-                   "Please Call 01067174141")
-            End
-        End If
         Label81.Text = "Patient's Data"
 
         Me.AutoScroll = True
@@ -98,7 +99,7 @@ Public Class Form1
         LoadPicture()
 
         FillAuto()
-        txtPatName.Select()
+        'txtPatName.Select()
         'txtVisNo.Select()
 
     End Sub
@@ -107,13 +108,22 @@ Public Class Form1
         Dim x As Integer
         Dim y As Integer
         x = CInt((Me.Width - Panel2.Width) / 2)
-        y = CInt((Me.Height - Panel2.Height) / 2)
+        y = CInt((Me.Height - Panel2.Height) / 2) + 40
         Panel2.Location = New Point(x, y)
 
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         'Expire()
+        'HDDSer()
+        'If TextBox3.Text = TextBox15.Text Then
+        '    Exit Sub
+        'End If
+        'MsgBox("You Are Not Authorized," + vbCrLf +
+        '           "Please Call 01067174141", MsgBoxStyle.Exclamation, "Compatability Failed")
+        'End
+
         'If TextBox3.Text <> "amr_bakry" Then
         '    MsgBox("You Are Not Authorized, Please Call 01067174141")
         '    End
@@ -202,18 +212,6 @@ Public Class Form1
     'End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-
-        RDXmlPatNames()
-        RDXmlPatNames1()
-        RDXmlPatNames2()
-        RDXmlDrugs()
-        RDXmlDiaInter()
-        RDXmlInv()
-        RDXmlInv2()
-        RDXmlInvRes()
-        RDXmlPlan()
-        RDXmlJobs()
-        RDXmlMob()
         Dim databasepath As String = Path.Combine(Application.StartupPath,
                                                 Directory.GetCurrentDirectory + "\TestDB.accdb")
         Dim backuppath As String = Path.Combine(Application.StartupPath,
@@ -226,6 +224,19 @@ Public Class Form1
         My.Computer.FileSystem.CopyFile(databasepath, backuppath, True)
         My.Computer.FileSystem.CopyFile(databasepath, backuppath1, True)
 
+        RDXmlPatNames()
+        RDXmlPatNames1()
+        RDXmlPatNames2()
+        RDXmlDrugs()
+        RDXmlDiaInter()
+        RDXmlInv()
+        RDXmlInv2()
+        RDXmlInvRes()
+        RDXmlPlan()
+        RDXmlJobs()
+        RDXmlMob()
+
+
         'If e.CloseReason = CloseReason.UserClosing Then
         '    usage.Save()
         'End If
@@ -235,10 +246,22 @@ Public Class Form1
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Me.Location = New Point(0, 0)
         Me.Size = Screen.PrimaryScreen.WorkingArea.Size
-
+        'txtPatName.Select()
         'ShowPatTable()
         GynDisabled()
         Gyn2Disabled()
+        Expire()
+        If TextBox3.Text <> "amr_bakry" Then
+            MsgBox("You Are Not Authorized," + vbCrLf +
+                   "Please Call 01067174141", MsgBoxStyle.Exclamation, "Not Authorized")
+            End
+        End If
+        'If TextBox3.Text = TextBox15.Text Then
+        '    Exit Sub
+        'End If
+        'MsgBox("You Are Not Authorized," + vbCrLf +
+        '           "Please Call 01067174141", MsgBoxStyle.Exclamation, "Compatability Failed")
+        'End
 
     End Sub
 
@@ -274,6 +297,63 @@ Public Class Form1
         End Using
 
     End Sub
+
+    Sub HDDSer()
+        Dim HDD_Serial As String
+
+        Dim hdd As New ManagementObjectSearcher("select * from Win32_DiskDrive")
+
+        For Each hd In hdd.Get
+
+            HDD_Serial = hd("SerialNumber")
+            'MsgBox(HDD_Serial)
+            TextBox15.Text = HDD_Serial
+        Next
+    End Sub
+    'Private Sub HDDSer()
+    '    Dim hdCollection As New ArrayList()
+    '    Dim searcher As New ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive")
+    '    Dim wmi_HD As New ManagementObject()
+
+    '    For Each wmi_HD In searcher.Get
+
+    '        Dim hd As New Class1.HardDrive()
+
+    '        hd.Model = wmi_HD("Model").ToString()
+    '        hd.Type = wmi_HD("InterfaceType").ToString()
+    '        hdCollection.Add(hd)
+    '    Next
+
+    '    Dim searcher1 As New ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia")
+
+    '    Dim i As Integer = 0
+    '    For Each wmi_HD In searcher1.Get()
+
+    '        '// get the hard drive from collection
+    '        '// using index
+
+    '        Dim hd As Class1.HardDrive
+    '        hd = hdCollection(i)
+
+    '        '// get the hardware serial no.
+    '        If wmi_HD("SerialNumber") = "" Then
+    '            hd.serialNo = "None"
+    '        Else
+    '            hd.serialNo = wmi_HD("SerialNumber").ToString()
+    '            i += 1
+    '        End If
+    '    Next
+
+    '    Dim hd1 As Class1.HardDrive
+    '    Dim ii As Integer = 0
+
+    '    For Each hd1 In hdCollection
+    '        ii += 1
+
+    '        TextBox15.Text = TextBox15.Text + "Serial No: " + hd1.serialNo + Chr(13) + Chr(10) + Chr(13) + Chr(10)
+    '        'TextBox15.Text = TextBox15.Text + hd1.serialNo
+    '    Next
+    'End Sub
 
     ''##To refresh 
     Private Sub loaddata()
@@ -433,25 +513,60 @@ Public Class Form1
 
     Private Sub btnclear_Click(sender As Object, e As EventArgs) Handles btnclear.Click
         'Trace.WriteLine("btnclear_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        'If Label81.Text = "Patient's Data" Then
+        If Label81.Text = "Patient's Data" Then
+            cbxSearch.Text = ""
+            txtPatName.Text = ""
+            cbxJob.Text = ""
+            cbxAddress.Text = ""
+            DTPicker.Value = Now
+            txtAge.Text = ""
+            txtPhone.Text = ""
+            txtHusband.Text = ""
+            cbxHusJob.Text = ""
+            txtNo.Text = GetAutonumber("Pat", "Patient_no")
+        ElseIf Label81.Text = "Expected Date Of Delivery" Then
+            TextBox9.Text = ""
+            DataGridView3.DataSource = Nothing
+            Label53.Text = "0"
+            DataGridView5.DataSource = Nothing
+            Label78.Text = "0"
+            DataGridView6.DataSource = Nothing
+            Label80.Text = "0"
+            DataGridView7.DataSource = Nothing
+        ElseIf Label81.Text = "History" Then
+            ClearGyn()
+            ClearGyn2()
+        ElseIf Label81.Text = "Income" Then
+            TextBox11.Text = ""
+            TextBox12.Text = ""
+            TextBox13.Text = ""
+            DataGridView9.DataSource = Nothing
+            Label86.Text = "0"
+            DataGridView10.DataSource = Nothing
+            Label85.Text = "0"
+        ElseIf Label81.Text = "Visits" Then
+            ListBox4.Items.Clear()
+            txt1.Text = ""
+            ClearData()
+            ClearDrug()
+            ClearInv()
+            btnNewVisit.Enabled = False
+            rdoVisit.Checked = True
+            cbxVisSearch.Text = ""
+            InvAndAttDisabled()
+            DrugDisabled()
+            lblcurTime.Text = Now.ToShortDateString
+        End If
 
-        'ElseIf Label81.Text = "" Then
-
-        'ElseIf Label81.Text = "" Then
-
-        'ElseIf Label81.Text = "" Then
-
-        'End If
-
-        cbxSearch.Text = ""
-        txtPatName.Text = ""
-        cbxJob.Text = ""
-        cbxAddress.Text = ""
-        DTPicker.Value = Now
-        txtAge.Text = ""
-        txtPhone.Text = ""
-        txtHusband.Text = ""
-        cbxHusJob.Text = ""
+        'cbxSearch.Text = ""
+        'txtPatName.Text = ""
+        'cbxJob.Text = ""
+        'cbxAddress.Text = ""
+        'DTPicker.Value = Now
+        'txtAge.Text = ""
+        'txtPhone.Text = ""
+        'txtHusband.Text = ""
+        'cbxHusJob.Text = ""
 
         TextBox1.Text = ""
         TextBox2.Text = ""
@@ -786,19 +901,19 @@ Public Class Form1
         'FillDGV1()
         'FillDGV2()
         'FillDGV8()
-
+        txtNo.Select()
         ''##https://social.msdn.microsoft.com/Forums/vstudio/en-US/b2a15b26-6d51-49d5-81cf-20fef70e8316/when-datetimepicker-value-changed-this-error-occured?forum=vbgeneral
         operations.ToAgeString(DTPicker.Value)
         txtAge.Text = operations.Formatted
 
-        Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
-        Dim date2 As Date = DTPickerLMP.Value
-        Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
-        If DTPickerEDD.Value = DTPickerLMP.Value Then
-            Exit Sub
-        End If
-        txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        txtGA.Text = CStr(40 - weeks)
+        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        'Dim date2 As Date = DTPickerLMP.Value
+        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        'If DTPickerEDD.Value = DTPickerLMP.Value Then
+        '    Exit Sub
+        'End If
+        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        'txtGA.Text = CStr(40 - weeks)
         'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
         'txtPatName.Focus()
     End Sub
@@ -1474,7 +1589,7 @@ Public Class Form1
         Dim CompactDB As New Microsoft.Office.Interop.Access.Dao.DBEngine
 
         '##Here you can write your database password with this method (DatabasePath, DatabasePathCompacted, , , ";pwd=mero1981923")
-        CompactDB.CompactDatabase(DatabasePath, DatabasePathCompacted, , , ";pwd=mero1981923")
+        CompactDB.CompactDatabase(DatabasePath, DatabasePathCompacted, , , ";pwd=hgpl]GGI")
         CompactDB = Nothing
 
         Dim backuppath As String = Path.Combine(Application.StartupPath,
@@ -1587,13 +1702,34 @@ Public Class Form1
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Dim databasepath As String = Path.Combine(Application.StartupPath,
+                                                Directory.GetCurrentDirectory + "\TestDB.accdb")
+        Dim backuppath As String = Path.Combine(Application.StartupPath,
+                                                  Directory.GetCurrentDirectory + "\Backups\_" &
+                                                                            Format(Now(), "dd_MM_yyyy_hhmmtt") & ".accdb")
+        Dim backuppath1 As String = Path.Combine(Application.StartupPath,
+                                                  Directory.GetCurrentDirectory + "\Backups\Docs\TestDB_" &
+                                                                            Format(Now(), "MM_yyyy") & ".accdb")
+
+        My.Computer.FileSystem.CopyFile(databasepath, backuppath, True)
+        My.Computer.FileSystem.CopyFile(databasepath, backuppath1, True)
+
         If MsgBox("You Will Exit The Clinic" + vbCrLf +
                   "Are you sure ?", MsgBoxStyle.YesNo,
                   "Confirm Message") = vbNo Then
             Exit Sub
         Else
-            'Close()
-            'Application.Restart()
+            RDXmlDiaInter()
+            RDXmlDrugs()
+            RDXmlPlan()
+            RDXmlMob()
+            RDXmlJobs()
+            RDXmlInv()
+            RDXmlInv2()
+            RDXmlInvRes()
+            RDXmlPatNames()
+            RDXmlPatNames1()
+            RDXmlPatNames2()
             Application.ExitThread()
         End If
 
@@ -1630,6 +1766,9 @@ Public Class Form1
     End Sub
 
     Private Sub btnNewGyn_Click(sender As Object, e As EventArgs) Handles btnNewGyn.Click
+        If txtPatName.Text = "" Then
+            Exit Sub
+        End If
         ClearGyn()
         TextBox6.Text = txtNo.Text
         TextBox5.Text = txtPatName.Text
@@ -1642,9 +1781,14 @@ Public Class Form1
         End If
         GynEnabled()
         btnL.Enabled = True
+        txtVis1.BackColor = Color.LightSeaGreen
+        txtVis1.ForeColor = Color.White
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+        If txtPatName.Text = "" Then
+            Exit Sub
+        End If
         ClearGyn2()
         TextBox7.Text = txtNo.Text
         TextBox8.Text = txtPatName.Text
@@ -1656,7 +1800,8 @@ Public Class Form1
             txtVis.Select()
         End If
         Gyn2Enabled()
-
+        txtVis.BackColor = Color.LightSeaGreen
+        txtVis.ForeColor = Color.White
 
     End Sub
 
@@ -3295,6 +3440,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnF_Click(sender As Object, e As EventArgs) Handles btnF.Click
+        cbxSearch.Text = ""
         Button1.BackColor = Color.LightSeaGreen
         Label81.Text = "Patient's Data"
         If Button1.BackColor = Color.LightSeaGreen Then
@@ -3331,7 +3477,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnL_Click(sender As Object, e As EventArgs) Handles btnL.Click
-
+        cbxSearch.Text = ""
         Button1.BackColor = Color.LightSeaGreen
         Label81.Text = "Patient's Data"
         If Button1.BackColor = Color.LightSeaGreen Then
@@ -3676,7 +3822,16 @@ Public Class Form1
         'Me.ListBox3.Items.Clear()
         'btnL.Enabled = True
         'btnF.Enabled = True
+        DataGridView1.DataSource = Nothing
+        Label47.Text = "0"
+        DataGridView2.DataSource = Nothing
+        Label50.Text = "0"
 
+        If txtVisName.Text = "" Then
+            Exit Sub
+        End If
+        txtNo.Text = txtVisPatNo.Text
+        ShowPatTable()
         'Dim connection As OleDbConnection = New OleDbConnection()
         'connection.ConnectionString = "provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923"
         'Dim command As OleDbCommand = New OleDbCommand()
@@ -3833,9 +3988,16 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        DataGridView5.DataSource = Nothing
+        Label78.Text = "0"
+        DataGridView6.DataSource = Nothing
+        Label80.Text = "0"
+        'FillDGV6()
+        'FillDGV5()
+        DataGridView3.DataSource = Nothing
+        Label53.Text = "0"
+        DataGridView7.DataSource = Nothing
 
-        FillDGV6()
-        FillDGV5()
         'Button2.ForeColor = Color.BlueViolet
         'UpdateGyn()
         'txtGA.Text = dgv.Cells().Value.ToString
@@ -3903,85 +4065,14 @@ Public Class Form1
 
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        'Dim dgv As DataGridViewRow = DataGridView1.SelectedRows(0)
-        'Dim dgv As DataGridView
-        'dgv = DataGridView1
-        'txtNo.Text = dgv.Cells(0).Value.ToString
-        'txtVis1.Text = dgv.Cells(1).Value.ToString
-        'txtG.Text = dgv.Cells(2).Value.ToString
-        'txtP.Text = dgv.Cells(3).Value.ToString
-        'txtA.Text = dgv.Cells(4).Value.ToString
-        'chbxNVD.Checked = CBool(dgv.Cells(5).Value.ToString)
-        'chbxCS.Checked = CBool(dgv.Cells(6).Value.ToString)
-        'cbxHPOC.Text = dgv.Cells(7).Value.ToString
-        'cbxLD.Text = dgv.Cells(8).Value.ToString
-        'cbxLC.Text = dgv.Cells(9).Value.ToString
-        'DTPickerMns.Value = CDate(dgv.Cells(10).Value.ToString)
-        'DTPickerLMP.Value = CDate(dgv.Cells(11).Value.ToString)
-        'DTPickerEDD.Value = CDate(dgv.Cells(12).Value.ToString)
-        'txtElapsed.Text = dgv.Cells(13).Value.ToString
-        'txtGA.Text = dgv.Cells(14).Value.ToString
-        'cbxMedH1.Text = dgv.Cells(15).Value.ToString
-        'cbxMedH2.Text = dgv.Cells(16).Value.ToString
-        'cbxMedH3.Text = dgv.Cells(17).Value.ToString
-        'cbxSurH1.Text = dgv.Cells(18).Value.ToString
-        'cbxSurH2.Text = dgv.Cells(19).Value.ToString
-        'cbxSurH3.Text = dgv.Cells(20).Value.ToString
-        'cbxGynH1.Text = dgv.Cells(21).Value.ToString
-        'cbxGynH2.Text = dgv.Cells(22).Value.ToString
-        'cbxGynH3.Text = dgv.Cells(23).Value.ToString
-        'cbxDrugH1.Text = dgv.Cells(24).Value.ToString
-        'cbxDrugH2.Text = dgv.Cells(25).Value.ToString
-        'cbxDrugH3.Text = dgv.Cells(26).Value.ToString
-        'chbxGyn.Checked = CBool(dgv.Cells(27).Value.ToString)
-
-        'txtNo.Text = dgv.Rows(0).Cells("Patient_no").Value.ToString
-        'txtVis1.Text = dgv.Rows(1).Cells("Vis_no").Value.ToString
-        'txtG.Text = dgv.Rows(2).Cells("G").Value.ToString
-        'txtP.Text = dgv.Rows(3).Cells("P").Value.ToString
-        'txtA.Text = dgv.Rows(4).Cells("A").Value.ToString
-        'chbxNVD.Checked = CBool(dgv.Rows(5).Cells("NVD").Value.ToString)
-        'chbxCS.Checked = CBool(dgv.Rows(6).Cells("CS").Value.ToString)
-        'cbxHPOC.Text = dgv.Rows(7).Cells("HPOC").Value.ToString
-        'cbxLD.Text = dgv.Rows(8).Cells("LD").Value.ToString
-        'cbxLC.Text = dgv.Rows(9).Cells("LC").Value.ToString
-        'DTPickerMns.Value = CDate(dgv.Rows(10).Cells("MnsDate").Value.ToString)
-        'DTPickerLMP.Value = CDate(dgv.Rows(11).Cells("LMPDate").Value.ToString)
-        'DTPickerEDD.Value = CDate(dgv.Rows(12).Cells("EDDDate").Value.ToString)
-        'txtElapsed.Text = dgv.Rows(13).Cells("ElapW").Value.ToString
-        'txtGA.Text = dgv.Rows(14).Cells("GAW").Value.ToString
-        'cbxMedH1.Text = dgv.Rows(15).Cells("MedH1").Value.ToString
-        'cbxMedH2.Text = dgv.Rows(16).Cells("MedH2").Value.ToString
-        'cbxMedH3.Text = dgv.Rows(17).Cells("MedH3").Value.ToString
-        'cbxSurH1.Text = dgv.Rows(18).Cells("SurH1").Value.ToString
-        'cbxSurH2.Text = dgv.Rows(19).Cells("SurH2").Value.ToString
-        'cbxSurH3.Text = dgv.Rows(20).Cells("SurH3").Value.ToString
-        'cbxGynH1.Text = dgv.Rows(21).Cells("GynH1").Value.ToString
-        'cbxGynH2.Text = dgv.Rows(22).Cells("GynH2").Value.ToString
-        'cbxGynH3.Text = dgv.Rows(23).Cells("GynH3").Value.ToString
-        'cbxDrugH1.Text = dgv.Rows(24).Cells("DrugH1").Value.ToString
-        'cbxDrugH2.Text = dgv.Rows(25).Cells("DrugH2").Value.ToString
-        'cbxDrugH3.Text = dgv.Rows(26).Cells("DrugH3").Value.ToString
-        'chbxGyn.Checked = CBool(dgv.Rows(27).Cells("Gyn").Value.ToString)
-
-        'TabControl1.SelectedTab = Me.TabPage1
-        'GynEnabled()
-
-
-    End Sub
-
     Private Sub DataGridView1_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.RowHeaderMouseClick
+        TextBox16.Text = ""
 
-        'If (DataGridView1.Rows.Count) - 1 = 0 Then
-        '    Exit Sub
-        'End If
-        'TextBox5.Text = txtPatName.Text
-        'TextBox6.Text = txtNo.Text
-        ClearForDGV2()
         Dim dgv As DataGridViewRow = DataGridView1.SelectedRows(0)
-        txtNo.Text = dgv.Cells(0).Value.ToString
+        'txtNo.Text = dgv.Cells(0).Value.ToString
+        TextBox6.Text = dgv.Cells(0).Value.ToString
         txtVis1.Text = dgv.Cells(1).Value.ToString
+        TextBox16.Text = dgv.Cells(1).Value.ToString
         DTPickerMns.Value = CDate(dgv.Cells(2).Value.ToString)
         chbxNVD.Checked = CBool(dgv.Cells(3).Value.ToString)
         chbxCS.Checked = CBool(dgv.Cells(4).Value.ToString)
@@ -4012,52 +4103,28 @@ Public Class Form1
         cbxDrugH3.Text = dgv.Cells(26).Value.ToString
         chbxGyn.Checked = CBool(dgv.Cells(27).Value.ToString)
 
-        'MsgBox("Hi it's Done")
-        'txtNo.Text = dgv.Rows(0).Cells("Patient_no").Value.ToString
-        'txtVis1.Text = dgv.Rows(1).Cells("Vis_no").Value.ToString
-        'txtG.Text = dgv.Rows(2).Cells("G").Value.ToString
-        'txtP.Text = dgv.Rows(3).Cells("P").Value.ToString
-        'txtA.Text = dgv.Rows(4).Cells("A").Value.ToString
-        'chbxNVD.Checked = CBool(dgv.Rows(5).Cells("NVD").Value.ToString)
-        'chbxCS.Checked = CBool(dgv.Rows(6).Cells("CS").Value.ToString)
-        'cbxHPOC.Text = dgv.Rows(7).Cells("HPOC").Value.ToString
-        'cbxLD.Text = dgv.Rows(8).Cells("LD").Value.ToString
-        'cbxLC.Text = dgv.Rows(9).Cells("LC").Value.ToString
-        'DTPickerMns.Value = CDate(dgv.Rows(10).Cells("MnsDate").Value.ToString)
-        'DTPickerLMP.Value = CDate(dgv.Rows(11).Cells("LMPDate").Value.ToString)
-        'DTPickerEDD.Value = CDate(dgv.Rows(12).Cells("EDDDate").Value.ToString)
-        'txtElapsed.Text = dgv.Rows(13).Cells("ElapW").Value.ToString
-        'txtGA.Text = dgv.Rows(14).Cells("GAW").Value.ToString
-        'cbxMedH1.Text = dgv.Rows(15).Cells("MedH1").Value.ToString
-        'cbxMedH2.Text = dgv.Rows(16).Cells("MedH2").Value.ToString
-        'cbxMedH3.Text = dgv.Rows(17).Cells("MedH3").Value.ToString
-        'cbxSurH1.Text = dgv.Rows(18).Cells("SurH1").Value.ToString
-        'cbxSurH2.Text = dgv.Rows(19).Cells("SurH2").Value.ToString
-        'cbxSurH3.Text = dgv.Rows(20).Cells("SurH3").Value.ToString
-        'cbxGynH1.Text = dgv.Rows(21).Cells("GynH1").Value.ToString
-        'cbxGynH2.Text = dgv.Rows(22).Cells("GynH2").Value.ToString
-        'cbxGynH3.Text = dgv.Rows(23).Cells("GynH3").Value.ToString
-        'cbxDrugH1.Text = dgv.Rows(24).Cells("DrugH1").Value.ToString
-        'cbxDrugH2.Text = dgv.Rows(25).Cells("DrugH2").Value.ToString
-        'cbxDrugH3.Text = dgv.Rows(26).Cells("DrugH3").Value.ToString
-        'chbxGyn.Checked = CBool(dgv.Rows(27).Cells("Gyn").Value.ToString)
-        Button6.BackColor = Color.LightSeaGreen
-        Label81.Text = "History"
-        If Button6.BackColor = Color.LightSeaGreen Then
-            Button2.BackColor = Color.SeaGreen
-            Button1.BackColor = Color.SeaGreen
-            Button8.BackColor = Color.SeaGreen
-        End If
+        'Button6.BackColor = Color.LightSeaGreen
+        'Label81.Text = "History"
+        'If Button6.BackColor = Color.LightSeaGreen Then
+        '    Button2.BackColor = Color.SeaGreen
+        '    Button1.BackColor = Color.SeaGreen
+        '    Button8.BackColor = Color.SeaGreen
+        'End If
 
         TabControl1.SelectedTab = Me.TabPage1
         TextBox5.Text = txtPatName.Text
         TextBox6.Text = txtNo.Text
-        TextBox8.Text = txtPatName.Text
-        TextBox7.Text = txtNo.Text
-        GynEnabled()
+        txtVisNo.Text = TextBox16.Text
+
+        'TextBox8.Text = txtPatName.Text
+        'TextBox7.Text = txtNo.Text
+
+        'GynEnabled()
+        'ClearForDGV2()
         Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
         Dim date2 As Date = DTPickerLMP.Value
         Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+
         If DTPickerEDD.Value = DTPickerLMP.Value Then
             txtElapsed.Text = "0"
             txtGA.Text = "0"
@@ -4066,6 +4133,9 @@ Public Class Form1
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
         txtGA.Text = CStr(40 - weeks)
         DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+
+
+
     End Sub
 
     Sub ClearForDGV1()
@@ -4201,44 +4271,16 @@ Public Class Form1
             Button8.BackColor = Color.SeaGreen
             Button17.BackColor = Color.SeaGreen
         End If
-        'If txtVis1.Text <> GetAutonumber("Gyn", "Vis_no") Or DataGridView1.Rows.Count > 0 Then
-        '    Exit Sub
-        'End If
-        'If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") And MsgBox("You will create a new history Visit" & vbCrLf &
-        '    "to this Patient ID : (" & txtNo.Text & ") Are you sure ?", MsgBoxStyle.YesNo, "Warning") = vbNo Then
-        '    Exit Sub
-        'End If
 
-        'If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") Then
-        '    GynDisabled()
-        '    Exit Sub
-        'End If
-        'ClearGyn()
-        'ClearGyn2()
-        'GynDisabled()
-        'TextBox6.Text = txtNo.Text
-        'TextBox5.Text = txtPatName.Text
-        'TextBox7.Text = txtNo.Text
-        'TextBox8.Text = txtPatName.Text
-
-
-        'If txtVis1.Text Then
     End Sub
 
     Private Sub DataGridView2_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView2.RowHeaderMouseClick
-
+        TextBox17.Text = ""
         Dim dgv As DataGridViewRow = DataGridView2.SelectedRows(0)
-        'If (DataGridView2.Rows.Count) - 1 = 0 Then
-        '    MsgBox("Empty")
-        '    Exit Sub
-        'End If
-
-        'TextBox8.Text = txtPatName.Text
-        'TextBox7.Text = txtNo.Text
-        ClearForDGV1()
-        'txtVis.Text = dgv.Cells(0).Value.ToString
-        txtNo.Text = dgv.Cells(0).Value.ToString
+        'txtNo.Text = dgv.Cells(0).Value.ToString
+        TextBox7.Text = dgv.Cells(0).Value.ToString
         txtVis.Text = dgv.Cells(1).Value.ToString
+        TextBox17.Text = dgv.Cells(1).Value.ToString
         DTPickerAtt.Value = CDate(dgv.Cells(2).Value.ToString)
         cbxGL.Text = dgv.Cells(3).Value.ToString
         cbxPuls.Text = dgv.Cells(4).Value.ToString
@@ -4255,6 +4297,7 @@ Public Class Form1
         txtAmount.Text = dgv.Cells(15).Value.ToString
         'cbxGL.Text = dgv.Cells(15).Value.ToString
         'DTPickerAtt.Value = CDate(dgv.Cells(15).Value.ToString)
+
         Button6.BackColor = Color.LightSeaGreen
         Label81.Text = "History"
         If Button6.BackColor = Color.LightSeaGreen Then
@@ -4264,14 +4307,15 @@ Public Class Form1
             Button17.BackColor = Color.SeaGreen
 
         End If
-        TabControl1.SelectedTab = Me.TabPage1
-        TextBox5.Text = txtPatName.Text
-        TextBox6.Text = txtNo.Text
+        'TextBox5.Text = txtPatName.Text
+        'TextBox6.Text = txtNo.Text
         TextBox8.Text = txtPatName.Text
-        TextBox7.Text = txtNo.Text
-
+        'TextBox7.Text = txtNo.Text
+        TabControl1.SelectedTab = Me.TabPage1
+        'ClearForDGV1()
         Gyn2Enabled()
-        'End If
+
+
     End Sub
 
     '######################### Visit Screen #############################
@@ -5135,13 +5179,40 @@ Public Class Form1
         'Trace.WriteLine("ShowVisDPTable FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
 
+    'Sub ShowVisitsPatTable()
+    '    'Trace.WriteLine("ShowVisitsPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+    '    Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
+    '        con.Open()
+    '        Using cmd As New OleDbCommand
+    '            cmd.Connection = con
+    '            cmd.CommandText = "SELECT * FROM Visits WHERE Patient_no=@Patient_no"
+    '            '"ORDER BY Visit_no"
+    '            cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtNo.Text))
+    '            Using dt1 As New DataTable
+    '                dt1.Load(cmd.ExecuteReader)
+    '                If dt1.Rows.Count > 0 Then
+    '                    txtVisNo.Text = dt1.Rows(0).Item("Visit_no").ToString
+    '                    txtVisPatNo.Text = dt1.Rows(0).Item("Patient_no").ToString
+    '                    txtVisName.Text = dt1.Rows(0).Item("Name").ToString
+    '                    txtComplain.Text = dt1.Rows(0).Item("Complain").ToString
+    '                    txtSign.Text = dt1.Rows(0).Item("Sign").ToString
+    '                    cbxDia.Text = dt1.Rows(0).Item("Diagnosis").ToString
+    '                    cbxInter.Text = dt1.Rows(0).Item("Intervention").ToString
+    '                    txtVisAmount.Text = dt1.Rows(0).Item("Amount").ToString
+    '                    lblcurTime.Text = dt1.Rows(0).Item("VisDate").ToString
+    '                End If
+    '            End Using
+    '        End Using
+    '    End Using
+    '    'Trace.WriteLine("ShowVisitsPatTable FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+    'End Sub
     Sub ShowVisitsPatTable()
         'Trace.WriteLine("ShowVisitsPatTable STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
         Using con As New OleDbConnection(cs) '("provider=microsoft.ace.oledb.12.0; data source=TestDB.accdb;jet oledb:database password=mero1981923")
             con.Open()
             Using cmd As New OleDbCommand
                 cmd.Connection = con
-                cmd.CommandText = "SELECT * FROM Visits WHERE Patient_no=@Patient_no " '&
+                cmd.CommandText = "SELECT * FROM Visits WHERE Patient_no=@Patient_no"
                 '"ORDER BY Visit_no"
                 cmd.Parameters.Add("@Patient_no", OleDbType.Integer).Value = CInt(Val(txtVisPatNo.Text))
                 Using dt1 As New DataTable
@@ -5308,6 +5379,9 @@ Public Class Form1
 
     Private Sub btnNewVisit_Click(sender As Object, e As EventArgs) Handles btnNewVisit.Click
         'Trace.WriteLine("btnNewVisit_Click STARTED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        If txtVisName.Text = "" Then
+            Exit Sub
+        End If
         txtComplain.Text = ""
         txtSign.Text = ""
         cbxDia.Text = ""
@@ -5327,6 +5401,8 @@ Public Class Form1
 
         btnVisSave_Click(Nothing, Nothing)
         txtVisNo.Select()
+        txtVisNo.BackColor = Color.LightSeaGreen
+        txtVisNo.ForeColor = Color.White
 
         'Trace.WriteLine("btnNewVisit_Click FINISHED @ " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
     End Sub
@@ -7266,7 +7342,9 @@ Public Class Form1
             reader.Close()
             conn.Close()
         End If
-
+        If txtVisNo.Text = GetAutonumber("Visits", "Visit_no") Then
+            Exit Sub
+        End If
         InvAndAttEnabled()
         DrugEnabled()
         ShowInvVisTable()
@@ -7525,6 +7603,7 @@ Public Class Form1
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         ListBox4.Items.Clear()
+        cbxVisSearch.Text = ""
         Button8.BackColor = Color.LightSeaGreen
         Label81.Text = "Investigation Visits"
         If Button8.BackColor = Color.LightSeaGreen Then
@@ -7533,16 +7612,21 @@ Public Class Form1
             Button6.BackColor = Color.SeaGreen
             Button17.BackColor = Color.SeaGreen
         End If
-        If txtPatName.Text <> "" Then
-            txtVisName.Text = txtPatName.Text
-            txtVisPatNo.Text = txtNo.Text
-            ShowVisitsPatTable()
+        'If txtPatName.Text = "" Then
+        '    TabControl1.SelectedTab = Me.TabPage3
+        '    Exit Sub
 
-        End If
+        'End If
+        ClearData()
+        txtVisName.Text = txtPatName.Text
+        txtVisPatNo.Text = txtNo.Text
+        ShowVisitsPatTable()
+
         btnNewVisit.Enabled = True
         InvAndAttDisabled()
         DrugDisabled()
         TabControl1.SelectedTab = Me.TabPage3
+
 
     End Sub
 
@@ -7653,28 +7737,25 @@ Public Class Form1
         Dim dgv As DataGridViewRow = DataGridView3.SelectedRows(0)
 
         txtNo.Text = dgv.Cells(0).Value.ToString
-        txtVis1.Text = dgv.Cells(1).Value.ToString
+        'txtVis1.Text = dgv.Cells(1).Value.ToString
+        'TextBox16.Text = dgv.Cells(1).Value.ToString
         'DTPickerLMP.Value = CDate(dgv.Cells(2).Value.ToString)
         'DTPickerEDD.Value = CDate(dgv.Cells(3).Value.ToString)
         'txtElapsed.Text = dgv.Cells(4).Value.ToString
         'txtGA.Text = dgv.Cells(5).Value.ToString
         ShowPatTable()
         DGVPatients()
-        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
-        'Dim date2 As Date = DTPickerLMP.Value
-        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
-        'If DTPickerEDD.Value = DTPickerLMP.Value Then
-        '    Exit Sub
-        'End If
-        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
-        'txtGA.Text = CStr(40 - weeks)
-        'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
-        TextBox6.Text = txtNo.Text
-        TextBox7.Text = txtNo.Text
-        TextBox5.Text = txtPatName.Text
-        TextBox8.Text = txtPatName.Text
+
+        'TextBox6.Text = txtNo.Text
+        'TextBox7.Text = txtNo.Text
+        'TextBox5.Text = txtPatName.Text
         TextBox9.Text = txtPatName.Text
-        GynEnabled()
+
+        DataGridView6.DataSource = Nothing
+        Label80.Text = "0"
+        DataGridView5.DataSource = Nothing
+        Label78.Text = "0"
+        ClearData()
 
     End Sub
 
@@ -7701,8 +7782,8 @@ Public Class Form1
     End Sub
 
     Private Sub DataGridView6_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView6.RowHeaderMouseClick
-
-        ClearForDGV2()
+        TextBox16.Text = ""
+        'ClearForDGV2()
         Button6.BackColor = Color.LightSeaGreen
         Label81.Text = "History"
         If Button6.BackColor = Color.LightSeaGreen Then
@@ -7715,6 +7796,7 @@ Public Class Form1
         Dim dgv As DataGridViewRow = DataGridView6.SelectedRows(0)
         txtNo.Text = dgv.Cells(0).Value.ToString
         txtVis1.Text = dgv.Cells(1).Value.ToString
+        TextBox16.Text = dgv.Cells(1).Value.ToString
         DTPickerMns.Value = CDate(dgv.Cells(2).Value.ToString)
         chbxNVD.Checked = CBool(dgv.Cells(3).Value.ToString)
         chbxCS.Checked = CBool(dgv.Cells(4).Value.ToString)
@@ -7751,6 +7833,7 @@ Public Class Form1
         TextBox5.Text = txtPatName.Text
         TextBox6.Text = txtNo.Text
         GynEnabled()
+        'ClearForDGV2()
         Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
         Dim date2 As Date = DTPickerLMP.Value
         Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
@@ -7761,10 +7844,11 @@ Public Class Form1
         End If
         txtElapsed.Text = CStr(weeks) '& "  Weeks"
         txtGA.Text = CStr(40 - weeks)
-        DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
+        'DTPickerEDD.Value = DTPickerLMP.Value.AddDays(280)
     End Sub
 
     Private Sub DataGridView5_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView5.RowHeaderMouseClick
+        TextBox17.Text = ""
         Button6.BackColor = Color.LightSeaGreen
         Label81.Text = "History"
         If Button6.BackColor = Color.LightSeaGreen Then
@@ -7777,10 +7861,13 @@ Public Class Form1
 
         'TextBox8.Text = txtPatName.Text
         'TextBox7.Text = txtNo.Text
-        ClearForDGV1()
+
+        'ClearForDGV1()
+
         'txtVis.Text = dgv.Cells(0).Value.ToString
         txtNo.Text = dgv.Cells(0).Value.ToString
         txtVis.Text = dgv.Cells(1).Value.ToString
+        TextBox17.Text = dgv.Cells(1).Value.ToString
         DTPickerAtt.Value = CDate(dgv.Cells(2).Value.ToString)
         cbxGL.Text = dgv.Cells(3).Value.ToString
         cbxPuls.Text = dgv.Cells(4).Value.ToString
@@ -7797,15 +7884,17 @@ Public Class Form1
         txtAmount.Text = dgv.Cells(15).Value.ToString
         'cbxGL.Text = dgv.Cells(15).Value.ToString
         'DTPickerAtt.Value = CDate(dgv.Cells(15).Value.ToString)
+        TextBox8.Text = txtPatName.Text
+        TextBox7.Text = txtNo.Text
 
         ShowPatTable()
+        'ClearForDGV1()
 
         TabControl1.SelectedTab = Me.TabPage1
         'TextBox5.Text = txtPatName.Text
         'TextBox6.Text = txtNo.Text
         'GynEnabled()
-        TextBox8.Text = txtPatName.Text
-        TextBox7.Text = txtNo.Text
+
 
         Gyn2Enabled()
     End Sub
@@ -7879,7 +7968,7 @@ Public Class Form1
         'End While
         'reader.Close()
         'conn.Close()
-
+        TextBox13.Text = "0"
         Using cn As New OleDbConnection(cs)
             cn.Open()
             Using cmd As New OleDbCommand
@@ -7905,10 +7994,7 @@ Public Class Form1
                 End Using
             End Using
         End Using
-
         SumAmountUS()
-
-
     End Sub
 
     Sub SumAmountUS()
@@ -7947,7 +8033,7 @@ Public Class Form1
         'DataGridView9.DataSource = ds.Tables("Visits").DefaultView
 
         'con.Close()
-
+        TextBox13.Text = "0"
         Using cn As New OleDbConnection(cs)
             cn.Open()
             Using cmd As New OleDbCommand
@@ -7965,9 +8051,8 @@ Public Class Form1
                 End Using
             End Using
         End Using
-
-
         SumAmountVisits()
+
     End Sub
 
     Sub SumAmountVisits()
@@ -8074,6 +8159,7 @@ Public Class Form1
             Button6.BackColor = Color.SeaGreen
             Button2.BackColor = Color.SeaGreen
         End If
+        DateTimePicker2.Select()
     End Sub
 
     Private Sub DataGridView9_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView9.RowHeaderMouseClick
@@ -8084,23 +8170,33 @@ Public Class Form1
             Button6.BackColor = Color.SeaGreen
             Button2.BackColor = Color.SeaGreen
         End If
+        ListBox4.Items.Clear()
+
         Dim dgv As DataGridViewRow = DataGridView9.SelectedRows(0)
         txtVisPatNo.Text = dgv.Cells(0).Value.ToString
         txtVisNo.Text = dgv.Cells(1).Value.ToString
 
+        txtNo.Text = txtVisPatNo.Text
+
         ShowPatTable()
         ShowVisits()
 
+        InvAndAttDisabled()
+        DrugDisabled()
+        ClearInv()
+        ClearDrug()
         TabControl1.SelectedTab = Me.TabPage3
 
     End Sub
 
     Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
         ClearGyn()
+        TextBox16.Text = ""
     End Sub
 
     Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
         ClearGyn2()
+        TextBox17.Text = ""
     End Sub
 
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
@@ -8145,8 +8241,9 @@ Public Class Form1
     End Sub
 
     Private Sub DataGridView10_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView10.RowHeaderMouseClick
-
+        TextBox17.Text = ""
         Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
         If Button6.BackColor = Color.LightSeaGreen Then
             Button8.BackColor = Color.SeaGreen
             Button1.BackColor = Color.SeaGreen
@@ -8157,16 +8254,17 @@ Public Class Form1
         Dim dgv As DataGridViewRow = DataGridView10.SelectedRows(0)
         txtNo.Text = dgv.Cells(0).Value.ToString
         txtVis.Text = dgv.Cells(1).Value.ToString
+        TextBox17.Text = dgv.Cells(1).Value.ToString
 
         ShowPatTable()
         ShowGyn2Table()
 
-        TextBox6.Text = txtNo.Text
+        'TextBox6.Text = txtNo.Text
         TextBox7.Text = txtNo.Text
-        TextBox5.Text = txtPatName.Text
+        'TextBox5.Text = txtPatName.Text
         TextBox8.Text = txtPatName.Text
         Gyn2Enabled()
-        ClearForDGV1()
+        'ClearForDGV1()
 
         TabControl1.SelectedTab = Me.TabPage1
 
@@ -8183,6 +8281,8 @@ Public Class Form1
     End Sub
 
     Private Sub txtVis1_TextChanged(sender As Object, e As EventArgs) Handles txtVis1.TextChanged
+        'ClearForDGV2()
+
         If txtVis1.Text = GetAutonumber("Gyn", "Vis_no") Then
             txtVis1.BackColor = Color.SeaGreen
             txtVis1.ForeColor = Color.White
@@ -8190,9 +8290,11 @@ Public Class Form1
             txtVis1.BackColor = Color.LightSeaGreen
             txtVis1.ForeColor = Color.White
         End If
+        'TextBox16.Text = txtVis1.Text
     End Sub
 
     Private Sub txtVis_TextChanged(sender As Object, e As EventArgs) Handles txtVis.TextChanged
+        'TextBox17.Text = txtVis.Text
         If txtVis.Text = GetAutonumber("Gyn2", "Vis_no") Then
             txtVis.BackColor = Color.SeaGreen
             txtVis.ForeColor = Color.White
@@ -8247,6 +8349,45 @@ Public Class Form1
 
     Private Sub txtSign_Click(sender As Object, e As EventArgs) Handles txtSign.Click
         InputLanguage.CurrentInputLanguage = InputLanguage.InstalledInputLanguages(0)
+    End Sub
+
+    Private Sub TextBox16_TextChanged(sender As Object, e As EventArgs) Handles TextBox16.TextChanged
+        Button6.BackColor = Color.LightSeaGreen
+        Label81.Text = "History"
+        If Button6.BackColor = Color.LightSeaGreen Then
+            Button2.BackColor = Color.SeaGreen
+            Button1.BackColor = Color.SeaGreen
+            Button8.BackColor = Color.SeaGreen
+        End If
+
+        GynEnabled()
+        ClearForDGV2()
+
+        'Dim date1 As Date = DateTimePicker1.Value   'Now 'DTPickerMns.Value
+        'Dim date2 As Date = DTPickerLMP.Value
+        'Dim weeks As Integer = CInt((date1 - date2).TotalDays / 7)
+        'If DTPickerEDD.Value = DTPickerLMP.Value Then
+        '    txtElapsed.Text = "0"
+        '    txtGA.Text = "0"
+        '    Exit Sub
+        'End If
+        'txtElapsed.Text = CStr(weeks) '& "  Weeks"
+        'txtGA.Text = CStr(40 - weeks)
+    End Sub
+
+    Private Sub TextBox17_TextChanged(sender As Object, e As EventArgs) Handles TextBox17.TextChanged
+        'Button6.BackColor = Color.LightSeaGreen
+        'Label81.Text = "History"
+        'If Button6.BackColor = Color.LightSeaGreen Then
+        '    Button2.BackColor = Color.SeaGreen
+        '    Button1.BackColor = Color.SeaGreen
+        '    Button8.BackColor = Color.SeaGreen
+        '    Button17.BackColor = Color.SeaGreen
+
+        'End If
+
+        ClearForDGV1()
+        'Gyn2Enabled()
     End Sub
 End Class
 

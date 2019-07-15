@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" generated="2017-08-30T00:02:47">
+  <Plans>
+    <Plan></Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الفطار</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مساءا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنة بالعضل الان</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسولة كل 12 ساعة</Plan>
+  </Plans>
+  <Plans>
+    <Plan>1/2امبول بالعضل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص صباحا و قرص كامل مساء 1/2</Plan>
+  </Plans>
+  <Plans>
+    <Plan>1/2قطاره عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>10نقط على كوب ماء صباحا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>15 نقطه على كوب ماء صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>امبول على 200 سم محلول ملح حقنه شرجيه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>امبول فى سرنجة كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>امبول فى سرنجة لمدة 5 ايام</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الاكل عند اللزووم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الغداء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 8 ساعات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل ساعتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص للاستحلاب 3 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مره واحده يوميا لمده ثلاث ايام</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسولة اليوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسولة صباحا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>لبوسه صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>مل ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه صغيره ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>2.5مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>2/3قرص قبل النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>2/3قطاره عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>20نقطه على كوب ماء ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>20نقطه على كوب ماء صباحا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>20نقطه على كوب ماء مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>20نقطه على كوب ماء مره يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>3مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>3.5مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>30نقطه على كوب ماء ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>4مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>5مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>5مل كل 8 ساعات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>6أقراص دفعه واحده و تكرر بعد اسبوع</Plan>
+  </Plans>
+  <Plans>
+    <Plan>7مل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>7مل كل 8 ساعات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء عند الزوم بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء غسول مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء غسول يومى</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على كوب ماء مرتين يوميا بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>بختين بالفم مع النفس عند اللزووم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>بخه بالانف صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>بودره للغيار</Plan>
+  </Plans>
+  <Plans>
+    <Plan>تحضير للاشعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه الان فقط</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل الان فقط</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل كل 24 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل كل 3 اسابيع</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل كل اسبوعين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل مرتين اسبوعيا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل يوم بعد يوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالعضل يوميا مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالوريد الان فقط</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه بالوريد كل 24 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه شرجيه صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنه واحده بعد العمليه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان 4 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان 6 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان حتى 6 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان شرجى حتى 6 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان شرجى صباحا و مساء لمده شهرين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان صباحا و مساء لمده شهرين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان قبل دخول الحمام</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان للغيار</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان مره كل يوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان مره واحده يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>دهان موضعى مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>غرعره مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>فرص مره واحده يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص 4 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الافطار</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الافطار و السحور</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الافطار و العشاء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الافطار و عند النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الاكل ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الاكل عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الغداء و عند النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص بعد الكل ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص تحت اللسان مره و احد يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص ثلاث مرات بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص ثلاث مرات قبل الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص ثلاث مرات يوميا قبل الاكل بربع ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص صباحا و مساء بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص صباحا و مساء قبل الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص على كوب ماء كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص عند النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الافطار بنصف ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الافطار و السحور</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الافطار و العشاء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الاكل ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الاكل صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الغداء بربع ساعه و قرص عند النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الفطار بنصف ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الفطار و العشاء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الكل مباشره ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص قبل الوجبه الرئيسيه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 12 ساعه بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 24 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص للاستحلاب ثلاث مرات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مرتان يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مره و احد يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مره و احده</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مره واحده مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مره واحده يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص واحد مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص يوميا مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قطاره ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قطاره حتى 4 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قطاره عند اللزووم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قطاره مره واحده يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله بعد الافطار</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله بعد الافطار و السحور</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله بعد الافطار و العشاء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله بعد الاكل عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله ثلاث مرات يوميا بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله كل 12 ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله كل 6 ساعات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله كل 8 ساعات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله كل اسبوع لمده اربعه اسابيع</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله مرتين يوميا بعد الاكل</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله مره اسبوعيا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كمادات مخففه ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>لبوسه ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>لبوسه عند اللزووم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>لبوسه قبل النوم و قبل الافطار بنصف ساعه</Plan>
+  </Plans>
+  <Plans>
+    <Plan>لبوسه مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>لبوسه مهبليه صباحا  و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>محلول للغيار</Plan>
+  </Plans>
+  <Plans>
+    <Plan>محلول مخفف صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>مرهم موضعى مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>مس صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقة مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه صغيره بعد الاكل عند اللزووم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه صغيره بعد الكل عند اللزوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه صغيره صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه صغيره عند النوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره اربع مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره على لتر ماء ساخن للاستنشاق</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره على كل لتر ماء تشطيف مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره على كوب لبن صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره على كوب ماء ثلاث مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره على كوب ماء صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره لكل لتر ماء دءفئ صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره لكل لتر ماء دافئ تشطيف صباحا و مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره لكل لتر ماء دافئ تشطيف مره واحده يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقه كبيره مساء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>فوار صباحا و مساءا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>معلقة كل يوم على الريق لمدة اسبوع</Plan>
+  </Plans>
+  <Plans>
+    <Plan>نقطتين بالاذن اليمنى مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>نقطتين بكل اذن مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>نقطتين بالاذن اليسرى مرة واحدة</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص 4 مرات يوميا على الريق</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص 3 مرات يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص 4 مرات يوميا على الريق </Plan>
+  </Plans>
+  <Plans>
+    <Plan>نقط لفطريات القدم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>معلقة صغيرة مرتين</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقة كبيرة ثلاث مرات</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>حقنة مرة كل اسبوع لمدة شهر</Plan>
+  </Plans>
+  <Plans>
+    <Plan>ملعقة واحدة يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>1/2قرص صباحا و قرص كامل مساء </Plan>
+  </Plans>
+  <Plans>
+    <Plan>11</Plan>
+  </Plans>
+  <Plans>
+    <Plan>2 قرص </Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 12 ساعه 5 ايام</Plan>
+  </Plans>
+  <Plans>
+    <Plan>2قرص مساءا لمدة 10 ايام</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 12 ساعه لمدة 5 ايام</Plan>
+  </Plans>
+  <Plans>
+    <Plan>قرص كل 12 ساعه لمدة 3 شهور</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسولة كل 12 ساعة لمدة 14 يوم</Plan>
+  </Plans>
+  <Plans>
+    <Plan>كبسوله بعد الغداء</Plan>
+  </Plans>
+  <Plans>
+    <Plan>باكو على نصف كوب ماء مرتين يوميا</Plan>
+  </Plans>
+  <Plans>
+    <Plan>امبول مرة واحدة فى الاسبوع لمدة شهر</Plan>
+  </Plans>
+</dataroot>

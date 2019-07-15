@@ -1,0 +1,9 @@
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.vb
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.Form1.resources
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.Form2.resources
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.frmMain.resources
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.Form4.resources
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.Resources.resources
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.exe
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/obj/Release/test.pdb
+/media/amraly/E68DE3E53B215173/KMAClinicpro/New_/Dr_Sabah/test_4-1-2018_open/test/bin/Release/ApplicationEnhancement.dll
